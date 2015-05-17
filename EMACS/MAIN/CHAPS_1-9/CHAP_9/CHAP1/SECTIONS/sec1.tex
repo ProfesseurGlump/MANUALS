@@ -1,0 +1,28 @@
+\section{Point}\etchs{1}{1}
+Le curseur de la fenêtre sélectionnée indique l'emplacement où la
+plupart des commandes d'édition prennent effet, qui est appelé
+point\footnote{Le terme <<point>> vient du caractère <<.>>, qui était la
+  commande TECO (le langage dans lequel l'Emacs original a été
+  écrit) pour accéder à la position d'édition.}. Beaucoup
+de commandes Emacs déplacent le point à différents endroits dans le
+tampon; par exemple, vous pouvez placer en cliquant sur le bouton 1 de
+la souris (usuellement le gauche) à l'endroit désiré. Par défaut, le
+curseur de la fenêtre sélectionnée est dessiné comme un bloc plein et
+paraît être un caractère, mais vous devrez penser le point comme entre
+deux caractères; il est situé avant le caractère sous le curseur. Par
+exemple; si votre texte ressemble à <<frob>> avec le curseur sur <<b>>,
+alors le point est entre le <<o>> et le <<b>>. Si vous insérez le
+caractère <<!>> à cette position, le résultat sera <<fro!b>>, avec le
+point entre le <<!>> et le <<b>>. Ainsi, le curseur reste au-dessus du
+<<b>>, comme précédemment.\par 
+
+Si vous éditez plusieurs fichiers dans Emacs, chacun dans son propre
+tampon, chaque tampon a sa propre valeur du point. Un tampon qui n'est
+pas actuellement affiché se souvient encore de sa valeur du point si vous
+l'afficher plus tard. En outre, si un tampon est affiché dans
+plusieurs fenêtres, chacune de ces fenêtres a sa propre valeur du
+point.\par
+
+Voir la section\cfchs{11}{20} [Affichage Curseur],
+page\cfchsg{11}{20}, pour les options qui contrôlent la façon
+dont Emacs affiche le curseur.\par 

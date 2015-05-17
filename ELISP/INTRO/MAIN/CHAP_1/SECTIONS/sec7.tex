@@ -1,0 +1,140 @@
+\section{Variables}\etchs{1}{7}
+
+Dans Emacs Lisp, un symbole peut avoir une valeur associée à lui tout
+comme il peut avoir une définition de fonction associée. Les deux sont
+différents. La définition de la fonction est un ensemble
+d'instructions auquelles un ordinateur obéira. Une valeur, d'autre
+part, est quelque chose, comme un nombre ou un nom, qui peut varier
+(c'est pourquoi un tel symbole est appelé variable). La valeur d'un
+symbole peut être n'importe quelle expression Lisp, comme un symbole,
+un nombre, une liste, ou une chaîne. Un symbole qui a une valeur est
+souvent appelé une variable. 
+
+Un symbole peut avoir à la fois une définition de fonction et une
+valeur fixée à lui en même temps. Ou il peut avoir l'un ou
+l'autre. Les deux sont séparés. C'est un peu similaire à la façon dont
+le nom Cambridge peut référer à la ville du Massachussets et avoir
+quelques informations attachées au nom ainsi, comme <<grand centre de
+programmation>>. 
+
+Une autre façon de penser à ce sujet est d'imaginer un symbole comme
+étant une commode. La définition de la fonction est mise dans un
+tiroir, la valeur dans un autre et ainsi de suite. Ce qui est mis dans
+le tiroir contenant la valeur peut être modifié sans affecter le
+contenu du tiroir maintenant la définition de la fonciton, et
+vice-versa. 
+
+La variable \tm{fill-column} illustre un symbole avec une valeur
+attachée à elle : dans chaque tampon \gem , ce symbole est réglé à une
+valeur, généralement 72 ou 70, mais parfois à une autre valeur. Pour
+trouver la valeur de ce symbole, d'évaluer par lui-même. Si vous lisez
+ceci dans Info à l'intérieur de \gem , vous pouvez le faire en le
+curseur après le symbole et en tapant \rec{C}{x}{C}{e} :
+\begin{center}
+  \tm{fill-column}
+\end{center}
+
+Après que j'ai tapé \rec{C}{x}{C}{e}, Emacs a imprimé le nombre 70
+dans ma zone d'écho. c'est la valeur pour laquelle \tm{fill-column}
+est réglée pour moi qui écris ceci. Il peut être différent pour vous
+dans votre tampon Info. Notez que la valeur renvoyée comme une
+variable est imprimée exactement de la même manière que la valeur
+renvoyée par la fonction d'exécution des instructions. Du point de vue
+de l'interprète Lisp, une valeur renvoyée est une valeur
+renvoyée. Peu importe le genre d'expression une fois que la valeur est
+connue.
+
+Un symbole peut avoir n'importe quelle valeur attachée à lui ou, pour
+utiliser le jargon, on peut lier la variable à une valeur : à un
+certain nombre, comme \tm{72} ; à une chaîne, <<\tm{telle que ça}>>, à une
+liste, comme \tm{(spruce pine oak)}; nous pouvons même lier une
+variable à une définition de fonction. 
+
+Un symbole peut être lié à une valeur de plusieurs façons. Voir la
+section\cfchs{1}{9} <<Réglage de la valeur d'une variable>>,
+page\cfchsg{1}{9}, pour des informations sur une façon de le faire.  
+
+\subsection{Message d'erreur pour un symbole sans
+  fonction}\etchss{1}{7}{1}
+
+Lorsque nous avons évalué \tm{fill-column} pour trouver sa valeur en
+tant que variable, nous n'avons pas placé des parenthèses autour du
+mot. C'est parce que nous n'avons pas l'intention de l'utiliser comme
+un nom de fonction.
+
+Si \tm{fill-column} était le premier ou le seul élément d'une liste,
+l'interprète Lisp tenterait de trouver la définition de fonction
+attachée à elle. Mais \tm{fill-column} n'a pas de définition de
+fonction. Essayez d'évaluer ceci :
+\begin{center}
+  \tm{(fill-column)}
+\end{center}
+
+Vous allez créé un tampon \tm{*Backtrace*} disant ceci:
+{\ttfamily
+\begin{flushleft}
+  Debugger entered--Lisp error: (void-function fill-column)
+
+  (fill-column)
+
+  eval((fill-column))
+
+  eval-last-sexp-1(nil)
+
+  eval-last-sexp(nil)
+
+  call-interactively(eval-last-sexp)
+\end{flushleft}
+}
+
+(Rappelez-vous, pour quitter le débogueur et faire la fenêtre du
+débogueur s'en aller, tapez \tm{q} dans le tampon \tm{*Backtrace*}.)
+
+
+\subsection{Message d'erreur pour un symbole sans
+  valeur}\etchss{1}{7}{2}
+
+Si vous essayez d'évaluer un symbole qui ne possède pas une valeur qui
+lui est liée, vous recevrez un message d'erreur. Vous pouvez voir cela
+en expérimentant avec notre addition 2 plus 2. Dans l'expression
+suivante, placez votre curseur à droite après le \tm{+}, avant le
+premier nombre 2, tapez \rec{C}{x}{C}{e} :
+\begin{center}
+  \tm{(+ 2 2)}
+\end{center}
+Vous allez créé un tampon \tm{*Backtrace*} disant ceci:
+{\ttfamily
+\begin{flushleft}
+  Debugger entered--Lisp error: (void-variable +)
+
+  eval(+)
+
+  eval-last-sexp-1(nil)
+
+  eval-last-sexp(nil)
+
+  call-interactively(eval-last-sexp)
+\end{flushleft}
+}
+
+(Encore une fois, vous pouvez quitter le débogueur en tapant \tm{q}
+dans le tampon \tm{*Backtrace*}.)
+
+Ce backtrace est différent du premier message d'erreur que nous avons
+vu, qui dit <<\tm{Debugger entered--Lisp error: (void-function
+  this)}>>. Dans ce cas, la fonction n'a pas de valeur en tant que
+variable; tandis que dans l'autre message d'erreur, la fonction (le
+mot <<\tm{this}>>) n'avait pas de définition.
+
+Dans cette expérience avec le \tm{+}, ce que nous faisions était
+provoquer l'interprète Lisp évaluer le \tm{+} et rechercher la valeur
+de la variable au lieu de la définition de la fonction. Nous l'avons
+fait en plaçant le curseur juste après le symbole plutôt qu'après la
+parenthèse de la liste englobante que nous avons fait avant. En
+conséquence, l'interprète Lisp a évalué la s-expression précédente,
+qui dans ce cas était \tm{+} lui-même.
+
+Depuis \tm{+} n'a pas de valeur liée à elle, juste la définition de
+fonction, le message d'erreur rapportait que la valeur du symbole
+comme variable était nulle. 
+

@@ -1,0 +1,39 @@
+\chapter{Personnalisation}
+\section{Interface de personnalisation simple}
+\subsection{Groupes de personnalisation}
+\subsection{Naviguer et chercher pour des réglages}
+\subsection{Changer une variable}
+\subsection{Sauvegarde des personnalisations}
+\subsection{Faces de personnalisation}
+\subsection{Personnalisation d'items spécifiques}
+\subsection{Personnaliser des thèmes}
+\subsection{Création de thèmes personnalisés}
+\section{Variables}
+\subsection{Exmanen et réglages de variables}
+\subsection{Crochers}
+\subsection{Variables locales}
+\subsection{Variables locales dans des fichiers}
+\subsubsection{Spécification de fichiers de variables}
+\subsubsection{Sécurité de fichiers de variables}
+\subsection{Variables locales par répertoire}
+\section{Personnalisation des raccourcis clavier}
+\subsection{Carte des clés}
+\subsection{Préfixes de la carte des clés}
+\subsection{Carte des clés locale}
+\subsection{Minibuffer de la carte des clés}
+\subsection{Changement de raccourci clavier intéractivement}
+\subsection{Renommer un raccourci clavier dans son fichier
+  d'initialisation}
+\subsection{Touches modificatrices}
+\subsection{Nom ASCII du contrôle des caractères}
+\subsection{Renommer les boutons de la souris}
+\subsection{Commandes désactivées}
+\section{Le fichier d'initialisation Emacs}
+\subsection{Syntaxe du fichier init}
+\subsection{Exemples du fichier init}
+\subsection{Initialisation spécifique du terminal}
+\subsection{Comment Emacs trouve votre fichier d'initiliasation
+  (init)}
+\subsection{Caractères non ASCII dans le fichier init}
+
+

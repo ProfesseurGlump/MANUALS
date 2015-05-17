@@ -1,0 +1,62 @@
+\chapter{Lancer des commandes par leur nom}\etch{6}
+
+
+Chaque commande Emacs a un nom que vous pouvez utiliser pour
+l'exécuter. Pour plus de commodité, de nombreuses commandes ont
+également des raccourcis clavier. Vous pouvez exécuter ces commandes
+en tapant ces touches, ou les exécuter par leurs noms. La plupart des
+commandes Emacs n'ont pas de raccourcis clavier, la seule façon de les
+lancer est par leurs noms. (Voir section\cfchs{33}{3} [Raccourcis
+clavier], page\cfchsg{33}{3}, pour savoir comment mettre en place les
+raccourcis clavier.).
+
+Par convention, un nom de commande se compose d'un ou plusieurs mots,
+séparés par des tirets ; par exemple, \texttt{auto-fill-mode} ou
+\texttt{manual-entry}. Les noms de commandes utilisent le plus souvent
+des mots complets en anglais pour les rendre plus facile à retenir.
+
+Pour exécuter une commande par son nom, commencez par \texttt{M-x},
+tapez le nom de la commande, puis terminer par \RET. \texttt{M-x}
+utilise le mini-tampon pour lire le nom de la commande. La chaîne
+'\texttt{M-x}' apparaît au début du mini-tampon comme invite pour vous
+rappeler d'entrer un nom de commande à exécuter. \RET sort le
+mini-tampon et exécute la commande. Voir le chapitre\cfch{5}
+[Mini-tampon], page\cfchg{5}, pour plus d'informations sur le
+mini-tampon.
+
+Vous pouvez utiliser la complétion pour entrer le nom de la
+commande. Par exemple, pour appeler la commande \texttt{forward-char},
+vous pouvez taper \texttt{M-x forward-char RET} ou \texttt{M-x forw
+  TAB c RET}.
+
+Notez que \texttt{forward-char} est la même commande que vous invoquez
+avec la touche \texttt{C-f}. L'existence d'un raccourci ne vous
+empêche pas d'exécuter la commande par son nom. 
+
+Pour annuler le \texttt{M-x} et ne pas lancer une commande, tapez
+\texttt{C-g} lieu d'entrer le nom de la commande. Cela vous ramène au
+niveau de la commande.
+
+Pour passer un argument numérique pour la commande que vous invoquez
+avec \texttt{M-x}, spécifiez l'argument numérique avant
+\texttt{M-x}. La valeur de l'argument apparaît dans l'invite alors que
+le nom de la commande est en cours de lecture, et enfin \texttt{M-x}
+passe l'argument à cette commande. 
+
+Lorsque la commande que vous exécutez avec \texttt{M-x} dispose d'un
+raccourci, Emacs le mentionne dans la zone écho après l'exécution de
+la commande. Par exemple, si vous tapez \texttt{M-x forward-word}, le
+message indique que vous pouvez exécuter la même commande en tapant
+\texttt{M-f}. Vous pouvez désactiver ces messages en définissant la
+variable \texttt{suggest-key-bindings} à \texttt{nil}.
+
+Dans ce manuel, lorsque nous parlons de l'exécution d'une commande par
+son nom, nous omettons souvent le \RET qui termine le nom. Ainsi, nous
+pourrions dire \texttt{M-x auto-fill-mode RET}. Nous mentionnons le
+\RET seulement pour l'accent, comme lorsque la commande est suivie par
+des arguments. 
+
+\texttt{M-x} fonctionne en exécutant la commande
+\texttt{execute-extended-command}, qui est chargée de lire le nom d'une
+autre commande et l'invoquer.
+

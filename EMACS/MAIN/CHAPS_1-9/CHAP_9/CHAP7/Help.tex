@@ -1,0 +1,192 @@
+\chapter{Aide}\etch{7}
+
+Emacs fournit une grande variété de commandes d'aide, toutes
+accessibles par la touche de préfixe \texttt{C-h} (ou, de façon
+équivalente, la touche \texttt{F1}). Ces commandes d'aide sont
+décrites dans les sections suivantes. Vous pouvez également taper
+\texttt{C-h C-h} pour afficher une liste des commandes d'aide
+(\texttt{help-for-help}). Vous pouvez faire défiler la liste avec la
+\SPC et de \DEL, puis tapez la commande d'aide que vous voulez. Pour
+annuler taper \rep{C}{g}.
+
+Beaucoup de commandes d'aide affichent leurs informations dans un
+tampon d'aide spécial. Dans ce tampon, vous pouvez taper \SPC et \DEL
+pour faire défiler et tapez \RET pour suivre des liens
+hypertexte. Voir la section\cfchs{7}{4} [Mode aide],
+page\cfchsg{7}{4}.
+
+Si vous cherchez une certaine fonction, mais ne savez pas comment elle
+s'appelle ou où chercher, nous vous recommandons trois
+méthodes. Premièrement, essayez une commande à propos, puis essayez de
+chercher dans l'index du Manuel, puis regardez dans les \texttt{FAQ}
+et les mots clés. 
+
+\begin{tabular}[m]{>{\ttfamily}lp{9cm}}
+  C-h a topics RET & \\
+  & Cette fonction recherche des commandes dont les noms correspondent
+  avec les arguments donnés. L'argument peut être un mot-clé, une
+  liste de mots-clés, ou une expression régulière (voir
+  Section\cfchs{12}{6} [Regexps], page\cfchsg{12}{6}. Voir la
+  Section\cfchs{7}{3} [A propos], page\cfchsg{7}{3}. \\
+  C-h i d m emacs RET i topic RET & \\
+  & Cette fonction recherche les sujets dans les indices du manuel
+  Emacs Info, l'affichage de la première correspondance
+  trouvée. Appuyez, pour voir les correspondances suivantes. Vous
+  pouvez utiliser une expression régulière comme sujet.\\
+  C-h i d m emacs RET s topic RET & \\
+  & Similaire, mais cherche le texte du manuel plutôt que les indices.\\
+  C-h C-f & \\
+  & Affiche les FAQ Emacs, utilisant Info.\\
+  C-h p & \\
+  & Affiche les paquetages Emacs disponibles basés sur le
+  clavier. Voir Section\cfchs{7}{5} [Paquetages du clavier], page\cfchsg{7}{5}.
+\end{tabular}
+
+\rep{C}{h} ou \texttt{F1} signifie <<aide>> dans divers autres
+contextes. Par exemple, vous pouvez les saisir après une touche
+préfixée pour afficher une liste des touches qui peuvent suivre la
+touche préfixée. (Quelques touches préfixées ne supportent pas
+\rep{C}{h} de cette manière, car ils définissent d'autres
+significations pour ça, mais ils soutiennent tous \texttt{F1} pour
+l'aide.)
+
+Voici un résumé des commandes d'aide pour accéder à la documentation
+intégrée. La plupart d'entre elles sont décrites en détail dans les
+sections suivantes. 
+
+\begin{longtable}[m]{>{\ttfamily}lp{9cm}}
+  C-h a topics RET & \\
+  & Affiche une liste de commandes dont les noms correspondent aux
+  sujets (\texttt{apropos-command})
+  avec les arguments donnés. L'argument peut être un mot-clé, une
+  liste de mots-clés, ou une expression régulière (voir
+  Section\cfchs{12}{6} [Regexps], page\cfchsg{12}{6}. Voir la
+  Section\cfchs{7}{3} [A propos], page\cfchsg{7}{3}. \\
+  C-h b & \\
+  & Affiche tous les raccourcis clavier actifs ; ceux des modes
+  mineurs en premier, puis ceux des modes majeurs
+  (\texttt{describe-bindings}). \\  
+  C-h c key & \\
+  & Affiche le nom de la commande associée au raccourci clavier
+  (\texttt{describe-key-briefly}). Ici c est synonyme de
+  <<caractère>>. Pour des informations plus complètes sur la touche,
+  utiliser \rep{C}{h} \texttt{k}. \\
+  C-h d topics RET & \\
+  & Affiche les commandes et les variables dont la documentation
+  correspond aux sujets (\texttt{apropos-documentation}).\\
+  C-h e & \\
+  & Affiche le tampon \texttt{*Messages*}
+  (\texttt{view-echo-area-messages}). \\
+  C-h f function RET & \\
+  & La documentation de l'affichage de la fonction Lisp nommé
+  (\texttt{describe-function}). Les commandes étant des fonctions
+  Lisp, cela fonctionne pour les commandes aussi. \\
+  C-h h & \\
+  & Affiche le fichier \texttt{HELLO}, qui montre des exemples de
+  différents jeux de caractères. \\
+  C-h i & \\
+  & Lance Info, le navigateur de documentation GNU (info). Le manuel
+  Emacs est disponible dans Info. \\
+  C-h k key & \\
+  & Affiche le nom et la documentation de la commande que ce raccourci
+  lance (\texttt{describe-key}). \\
+  \endfirsthead
+  C-h l & \\
+  & Affiche une description des 300 dernières touches
+  (\texttt{view-lossage}). \\
+  C-h m & \\
+  & Affiche la documentation du mode majeur courant
+  (\texttt{describe-mode}). \\
+  C-h n & \\
+  & Affiche les changements récents dans Emacs
+  (\texttt{view-emacs-news}). \\
+  C-h p & \\
+  & Trouve les paquetages par sujet de raccourci
+  (\texttt{finder-by-keyword}). Cela liste les paquetages utilisant un
+  tampon de menu de paquetage. Voir Chapitre\cfch{32}[Paquetages],
+  page\cfchg{32}. \\
+  C-h P package RET & \\
+  & Affiche la documentation à propos du paquetage nommé paquetage
+  (\texttt{describe-package}). \\
+  C-h r & \\
+  & Affiche le manuel Emacs dans Info (\texttt{info-emacs-manual}). \\
+  C-h s & \\
+  & Affiche le contenu de la table de syntaxe courante
+  (\texttt{describe-syntax}). La table de syntaxe dit quels caractères
+  sont les délimiteurs ouvrant, quels sont ceux qui sont des parties
+  de mots, et ainsi de suite. Voir Section ``Tables de syntax'' dans
+  le \textit{Emacs Lisp Reference Manual} pour plus détails. \\
+  C-h t & \\
+  & Entre dans le tutoriel interactif de Emacs
+  (\texttt{help-with-tutorial}). \\
+  C-h v var RET & \\
+  & Affiche la documentation de la variable Lisp var
+  (\texttt{describe-variable}). \\
+  \endhead
+  C-h w command RET & \\
+  & Montre quelles touches exécutent les commandes nommées
+  \textit{commande} ( \texttt{where-is}). \\
+  C-h C coding RET & \\
+  & Décrit le système d'encodage \textit{coding}
+  (\texttt{describe-coding-system}). \\
+  C-h C RET & \\
+  & Décrit les systèmes d'encodage couramment utilisés. \\
+  \endfoot
+  C-h F command RET & \\
+  & Lance Info et va au noeud correspondant à la commande Emacs
+  \textit{commande} (\texttt{Info-goto-emacs-command-node}). \\
+  C-h I method RET & \\
+  & Décrit la méthode de saisie \textit{method}
+  (\texttt{describe-input-method}). \\
+  C-h K key & \\
+  & Lance Info et va au noeud qui documente la séquence de touches
+  \textit{key} (\texttt{Info-goto-emacs-key-command-node}). \\
+  C-h L language-env RET & \\
+  & Affiche des informations sur les ensembles de caractères, systèmes
+  d'encodage, et méthode de saisie utilisées dans l'environnement de
+  langage \textit{language-env}
+  (\texttt{describe-language-environment}). \\
+  C-h S symbol RET & \\
+  & Affiche la documentation Info sur le symbole \textit{symbol} en
+  accord avec le langage de programmation que vous éditez
+  (\texttt{info-lookup-symbol}). \\
+  \endlastfoot
+  C-h & \\
+  & Affiche le message d'aide pour une zone de texte spéciale, si le
+  point est dans l'une d'elle (\texttt{display-local-help}). (Cela
+  inclut, par exemple, les liens dans les tampons \texttt{*Help*}.)
+\end{longtable}
+
+\section{Documentation pour une clé (touche)}\etchs{7}{1}
+Les commandes d'aide pour obtenir des informations sur une séquence de
+touches sont \texttt{C-h c} (\texttt{describe-key-briefly}) et
+\texttt{C-h k} (\texttt{describe-key}).
+
+\texttt{C-h c \textit{key}} affiche dans la zone de répercussion du
+nom de la commande qui est liée à la clé. Par exemple, \texttt{C-h c
+  C-f} affiche '\texttt{forward-char}'. 
+\texttt{C-h k \textit{key}} est similaire mais donne plus
+d'information : il affiche un tampon d'aide contenant la chaîne de
+documentation de la commande, qui décrit exactement ce que fait la
+commande.
+\texttt{C-h K \textit{key}} affiche la section du manuel Emacs qui
+décrit la commande correspondant à la clé.
+\texttt{C-h c}, \texttt{C-h k} et \texttt{C-h K} travaillent pour
+toute sorte de séquences clés, y compris les touches de fonction, les
+menus et le événements de souris. Par exemple, après \texttt{C-h k}
+vous pouvez sélectionner un élément de menu dans la barre de menu,
+pour afficher la chaîne de documentation de la commande qui s'exécute.
+
+\texttt{C-h w \textit{command} RET} répertorie les touches qui sont
+liées à \textit{command}. Il affiche la liste dans la zone d'écho. Si
+il dit que la commande n'est sur aucune touche, ça signifie que vous
+devez utiliser \rep{M}{x} pour la lancer. \texttt{C-h w}  lance la
+commande \texttt{where-is}.
+\section{Aide par commande ou par nom de variable}\etchs{7}{2}
+\section{Apropos}\etchs{7}{3}
+\section{Commandes du mode aide}\etchs{7}{4}
+\section{Mot-clé pour la recherche d'extension}\etchs{7}{5}
+\section{Aide pour les langues internationales}\etchs{7}{6}
+\section{Autres commandes d'aide}\etchs{7}{7}
+\section{Fichiers d'aide}\etchs{7}{7}
+\section{Aide dans du texte actif et infobulles}\etchs{7}{8}

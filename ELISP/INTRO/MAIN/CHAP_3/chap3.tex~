@@ -1,0 +1,44 @@
+\chapter{Comment écrire des définitions de fonctions}\etch{3}
+
+\section{La forme spéciale \texttt{defun}}\etchs{3}{1}
+
+\section{Installer une définition de fonction}\etchs{3}{2}
+
+\subsection{Changer une définition de fonction}\etchss{3}{2}{1}
+
+\section{Rendre une fonction intéractive}\etchs{3}{3}
+
+\subsection{Une intéractive
+  \texttt{multiply-by-seven}}\etchss{3}{3}{1}
+
+\section{Différentes options pour \texttt{interactive}}\etchs{3}{4}
+
+\section{Installer du code de façon permanente}\etchs{3}{5}
+
+\section{\texttt{let}}\etchs{3}{6}
+
+\subsection{Les parties d'une expression \texttt{let}}\etchss{3}{6}{1}
+
+\subsection{\'Echantillon d'expression \texttt{let}}\etchss{3}{6}{2}
+
+\subsection{Variables non initialisées dans une instruction
+  \texttt{let}}\etchss{3}{6}{3} 
+
+\section{La forme spéciale \texttt{if}}\etchs{3}{7}
+
+\subsection{La fonction \texttt{type-of-animal} en
+  détail}\etchss{3}{7}{1}
+
+\section{Les expressions If-then-else}\etchs{3}{8}
+
+\section{Vérité et fausseté dans Emacs Lisp}\etchs{3}{9}
+
+\section{\texttt{save-excursion}}\etchs{3}{10}
+
+\subsection{Modèle pour une expression
+  \texttt{save-excursion}}\etchss{3}{10}{1} 
+
+\section{Rappels}\etchs{3}{11}
+
+\section{Exercices}\etchs{3}{12}
+

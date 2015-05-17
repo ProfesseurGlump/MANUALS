@@ -1,0 +1,79 @@
+\section{Changer de tampon}\etchs{2}{3}
+
+La fonction \tm{other-buffer} fournit en fait un tampon quand il est
+utilisé comme un argument pour une fonction qui en exige un. Nous
+pouvons voir cela en utilisant \tm{other-buffer} et
+\tm{switch-to-buffer} pour passer à un tampon différent.
+
+Mais d'abord, une brève introduction à la fonction
+\tm{switch-to-buffer}. Lorsque vous passez du tampon Info à celui de
+\tm{*scratch*} pour évaluer \tm{(buffer-name)}, vous avez probablement
+tapé \tm{C-x b} puis \tm{*scratch*}\footnote{Ou plutôt, économiser la
+  frappe, vous avez probablement tapé \RET si le tampon par défaut
+  était \tm{*scratch*}, ou si c'était différent, alors vous avez juste
+tapé une partie du nom, telle que \tm{*sc}, pressé la touche \TAB pour
+provoquer la complétion, et ensuite tapé \RET} lorsque vous êtiez
+invité à saisir le nom du tampon vers lequel vous souhaitiez aller
+dans le mini-tampon. Le raccourci, \tm{C-x b}, provoque l'interprète
+Lisp pour évaluer la fonction interactive \tm{switch-to-buffer}. Comme
+on l'a dit plus tôt, voilà comment Emacs fonctionne : différent
+raccourcis appellent ou exécutent différentes fonctions. Par exemple,
+\tm{C-f} appelle \tm{forward-char}, \tm{M-e} appelle
+\tm{forward-sentence}, et ainsi de suite.
+
+En écrivant \tm{switch-to-buffer}, et en lui donnant un tampon pour
+basculer, nous pouvons changer de tampon juste de la même façon que
+fait \tm{C-x b} : 
+
+\tm{(switch-to-buffer (other-buffer))}
+
+Le symbole \tm{switch-to-buffer} est le premier élément de la liste,
+de sorte que l'interprète Lisp va le traiter une fonction et exécuter
+les instructions qui y sont attachées. Mais avant de faire cela,
+l'interprète notera que \tm{other-buffer} est entre parenthèses à
+l'intérieur et le travail sur ce premier symbole. \tm{other-buffer}
+est le premier (et dans ce cas, le seul) élément de cette liste, donc
+l'interprète Lisp appelle et exécute la fonction. Cela renvoie un
+autre tampon. Ensuite, l'interprète lance \tm{switch-to-buffer}, en
+lui passant, comme un argument, l'autre tampon, qui est celui que
+Emacs basculera vers. Si vous lisez ceci dans Info, essayez
+maintenant. \'Evaluer l'expression. (Pour revenir, tapez \tm{C-x b
+  \RET}.)\footnote{Rappelez-vous, cette expression vous déplacera dans
+l'autre tampon le plus récent que vous ne pouvez pas voir. Si vous
+voulez vraiment aller vers le tampon le plus récent sélectionné, même
+si vous pouvez le voir, vous avez besoin d'évaluer l'expression plus
+complexe suivante :
+
+\tm{(switch-to-buffer (other-buffer (current-buffer) t))}
+
+Dans ce cas, le premier argument de \tm{other-buffer} lui dit quel
+tampon à sauter---celui en court---et le second argument inqique à
+\tm{other-buffer} que c'est OK de changer vers un tampon visible. En
+utilisation régulière, \tm{switch-to-buffer} vous amène une fenêtre
+invisible puisque vous utilisez le plus souvent \tm{C-x o
+  (other-window)} pour aller à un autre tampon visible.}
+
+Dans les exemples de programmation dans les sections suivantes de ce
+document, vous verrez la fonction \tm{set-buffer} plus souvent que
+\tm{switch-to-buffer}. Ceci est dû à une différence entre les
+programmes et les humains : les humains ont des yeux et s'attendent à
+voir le tampon sur lequel ils travaillent sur leurs terminaux. Cela
+est si évident, que cela va presque sans dire. Toutefois, les
+programmes n'ont pas d'yeux. Quand un programme fonctionne sur un
+tampon, ce tampon n'a pas besoin d'être visible sur l'écran.
+
+\tm{switch-to-buffer} est conçu pour l'homme et fait deux choses
+différentes: il change vers le tampon sur lequel l'attention de Emacs
+est dirigé; et il commute le tampon affiché dans la fenêtre pour le
+nouveau tampon. \tm{set-buffer}, d'autre part, ne fait qu'une chose :
+il passe l'attention du programme à un tampon différent. Le tampon de
+l'écran reste inchangé (bien sûr, rien ne se passe normalement jusqu'à
+ce que les commandes finissent leurs exécutions).
+
+Aussi, nous venons d'introduire un autre terme de jargon, le mot
+\textit{appel}. Lorsque vous évaluez une liste dans laquelle le
+premier symbole est une fonction, vous appellez cette
+fonction. L'utilisation du terme provient de la notion de la fonction
+comme une entité qui peut faire quelque chose pour vous si vous
+'l'appelez'---juste comme un plombier est une entité qui peut réparer
+une fuite si vous l'appelez.

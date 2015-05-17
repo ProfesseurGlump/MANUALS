@@ -1,0 +1,48 @@
+\section{Taille du tampon et localisation du point}\etchs{2}{4}
+
+Enfin, regardons plusieurs fonctions assez simples, \tm{buffer-size,
+  point-min} et \tm{point-max}. Celles-ci donnent des informations sur
+la taille d'un tampon et l'emplacement du point en son sein.
+
+La fonction \tm{buffer-size} vous indique la taille du tampon courant;
+autrement dit, la fonction renvoie un compte du nombre de caractères
+dans le tampon.
+
+\tm{(buffer-size)}
+
+Vous pouvez évaluer cela de façon habituelle, en positionnant le
+curseur après l'expression et en tapant \tm{C-x C-e}.
+
+Dans Emacs, la position actuelle du curseur est appelée le
+\textit{point}. L'expression \tm{(point)} renvoie un nombre qui vous
+indique où se trouve le curseur comme un comptage de nombre de
+caractères à partir du début du tampon jusqu'au point.
+
+Vous pouvez voir le nombre de caractères pour le point dans ce tampon
+en évaluant l'expression suivante de la manière usuelle :
+
+\tm{(point)}
+
+Pendant que j'écris ceci, la valeur du point est 65724. La fonction
+\tm{point} est utilisée fréquemment dans certains exemples plus loin
+dans ce livre. 
+
+La valeur du point dépend, bien sûr, de son emplacement dans le
+tampon. Si vous évaluez le point à cet endroit, le nombre sera plus
+grand :
+
+\tm{(point)}
+
+Pour moi, la valeur du point à cet endroit est 66043, ce qui signifie
+qu'il y a 319 caractères (espaces compris) entre les deux
+expressions. (Sans doute, vous verrez des nombres différents, puisque
+j'aurais édité depuis ma première évaluation du point.)
+
+La fonction \tm{point-min} est quelque peu semblable à un \tm{point}, mais
+elle renvoie la valeur de la valeur minimale admissible du point dans
+le tampon courant. C'est le nombre 1 sauf si le \textit{réduction} est
+en vigueur. (La réduction est un mécanisme par lequel vous pouvez vous
+limiter, ou un programme, d'opérations sur seulement une partie d'un
+tampon. Voir le chapitre \cfch{6} ``Réduction et élargissement'', page
+\cfchg{6}.) De même, la fonction \tm{point-max} renvoie la valeur de
+la valeur maximale admissible du point dans le tampon courant.

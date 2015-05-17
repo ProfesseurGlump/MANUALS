@@ -1,0 +1,670 @@
+%!utf-8
+\chapter{\'Edition de commandes de base}\etch{4}
+Nous expliquons ici les bases de la saisie de texte, faire des
+corrections, et enregistrer le texte dans un fichier. Si ce matériel
+est nouveau pour vous, nous vous suggérons d'abord d'exécuter le tutoriel Emacs
+apprendre par la pratique, en tapant \texttt{C-h t}
+(\texttt{help-with-tutorial}). \par
+
+\section{Insertion de texte}\etchs{4}{1}
+Vous pouvez insérer un caractère ordinaire graphique (par exemple,
+<<a>>, <<B>>, <<3>>, et <<=>>) en tapant sur la touche associée. Cela
+ajoute le caractère au point dans le tampon. Le point d'insertion se
+déplace vers l'avant, de sorte que le point reste juste après le
+texte inséré. Voir la section\cfchs{1}{1} [point],
+page\cfchsg{1}{1}. \par
+
+Pour terminer une ligne et en commencer une nouvelle, tapez \texttt{RET}
+(\texttt{newline}). (La touche \texttt{RET} peut être étiquetée
+\texttt{Return} ou \texttt{Enter} sur votre clavier, mais nous nous
+référerons à elle comme \texttt{RET} dans ce manuel). Cette commande
+insère un caractère de nouvelle ligne dans le tampon. Si le point est
+en fin de ligne, l'effet est de créer une ligne blanche après lui; si
+le point est au milieu de la ligne, la ligne est partagée à cette
+position.\par
+
+Comme nous l'expliquons plus loin dans ce manuel, vous pouvez changer
+la façon dont Emacs gère l'insertion de texte en basculant sur les
+modes mineurs. Par exemple, le mode \emph{mineur} appelé Auto Fill
+partage automatiquement les lignes lorsqu'elles sont trop longues
+(voir section\cfchs{22}{5} [remplissage],
+page\cfchsg{22}{5}). Le mode mineur appelé Overwrite mode
+provoque l'effacement des caractères existant par insertion (<<écriture par
+dessus>>) de nouveaux, au lieu de pousser vers la droite. Voir
+section\cfchs{20}{2} [modes mineurs],
+page\cfchsg{20}{2}.\par 
+
+Seuls les caractères graphiques peuvent être insérés en tapant sur la
+touche associée; les autres touches fonctionnent comme les commandes
+d'édition et ne s'insèrent pas. Par exemple, \texttt{DEL} exécute la
+commande \texttt{delete-backward-char} par défaut (certains modes se
+lient à une commande différente); il n'insère pas de caractère
+littéral <<\texttt{DEL}>> (de code caractère ASCII 127). \par
+
+Pour insérer un caractère non-graphique, ou un caractère que votre
+clavier ne prend pas en charge, d'abord citez-le en tapant
+\texttt{C-q} (\texttt{quoted-insert}). Il y a deux façons d'utiliser
+\texttt{C-q} :
+\begin{itemize}
+\item \texttt{C-q} suivi d'un caractère non graphique (même
+  \texttt{C-q}) insère ce caractère. Par exemple, \texttt{C-q DEL}
+  insère un caractère littéral <<\texttt{DEL}>>.
+\item \texttt{C-q} suivi d'une séquence de chiffres octaux insère le
+  caractère correspondant à ce code octal. Vous pouvez utiliser
+  n'importe quel nombre de chiffres en octal; tout non-chiffre termine
+  la séquence. Si le caractère de terminaison est \texttt{RET},
+  \texttt{RET} ne sert qu'à mettre fin à la séquence. Tout autre
+  non-chiffre termine la séquence et agit alors comme une saisie
+  normale donc, \texttt{C-q 1 0 1} insère <<\texttt{AB}>>.
+\end{itemize}
+L'utilisation de séquences octale est désactivée en mode Overwrite
+non-binaire ordinaire, pour vous donner un moyen pratique d'insérer un
+chiffre au lieu d'effacer avec elle (la séquence).\par
+
+Pour utiliser le décimal ou l'hexadécimal au lieu de l'octal,
+définissez la variable \texttt{read-quoted-char-radix} à 10 ou 16. Si
+la base est 16, les lettres \texttt{a} et \texttt{f} servent dans
+le cadre d'un code de caractère, tout comme les chiffres. La casse est
+ignorée.\par 
+
+Alternativement, vous pouvez utiliser la commande \texttt{C-x 8 RET}
+(\texttt{insert-char}). C'est l'invite pour le nom Unicode code-point
+d'un caractère, en utilisant le mini-tampon. Si vous entrez un nom, la
+commande fournit la fin (voir section\cfchs{5}{4} [complétion],
+page\cfchsg{5}{4}). Si vous entrez un code-point, il doit être
+aussi un nombre hexadécimal (la convention pour Unicode), ou un nombre
+avec une base spécifique, par exemple, \texttt{\#{}o23072} (octal); voir
+section <<bases entières>> dans le manuel de référence Emacs Lisp. La
+commande insère ensuite le caractère correspondant dans le tampon. Par
+exemple, les deux éléments suivants insèrent le signe de l'infini
+(code-point Unicode \texttt{U +221 E}):
+\begin{description}
+\item[\texttt{C-x 8 RET infinity RET}] 
+\item[\texttt{C-x 8 RET 221e RET}] 
+\end{description}
+Un argument numérique à \texttt{C-q} ou \texttt{C-x 8 RET} spécifie le
+nombre de copies du caractère à insérer (voir section\cfchs{4}{10}
+[Arguments], page\cfchsg{4}{10}). \par
+
+\section{Changement d'emplacement du curseur}\etchs{4}{2}
+Pour faire plus de caractères d'insertion, vous devez savoir comment
+déplacer le point (voir la section\cfchs{1}{1} [point],
+page\cfchsg{1}{1}). Les commandes \texttt{C-f, C-b, C-n}, et
+\texttt{C-p} déplacent le point vers la droite, la gauche, le bas et le
+haut, respectivement. Vous pouvez aussi utiliser les flèches présentes
+sur la plupart des claviers: droite, gauche, bas et haut; cependant,
+beaucoup d'utilisateurs Emacs trouvent qu'il est plus lent d'utiliser
+les touches flèches que les touches de commandes, car vous avez besoin
+de déplacer votre main vers la zone du clavier où se trouvent les
+flèches.\par 
+
+Vous pouvez aussi faire un clic gauche pour déplacer le point à
+l'endroit souhaité. Emacs fournit aussi une variété de commandes
+clavier additionnelles pour déplacer le point de façons plus
+sophistiquées.\par
+\begin{description}
+\item[\texttt{C-f}] déplacement d'un caractère vers l'avant
+  (\texttt{forward-char}). 
+\item[\texttt{right}] cette commande (\texttt{right-char}) qui a le
+  même effet que \texttt{C-f}, à l'exception près : quand on édite de
+  droite à gauche comme par exemple pour l'Arabe, cela fait alors un
+  déplacement \emph{arrière} si le paragraphe courant est de droite à
+  gauche. Voir section\cfchs{19}{20} [édition bidirectionnelle],
+  page\cfchsg{19}{20}. 
+\item[\texttt{C-b}] déplacement arrière (\texttt{backward-char}).
+\item[\texttt{left}] cette commande (\texttt{left-char}) se comporte
+  comme \texttt{C-b}, excepté que le déplacement est vers
+  l'\emph{avant} si le paragraphe en cours est de droite à
+  gauche. Voir section\cfchs{19}{20} [édition bidirectionnelle],
+  page\cfchsg{19}{20}.   
+\item[\texttt{C-n}]
+\item[\texttt{down}] descend d'une ligne vers le bas
+  (\texttt{next-line}). Cette commande laisse la position horizontale
+  inchangé, donc si vous commencez au milieu d'une ligne, vous vous
+  déplacerez au milieu de la ligne suivante.
+\item[\texttt{C-p}]
+\item[\texttt{up}] monte d'une ligne vers le haut
+  (\texttt{previous-line}). Cette commande préserve la position dans
+  la ligne, comme \texttt{C-n}.
+\item[\texttt{C-a}]
+\item[\texttt{Home}] va au début de la ligne
+  (\texttt{move-beginning-of-line}). 
+\item[\texttt{C-e}]
+\item[\texttt{End}] va à la fin de la ligne
+  (\texttt{move-beginning-of-line}).
+\item[\texttt{M-f}] avance d'un mot (\texttt{forward-word}).
+\item[\texttt{C-right}]
+\item[\texttt{M-right}] cette commande (\texttt{right-word}) se
+  comporte comme \texttt{M-f}, excepté qu'il se déplace en
+  \emph{arrière} mot par mot si le paragraphe en cours est de droite à
+  gauche. Voir section\cfchs{19}{20} [édition bidirectionnelle],
+  page\cfchsg{19}{20}.  
+\item[\texttt{M-b}] recule d'un mot (\texttt{backward-word}). 
+\item[\texttt{C-left}]
+\item[\texttt{M-left}] cette commande (\texttt{left-word}) se
+  comporte comme \texttt{M-f}, excepté qu'il se déplace en
+  \emph{avant} mot par mot si le paragraphe en cours est de droite à
+  gauche. Voir section\cfchs{19}{20} [édition bidirectionnelle],
+  page\cfchsg{19}{20}. 
+\item[\texttt{M-r}] sans déplacer le texte de l'écran, reposition du
+  point sur la marge de gauche de la ligne de texte la plus centrée de
+  la fenêtre; en conséquence des invocations successives, déplacent le
+  point vers la marge de gauche de la ligne la plus haute, la plus
+  basse, et ainsi de suite, de façon cyclique
+  (\texttt{move-to-window-line-top-bottom}). 
+
+  Un argument numérique dit à quelle ligne de l'écran placer le point,
+  compter en descendant depuis la ligne du haut de la fenêtre (zéro
+  signifie la ligne la plus haute). Un argument négatif compte les
+  lignes depuis le bas (-1 signifie la ligne la plus basse). Voir
+  section\cfchs{4}{10} [arguments], page\cfchs{4}{10}, pour plus
+  d'informations sur les arguments numériques.
+\item[\texttt{M-<}] accède au haut du tampon
+  (\texttt{beginning-of-buffer}). Avec un argument numérique $n$,
+  déplace de $n/10$ depuis le haut.
+\item[\texttt{M->}] accède au bas du tampon (\texttt{end-of-buffer}). 
+\item[\texttt{C-v}]
+\item[\texttt{PageDown}]
+\item[\texttt{next}] défile l'affichage de l'écran vers l'avant, et
+  déplace le point sur l'écran si nécessaire
+  (\texttt{scroll-up-command}). Voir section\cfchs{11}{1}
+  [défilement], page\cfchs{11}{1}.
+\item[\texttt{M-v}]
+\item[\texttt{PageUp}]
+\item[\texttt{prior}] défile l'affichage de l'écran vers l'arrière, et
+  déplace le point sur l'écran si nécessaire
+  (\texttt{scroll-down-command}). Voir section\cfchs{11}{1}
+  [défilement], page\cfchs{11}{1}.
+\item[\texttt{M-g c}] lit un nombre $n$ et déplace le point à la
+  position $n$ du tampon. Position 1 est le début du tampon.
+\item[\texttt{M-g M-g}]
+\item[\texttt{M-g g}] lit un nombre $n$ et déplace le point au début
+  de la ligne $n$ (\texttt{goto-line}). La ligne 1 est le début du
+  tampon. Si le point est dessus ou juste après un nombre dans le
+  tampon, c'est par défaut $n$. Juste tapez \texttt{RET} dans le mini
+  tampon pour l'utiliser. Vous pouvez aussi spécifier $n$ en donnant à
+  \texttt{M-g M-g} un argument numérique préfixé. Voir
+  section\cfchs{16}{1} [sélection du tampon], page\cfchs{16}{1}, pour
+  le comportement de \texttt{M-g M-g} quand vous lui donnez un
+  argument préfixé.
+\item[\texttt{M-g TAB}] lit un nombre $n$ et va à la colonne $n$ de la
+  ligne courante. La colone 0 est celle la plus à gauche. Si elle est
+  appelée avec un argument préfixé, elle va à la colonne du numéro
+  spécifié par la valeur de l'argument numérique.
+\item[\texttt{C-x C-n}] utilise la colonne courante du point comme
+  \emph{colonne but semi-permanente} pour \texttt{C-n} et \texttt{C-p}
+  (\texttt{set-goal-column}). Quand une colonne but semi-permanente
+  est activée, ces commandes essaient toujours d'aller vers cette
+  colonne, ou le plus près possible, après déplacements verticaux. La
+  colonne but reste activée jusqu'à ce qu'elle soit désactivée.
+\item[\texttt{C-u C-x C-n}] annule la colonne but. Désormais,
+  \texttt{C-n} et \texttt{C-p} essaient de préserver la position
+  horizontale, comme d'habitude.
+\end{description}
+
+Quand une ligne de texte du tampon est plus longue que la largeur de
+la fenêtre, Emacs l'affiche sur plusieurs lignes. Par commodité,
+\texttt{C-n} et \texttt{C-p} déplace le point par ligne, comme font
+les touches équivalentes \texttt{down} et \texttt{up}. Vous pouvez
+forcer ces commandes à se déplacer en accord avec des \emph{lignes
+  logiques} (i.e, en accord avec les lignes du texte dans le tampon)
+en configurant la variable \texttt{line-move-visual} à \texttt{nil};
+si une ligne logique occupe plusieurs lignes d'écran, le curseur saute
+alors les lignes d'écran supplémentaires. Pour les détails, voir
+section\cfchs{4}{8} [lignes continues], page\cfchsg{4}{8}. Voir
+section\cfchs{33}{2} [variables], page\cfchsg{33}{2}, pour comment
+configurer les variables comme \texttt{line-move-visual}.\par
+
+Contrairement à \texttt{C-n} et \texttt{C-p}, la plupart des commandes
+Emacs qui fonctionnent sur les lignes fonctionnent sur les lignes
+\emph{logiques}. Par exemple, \texttt{C-a}
+(\texttt{move-beginning-of-line}) et \texttt{C-e}
+(\texttt{move-end-of-line}) respectivement déplacent au début et à la
+fin d'une ligne logique. Chaque fois que nous rencontrons des
+commandes qui travaillent sur les lignes d'écrans, comme \texttt{C-n}
+et \texttt{C-p}, nous les signalerons.\par
+
+Quand \texttt{line-move-visual} vaut \texttt{nil}, vous pouvez aussi
+configurer la variable \texttt{track-eol} avec une valeur
+non-\texttt{nil}. Alors \texttt{C-n} et \texttt{C-p}, quand le
+démarrage est à la fin d'une ligne logique, va à la fin de la
+prochaine ligne logique. Normalement, \texttt{track-eol} vaut
+\texttt{nil}.\par
+
+\texttt{C-n} s'arrête normalement à la fin du tampon quand vous
+l'utilisez sur la dernière ligne du tampon. Toutefois, si vous
+configurez la variable \texttt{next-line-add-newlines} avec une
+valeur non-\texttt{nil}, \texttt{C-n} sur la dernière ligne du tampon
+crée une ligne supplémentaire à la fin et se déplace à la fin de cette dernière.
+
+
+
+\section{Effacement du texte}\etchs{4}{3}
+
+\begin{description}
+\item[\texttt{DEL}]
+\item[\texttt{Backspace}] efface le caractère avant le point, ou la
+  région si elle a été sélectionnée (\texttt{delete-backward-char}).
+\item[\texttt{Delete}] efface le caractère après le point, ou la
+  région si elle a été sélectionnée (\texttt{delete-forward-char}).
+\item[\texttt{C-d}] efface le caractère après le point
+  (\texttt{delete-char}).
+\item[\texttt{C-k}] coupe la ligne (\texttt{kill-line}).
+\item[\texttt{M-d}] coupe en avant jusqu'au prochain mot
+  (\texttt{kill-word}).
+\item[\texttt{M-DEL}] coupe en arrière jusqu'au mot précédent
+  (\texttt{backward-kill-word}).  
+\end{description}
+La commane \texttt{DEL} (\texttt{delete-backward-char}) efface le
+caractère avant le point, déplace le curseur et les caractères qui le
+suivent avant.\par
+
+Si, toutefois, la région est sélectionnée, \texttt{DEL} efface le
+texte de la région. Voir chapitre\cfch{8} [marquage], page\cfchg{8},
+pour une description de la région.\par
+
+Sur la plupart des claviers, \texttt{DEL} est appelée
+\texttt{Backspace}, mais nous ferons référence à \texttt{DEL} dans ce
+manuel. (Ne pas confondre \texttt{DEL} avec la touche \texttt{Delete}
+(suppr.); nous discuterons de \texttt{Delete} momentannément.) Sur
+certains terminaux, Emacs ne reconnaît pas correctement la touche
+\texttt{DEL}. Voir section\cfchss{34}{2}{1} [DEL ne supprime pas],
+page\cfchssg{34}{2}{1}, si vous rencontrez ce problème.\par 
+
+La commande \texttt{delete} (\texttt{delete-forward-char}) supprime
+dans le <<sens opposé>> : elle supprime après le point, i.e le
+caractère sous le curseur. Si le point était en fin de ligne, cela
+joint la ligne suivante à celle en cours. Comme \texttt{DEL}, cela
+supprime le texte si la région est sélectionnée (voir chapitre\cfch{8}
+[marquage], page\cfchg{8}).\par
+
+\texttt{C-d} (\texttt{delete-char}) supprime le caractère après le
+point, comme \texttt{delete}, mais sans tenir compte de la région
+sélectionnée.\par 
+
+Voir section\cfchss{9}{1}{1} [suppression], page\cfchssg{9}{1}{1},
+pour plus d'information détaillée sur les commandes de
+suppression.\par
+
+\texttt{C-k} (\texttt{kill-line}) coupe ligne par ligne. Si vous tapez
+\texttt{C-k} au début ou au milieu d'une ligne, cela coupe le texte
+jusqu'à la fin de la ligne. Si vous tapez \texttt{C-k} à la fin de la
+ligne, cela joint la ligne à la suivante. \par
+
+Voir chapitre\cfch{9} [coupures], page\cfchg{9}, pour plus
+d'information à propos de \texttt{C-k} et les commandes reliées.\par
+
+\section{Retour en arrière des exécutions (undoing
+  changes)}\etchs{4}{4} 
+
+\begin{description}
+\item[\texttt{C-/}] annule la dernière commande effectuée
+\item[\texttt{C-x u}]
+\item[\texttt{C-\_{}}] la même
+\end{description}
+Emacs enregistre une liste des changements réalisés dans le tampon,
+donc vous pouvez annuler les changements récents. Cet usage de la
+commande \texttt{undo}, est lié avec \texttt{C-/} (comme \texttt{C-x
+  u} et \texttt{C-\_{}}). Normalement, cette commande annule la dernière
+modification, déplace le point là où il était avant la
+modification. La commande d'annulation ne s'applique uniquement aux
+changements du tampon; vous ne pouvez pas l'utiliser pour annuler les
+déplacement du curseur.\par
+
+Bien que chaque commande d'édition fait habituellement une entrée
+séparée dans l'enregistrement des annulations, les commandes très
+simples peuvent être regroupées ensemble. Quelques fois, une entrée
+couvre juste une part d'une commande complexe.\par 
+
+Si vous répétez \texttt{C-/} (ou ses alias), chaque répétition annule
+un autre, changement précédent, jusqu'à la limite de la mémoire des
+modifications disponible. Si toutes les modifications enregistrées ont
+déjà été annulées, la commande d'annulation affiche un message d'erreur
+et ne fait plus rien.\par
+
+Pour en apprendre plus sur la commande d'annulation, voir
+section\cfchs{13}{1} [annulation de modification],
+page\cfchs{13}{1}.\par 
+
+\section{Fichiers}\etchs{4}{5}
+
+Le texte que vous insérez dans le tampon Emacs reste seulement durant
+la session Emacs. Pour garder un texte en permanence vous devez le
+mettre dans un \emph{fichier}.\par
+
+Supposez qu'il y a un fichier nommé \texttt{test.emacs} dans votre
+répertoire principal (home). Pour commencer à l'éditer dans Emacs,
+tapez \texttt{C-x C-f test.emacs RET}.\par
+
+Ici le nom du fichier est donné comme un argument de la commande
+\texttt{C-x C-f} (\texttt{find-file}). Cette commande utilise le
+\emph{mini tampon} pour lire l'argument, et vous tapez \texttt{RET}
+pour terminer l'argument (voir chapitre\cfch{5} [mini tampon],
+page\cfchg{5}). \par
+
+Emacs obéit à cette commande en \emph{visitant} le fichier: il crée un
+tampon, copie le contenu du fichier dedans, et affiche le tampon pour
+l'édition. Si vous modifier le texte, vous pouvez \emph{sauvegarder}
+le nouveau texte en tapant \texttt{C-x C-s}
+(\texttt{save-buffer}). Cela copie les contenus du tampon modifié dans
+le fichier \texttt{test.emacs}, ça les rend permanent. Jusqu'à ce que
+vous sauvegardiez, les changements n'existent que dans Emacs, et le
+fichier \texttt{test.emacs} est inchangé.\par 
+
+Pour créer un fichier, visitez-le avec \texttt{C-x C-f} comme si il
+existait déjà. Cela crée un tampon vide, dans lequel vous pouvez
+insérer le texte que vous souhaitez mettre dans le fichier. Emacs crée
+en fait le fichier la première fois que vous sauvegardez le tampon
+avec \texttt{C-x C-s}.\par 
+
+Pour en apprendre plus sur l'utilisation des fichiers dans Emacs, voir
+chapitre\cfch{15} [Fichiers], page\cfchg{15}.\par
+
+\section{Aide}\etchs{4}{6}
+
+Si vous oubliez ce que fait une touche, vous pouvez le trouver en tapant
+\texttt{C-h k} (\texttt{describe-key}), suivi par la touche qui vous
+intéresse; par exemple, \texttt{C-h k C-n} vous dit ce que
+\texttt{C-n} fait.\par
+
+La touche préfixée \texttt{C-h} sert pour <<aide>> (help). La touche
+\texttt{F1} sert d'alias pour \texttt{C-h}. Outre \texttt{C-h k}, il y
+a beaucoup d'autres commandes fournissant différentes sortes
+d'aide.\par
+
+Voir chapitre\cfch{7} [Help], page\cfchg{7}, pour les détails.\par
+
+\section{Lignes blanches}\etchs{4}{7}
+
+Voici les commandes et techniques spéciales pour insérer et supprimer
+des lignes blanches.\par
+
+\begin{description}
+\item[\texttt{C-o}] insère une ligne blanche après le curseur
+  (\texttt{open-line}). 
+\item[\texttt{C-x C-o}] ne supprime pas tout mais une parmi plusieurs lignes
+  blanches consécutives (\texttt{delete-blank-lines}).
+\end{description}
+
+Nous avons vu comment \texttt{RET} (\texttt{newline}) commence une
+nouvelle ligne du texte. Toutefois, il peut être plus facile de voir
+ce que vous faites si vous créez votre première ligne blanche et
+ensuite insérez le texte désiré dedans. C'est facile de le faire en
+utilisant \texttt{C-o} (\texttt{open-line}), qui insère une nouvelle
+ligne après le point mais laisse le point en face de la ligne. Après
+\texttt{C-o}, tapez le texte de la nouvelle ligne.\par
+
+Vous pouvez faire de nombreuses lignes blanches en tapant \texttt{C-o}
+plusieurs fois, ou en donnant un argument numérique spécifiant combien
+de lignes blanches vous créez. Voir section\cfchs{4}{10} [Arguments],
+page\cfchs{4}{10} pour savoir comment. Si vous avez un préfixe de remplissage,
+la commande \texttt{C-o} insère le préfixe de remplissage sur la nouvelle
+ligne, si tapé au début d'une ligne. Voir section\cfchss{22}{5}{3}
+[Préfixe de remplissage], page\cfchss{22}{5}{3}.\par
+
+La façon simple de se débarasser des lignes vides supplémentaires est
+avec la commande \texttt{C-x C-o} (\texttt{delete-blank-lines}). Si le
+point se trouve dans une série de plusieurs lignes vides, \texttt{C-x
+  C-o} ne supprime pas tout mais l'une d'elles. Si le point est sur une seule
+ligne vierge, \texttt{C-x C-o} la supprime. Si le point est sur une
+ligne non vide, \texttt{C-x C-o} supprime toutes les lignes vides
+suivantes, s'il en existe.\par
+
+\section{Continuité des lignes}\etchs{4}{8}
+
+Parfois, une ligne de texte dans le tampon  --- une \emph{ligne
+  logique}  --- est trop longue pour tenir dans la fenêtre, et Emacs
+l'affiche sur deux ou plus \emph{lignes d'écran}. On appelle ça
+\emph{l'enroulement de ligne} ou \emph{continuation}, et la longue
+ligne logique est appelée une \emph{ligne continue}. En mode
+graphique, Emacs indique l'enroulement de ligne avec des petites
+flèches incurvées sur les bords gauches et droits de la fenêtre. Sur
+un terminal de texte, Emacs indique l'enroulement de ligne par un caractère
+<<\textbackslash>> sur la marge de droite. \par
+
+La plupart des commandes qui agissent sur les lignes agissent sur les
+lignes logiques, pas sur les lignes d'écran. Par exemple, \texttt{C-k}
+coupe une ligne logique. Comme décrit précédemment, \texttt{C-n}
+(\texttt{next-line}) et \texttt{C-p} (\texttt{previous-line}) sont des
+exceptions spéciales: elles déplacent le point vers le bas et le haut,
+respectivement, par une ligne d'écran (voir section\cfchs{4}{2}
+[déplacement du point], page\cfchsg{4}{2}).\par 
+
+Emacs peut optionnellement \emph{tronquer} de longues lignes logiques
+au lieu de les continuer. Cela signifie que chaque ligne logique
+occupe une seule ligne d'écran; si c'est plus grand que la largeur de
+la fenêtre, le reste de la ligne n'est pas affiché. En mode graphique,
+une ligne tronquée est indiquée par une petite flèche droite dans le
+coin; sur un terminal de texte, c'est indiqué par le caractère <<\$>>
+dans la marge de droite. Voir section\cfchs{11}{21} [troncature de
+ligne], page\cfchsg{11}{21}.\par
+
+Par défaut, les lignes continues sont enroulées sur le bord droit de
+la fenêtre. Lorsque l'enroulement peut se réaliser au milieu d'un mot,
+les lignes continues peuvent être difficile à lire. La solution
+usuelle est de couper la ligne avant qu'elle ne soit trop longue, en
+insérant une nouvelle ligne. Si vous préférez, vous pouvez demander à
+Emacs d'insérer automatiquement une nouvelle ligne quand une ligne
+devient trop grande, en utilisant Auto Fill mode. Voir
+section\cfchs{22}{5} [remplissage], page\cfchs{22}{5}.\par
+
+Parfois, vous pouvez avoir besoin d'éditer des fichiers contenant
+beaucoup de lignes logiques, et ça peut ne pas être pratique de les
+couper toutes en ajoutant des nouvelles lignes. Dans ce cas, vous
+pouvez utiliser Visual Line mode, qui rend possible
+\emph{l'enroulement de mot}: au lieu de l'enroulement de longues
+lignes exactement sur le bord droit de la fenêtre, Emacs les enroule
+au bord des mots (i.e, espace ou tabulation) les plus proches du coin
+droit de la fenêtre. Visual Line mode redéfinit aussi les commandes
+d'édition comme \texttt{C-a, C-n}, et \texttt{C-k} pour opérer sur les
+lignes d'écran au lieu des lignes logiques. Voir section\cfchs{11}{22}
+[Visual Line Mode], page\cfchs{11}{22}.\par
+
+\section{Information sur la position du curseur}\etchs{4}{9}
+Voilà des commandes pour obtenir des informations concernant la taille
+et la position de parties du tampon, et pour compter les mots et les
+lignes.
+\begin{description}
+\item[\texttt{M-x what-line}] affiche le numéro de la ligne du point.
+\item[\texttt{M-x line-number-mode}] bascule l'affichage automatique
+  de la ligne courante. Voir section\cfchs{11}{18} [Option du mode
+  ligne], page\cfchsg{11}{18}.
+\item[\texttt{M-x column-number-mode}] bascule l'affichage automatique
+  de la colonne courante. Voir section\cfchs{11}{18} [Option du mode
+  ligne], page\cfchsg{11}{18}.
+\item[\texttt{M-=}] affiche le nombre de lignes, mots, et caractères
+  présents dans la région (\texttt{count-words-region}). Voir
+  chapitre\cfch{8} [Marques], page\cfchg{8}, pour les informations au
+  sujet de la région.
+\item[\texttt{M-x count-words}] affiche le nombre de lignes, mots, et
+  caractères présents dans le tampon. Si la région est active (voir
+  chapitre\cfch{8} [Marques], page\cfchg{8}), affiche le nombre pour
+  la région à la place.
+\item[\texttt{C-=}] affiche le code du caractère après le point, la
+  position du caractère du point, et la colonne du point
+  (\texttt{what-cursor-position}).
+\item[\texttt{M-x hl-line-mode}] active ou désactive le surlignage de
+  la ligne courante. Voir section\cfchs{11}{20} [Affichage du
+  curseur], page\cfchsg{11}{20}.
+\item[\texttt{M-x size-indication-mode}] bascule l'affichage
+  automatique de la taille du tampon. Voir section\cfchs{11}{18} [Affichage du
+  curseur], page\cfchsg{11}{18}.
+\end{description}
+\texttt{M-x what-line} affiche le numéro de la ligne courante dans la
+zone d'écho. Cette commande est habituellement redondante, parce que
+le numéro de ligne courante est montré dans la ligne de mode (voir
+section\cfchs{1}{3} [ligne de mode], page\cfchsg{1}{3}). Toutefois, si
+vous réduisez le tampon, la ligne de mode montre le numéro de ligne
+relatif à la portion accessible (voir section\cfchs{11}{5}
+[Réduction], page\cfchsg{11}{5}). Par contraste, \texttt{what-line}
+affiche à la fois le numéro de ligne relatif à la région réduite et le
+numéro de ligne relatif au tampon entier. \par
+
+\texttt{M-=}(\texttt{count-words-region}) affiche un message
+rapportant le nombre de lignes, mots, et caractères dans la région (Voir
+  chapitre\cfch{8} [Marques], page\cfchg{8}, pour une explication de
+  la région). Avec un argument préfixé, \texttt{C-u M-=}, la commande
+  affiche le compte pour le tampon entier.\par
+
+La commande \texttt{M-x count-words} fait le même travail, mais avec
+des conventions d'appels différentes. \c{C}a affiche le compte pour la
+région si la région est active, et sinon pour le tampon entier. \par
+
+La commande \texttt{C-x =} (\texttt{what-cursor-position}) montre des
+informations à propos de la position courante du curseur et le contenu
+du tampon à cette position. \c{C}a affiche une ligne dans la zone
+d'écho qui ressemble à \c{c}a :
+\begin{center}
+  \texttt{Char: c (99, \#o143, \#x63) point=28062 of 36168 (78\%) column=53}
+\end{center}
+Après <<\texttt{Char :}>>, \c{c}a montre le caractère dans le tampon
+au niveau du point. Le texte entre les parenthèses montre la
+correspondance décimale, octale et hexadécimale des codes de
+caractères; pour plus d'informations au sujet de comment \texttt{C-x
+  =} affiche l'information de caractère, voir section\cfchs{19}{1}
+[Caractères internationaux], page\cfchsg{19}{1}. Après
+<<\texttt{point=}>> est la position du point comme caractère compté
+(le premier caractère dans le tampon est en position 1, le second en
+position 2, et ainsi de suite). Le nombre après \c{c}a est le nombre
+total de caractères dans le tampon, et le nombre entre parenthèses
+exprime la position comme un pourcentage du total. Après
+<<\texttt{column=}>> est la position horizontale du point, on compte
+les colonnes depuis le bord gauche de la fenêtre.\par
+
+Si le tampon a été réduit, cela fait qu'une partie du texte au début et
+à la fin sont temporairement inaccessible, \texttt{C-x =} affiche du
+texte supplémentaire décrivant les rangs accessible. Par exemple,
+\c{c}a pourrait afficher \c{c}a :
+\begin{center}
+  \texttt{Char: C (67, \#o103, \#x43) point=252 of 889 (28\%)
+    <231-599> column=0}
+\end{center}
+où les deux nombres supplémentaires donnent la position la plus petite
+et la plus grande des caractères autorisée. Les caractères entre ces
+deux positions sont accessibles. Voir section\cfchs{11}{5}
+[Réduction], page\cfchsg{11}{5}.\par
+
+\section{Arguments numériques}\etchs{4}{10}
+Dans la terminologie mathématique et informatique, \emph{argument}
+signifie <<donnée fournie à une fonction ou opération>>. Vous pouvez
+donner à n'importe quelle commande Emacs un \emph{argument numérique}
+(aussi appelé un \emph{argument préfixé}). Certaines commandes
+interprètent l'argument comme une répétition de compte. Par exemple,
+donner à \texttt{C-f} un argument de dix provoque le déplacement du
+point de dix caractères vers l'avant au lieu d'un seul. Avec ces
+commandes, l'absence d'argument est équivalente à un argument de un,
+et les arguments négatifs provoquent le déplacement ou l'action dans
+le sens opposé.\par
+
+La façon la plus simple de spécifier un argument numérique est de
+taper un chiffre et/ou un signe moins tout en maintenant la touche
+\texttt{META} enfoncée. Par exemple,
+\begin{center}
+  \texttt{M-5 C-n}
+\end{center}
+se déplace vers le bas de 5 lignes. Les touches \texttt{M-1, M-2}, et
+ainsi de suite, tout comme \texttt{M--}, sont bornées aux commandes
+(\texttt{digit-argument} et \texttt{negative-argument}) qui
+configurent un argument numérique de la prochaine
+commande. \texttt{Meta--} sans chiffre signifie $-1$.\par
+
+Si vous saisissez plus qu'un chiffre vous devez relâcher la touche
+\texttt{META} pour le second chiffre et les suivants. Donc, pour se
+déplacer de 50 lignes vers le bas, tapez
+\begin{center}
+  \texttt{M-5 0 C-n}
+\end{center}
+Remarquez que cela \emph{ne fait pas} l'insertion de cinq copies de
+<<$0$>> et le déplacement d'une ligne vers le bas, comme vous l'aurez
+deviné --- le <<$0$>> est traité comme une partie de l'argument
+préfixé.\par
+
+(Que faire si vous voulez insérer cinq copies de <<$0$>>? Tapez
+\texttt{M-5 C-u 0}. Ici, \texttt{C-u} <<finit>> l'exécution. Remarquez
+que cela signifie que \texttt{C-u} s'applique uniquement dans ce
+cas. Pour le rôle habituel de \texttt{C-u}, voir ci-dessous.)\par
+
+Au lieu de taper \texttt{M-1, M-2}, et ainsi de suite, une autre façon
+de spécifier un argument numérique est de taper \texttt{C-u}
+(\texttt{universal-argument}) suivi par quelques chiffres, ou (pour un
+argument négatif) un signe moins suivi par des chiffres. Un signe
+moins sans chiffre signifie normalement $-1$.\par
+
+\texttt{C-u} seul a le sens spécial de <<quatre fois>> : \c{c}a
+multiplie l'argument de la prochaine commande par quatre.\texttt{C-u
+  C-u} multiplie par seize. Donc, \texttt{C-u C-u C-f} se déplace de
+seize caractères vers l'avant. D'autres combinaisons utiles sont
+\texttt{C-u C-n, C-u C-u C-n} (se déplace vers le bas d'une bonne
+fraction de l'écran), \texttt{C-u C-u C-o} (crée <<beaucoup>> de
+lignes blanches), et \texttt{C-u C-k} (supprime quatre lignes). \par
+
+Vous pouvez utiliser un argument numérique avant une auto-insertion de
+caractère afin d'insérer des copies multiples de celui-ci. C'est très
+direct quand le caractère n'est pas un chiffre; par exemple,
+\texttt{C-u 64 a} insère 64 copies du caractère <<\texttt{a}>>. Mais
+\c{c}a ne marche pas pour l'insertion de nombre; \texttt{C-u 6 4 1}
+spécifie un argument de 641. Vous pouvez séparer les arguments des
+chiffres pour insérer d'autres \texttt{C-u}; par exemple, \texttt{C-u
+  64 C-u 1} fait insérer 64 copies du caractères <<1>>.\par
+
+Certaines commandes font attention si il y a un argument, mais ignore
+sa valeur. Par exemple la commande \texttt{M-q}
+(\texttt{fill-paragraph}) remplit le texte; avec un argument, \c{c}a
+justifie le texte aussi. (Voir section\cfchs{22}{5} [Remplissage],
+page\cfchsg{22}{5}, pour plus d'information sur \texttt{M-q}.) Pour
+ces commandes, c'est suffisant de spécifier l'argument avec un simple
+\texttt{C-u}.\par
+
+Certaines commandes utilisent la valeur de l'argument comme une
+répétition de compte, mais font quelque chose de spécial quand il n'y
+a pas d'argument. Par exemple, la commande \texttt{C-k}
+(\texttt{kill-line}) avec un argument $n$ supprime $n$ lignes,
+incluant les nouvelles lignes de fin. Mais \texttt{C-k} sans argument
+spécial: \c{c}a supprime le texte au dessus de la nouvelle ligne, ou,
+si le point est à la fin de la ligne, \c{c}a supprime la ligne
+elle-même. Donc, deux \texttt{C-k} sans argument peuvent supprimer une
+ligne non blanche, comme \texttt{C-k} avec un argument de un. (Voir
+chapitre\cfch{9} [Suppression], page\cfchg{9}, pour plus d'information
+sur \texttt{C-k}.)\par
+
+Quelques commandes traitent \texttt{C-u} différemment qu'un argument
+ordinaire. Quelques autres peuvent traiter un argument signe moins
+différemment d'un argument $-1$. Ces cas non usuels sont décrits quand
+ils arrivent; ils existent pour créer une commande individuelle plus
+commode, et ils sont documentés dans la chaîne de documentation de
+commande.\par 
+
+Nous utilisons le terme \emph{argument préfixé} pour insister sur le
+fait que vous tapez ces arguments avant la commande, et pour
+les distinguer des arguments du mini-tampon (voir chapter\cfch{5}
+[Mini-tampon], page\cfchg{5}), qui sont saisis après l'invocation de la
+commande.\par 
+
+\section{Répétition de commande}\etchs{4}{11}
+
+De nombreuses commandes simples, comme celles invoquées avec une touche
+simple ou avec \texttt{M-x \emph{command-name} RET}, peuvent être
+répétées par leur invocation avec un argument numérique qui sert de
+compte de répétition (voir section\cfchs{4}{10} [Arguments]
+page\cfchsg{4}{10}). Toutefois, si la commande que vous souhaitez
+répéter vous invite à la saisie, ou utilise un argument numérique
+d'une autre façon, la méthode ne marchera pas.\par
+
+La commande \texttt{C-x z} (\texttt{repeat}) fournit ne autre façon de
+répéter des commandes Emacs plusieurs fois. Cette commande répète la
+commande Emacs précédente, qu'elle quelle soit. La répétition d'une
+commande utilise le même argument qui était utilisé avant; \c{c}a ne
+lit pas de nouveaux arguments à chaque fois.\par
+
+Pour répéter la commande plus d'une fois, tapez des \texttt{z}
+supplémentaires: chaque \texttt{z} répète la commande une fois de
+plus. La répétition finit quand vous tapez un autre caractère que
+\texttt{z}, ou cliquez sur un bouton de la souris.\par
+
+Par exemple, supposez que vous tapez \texttt{C-u 20 C-d} pour
+supprimer 20 caractères. Vous pouvez répéter cette commande (incluant
+ses arguments) trois fois supplémentaires, pour effacer un total de 80
+caractères, en tapant \texttt{C-x z z z}. Le premier \texttt{C-x z}
+répète la commande une fois, et chaque \texttt{z} suivant la répète
+une fois encore.\par
+\newpage 

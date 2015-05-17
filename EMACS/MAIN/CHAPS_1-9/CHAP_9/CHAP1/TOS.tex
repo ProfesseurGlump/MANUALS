@@ -1,0 +1,298 @@
+\chapter{Organisation de l'écran}\etch{1}
+En mode graphique, comme sur GNU/Linux avec le système de fenêtrage X
+Window, Emacs occupe une <<fenêtre graphique>>. Sur un terminal en
+mode texte, Emacs occupe l'écran du terminal en entier. Nous allons
+utiliser le terme de cadre pour désigner une fenêtre graphique ou
+l'écran du terminal occupée par Emacs. Emacs se comporte de manière
+similaire sur les deux types de cadres. Il commence normalement avec
+un seul cadre, mais vous pouvez créer des images supplémentaires si
+vous le souhaitez (voir le chapitre\cfch{18} [Cadres],
+page\cfchg{18}). \par 
+
+Chaque image est composée de plusieurs régions distinctes. Au sommet du
+cadre il y a une barre des menus, ce qui vous permet d'accéder à des
+commandes par l'intermédiaire d'une série de menus. En mode graphique,
+directement en dessous de la barre des menus il y a une barre
+d'outils, une rangée d'icônes qui exécutent des commandes d'édition si
+vous cliquez sur elles. Au bas du cadre vous trouverez une zone
+d'écho, où des messages d'informations sont affichés et où vous pouvez
+saisir des informations quand Emacs le demande.\par 
+
+La zone principale du cadre, en dessous de la barre d'outils (le cas
+échéant) et au-dessus de la zone d'écho, est appelée la
+fenêtre. Désormais dans ce manuel, nous allons utiliser le mot
+<<fenêtre>> dans ce sens (différent du sens usuel). Les systèmes
+d'affichage graphique utilisent couramment le mot <<fenêtre>> dans un
+sens différent ; mais, comme indiqué ci-dessus, nous nous référons à
+ces <<fenêtres graphiques>> comme des <<cadres>>.\par
+
+Une fenêtre Emacs est là où le tampon  ---le texte que vous éditez --- est
+affiché. En mode graphique, la fenêtre possède une barre de défilement
+sur un côté qui peut être utilisée pour faire défiler le tampon. La
+dernière ligne de la fenêtre est une ligne de mode. Cette dernière
+affiche diverses informations sur ce qui se passe dans le tampon, par
+exemple, s'il y a des modifications non enregistrées, les modes
+d'édition qui sont en cours d'utilisation, le numéro de la ligne
+actuelle, et ainsi de suite.\par
+
+Lorsque vous démarrez Emacs, il y a normalement une seule fenêtre dans
+le cadre. Cependant, vous pouvez subdiviser cette fenêtre
+horizontalement ou verticalement pour créer plusieurs fenêtres, dont
+chacune peut indépendamment afficher un tampon (voir le
+chapitre\cfch{17} [Fenêtres], page\cfchg{17}).\par
+
+\`A tout moment, une fenêtre est la fenêtre sélectionnée. En mode
+graphique, la fenêtre sélectionnée affiche un curseur plus important
+(généralement plein et glignotant); les autres fenêtres affichent un
+curseur moins important (généralement une boîte creuse). Sur un
+terminal de texte, il n'existe qu'un seul curseur qui est affiché dans
+la fenêtre sélectionnée. Le tampon affiché dans la fenêtre
+sélectionnée est appelé le tampon courant, et c'est là que se produit
+l'édition. La plupart des commandes Emacs peuvent s'appliquer
+implicitement au tampon courant; le texte affiché dans les fenêtres
+non sélectionnées est surtout visible pour référence. Si vous utilisez
+plusieurs cadres en mode graphique, la sélection d'un cadre
+particulier sélectionne une fenêtre dans ce cadre.\par
+
+
+\input{/Volumes/DATA/GEEK/MANUALS/EMACS/MAIN/Chap1/SECTIONS/sec1}
+
+\section{La zone d'écho}\etchs{1}{2}
+La ligne au bas du cadre est la zone d'écho. Elle est utilisée pour
+afficher de petites quantités de texte à des fins diverses.\par
+
+La zone d'écho est ainsi nommée parce que l'une de ses
+caractéristiques est faire l'écho, ce qui signifie l'affichage des
+caractères d'une commande multi-caractères. Les commandes à caractère
+unique ne sont pas affichées. Les commandes multi-caractères (voir la
+section\cfchs{2}{2} [Clavier], page\cfchsg{2}{2}) sont
+reprises si vous vous arrêtez pendant une seconde au milieu d'une
+commande. Emacs fait alors l'écho de tous les caractères de la commande
+à ce moment-là, pour vous inviter à saisir le reste. Une fois l'écho
+commencé, le reste de la commande se fait l'écho à mesure que vous
+tapez. Ce comportement est conçu pour donner aux utilisateurs
+confiants une réponse rapide, tout en donnant aux utilisateurs
+hésitants un maximum de retours. \par
+
+La zone d'écho est également utilisée pour afficher un message
+d'erreur quand une commande ne peut pas faire son travail. Les
+messages d'erreurs peuvent être accompagnés par un bip ou par un
+clignotement de l'écran. \par 
+
+Certaines commandes affichent des messages d'information dans la zone
+écho pour vous dire ce que la commande a fait, ou pour vous
+fournir des informations spécifiques. Ces messages d'information,
+contrairement aux messages d'erreurs, ne sont pas accompagnés d'un
+signal sonore ni d'un flash. Par exemple, \texttt{C-x =} (Maintenez la
+touche ctrl enfoncée et tapez x, puis relâchez la touche ctrl puis
+tapez =) affiche un message décrivant le caractère au point, sa
+position dans le tampon, et sa colonne en cours dans la fenêtre. Les
+commandes qui prennent beaucoup de temps affichent souvent des
+messages se terminant par <<\dots{}>> pendant qu'elles travaillent
+(parfois aussi indiquent combien de progrès ont été réalisés, en
+pourcentage), et ajouter <<fait>> quand elles ont fini.\par 
+
+Les messages d'informations de la zone d'écho sont sauvegardés dans un
+tampon spécial nommé \texttt{*Messages*}. (Nous n'avons pas encore
+expliqué les tampons; voir le chapitre\cfch{16} [tampons],
+page\cfchg{16}, pour plus d'informations à leur sujet.). Si
+vous ratez un message qui est apparu brièvement à l'écran, vous pouvez
+changer de tampon et visiter le tampon \texttt{*Messages*} afin de revoir les
+messages. Le tampon \texttt{*Messages*} est limité à un certain nombre
+de lignes, scpécifié par la variable \texttt{message-log-max}. (Nous
+n'avons pas encore expliqué les variables soit, voir la
+section\cfchs{33}{2} [Variables], page\cfchsg{33}{2}, pour
+plus d'informations sur ce sujet.). Au-delà de cette limite, une ligne
+est supprimée depuis le début à chaque fois qu'une nouvelle ligne de
+message est ajoutée à la fin.\par 
+
+Voir la section\cfchs{11}{23} [affichage perso],
+page\cfchsg{11}{23}, pour les options qui contrôlent la façon
+dont Emacs utilise la zone d'écho.\par
+
+La zone d'écho est également utilisée pour afficher le mini-tampon,
+une fenêtre spéciale où vous pouvez saisir des arguments de commandes,
+telles que le nom d'un fichier à éditer. Lorsque le mini-tampon est en
+cours d'utilisation, le texte affiché dans la zone d'écho commence par
+une chaîne d'invite, et le curseur actif apparaît dans le mini-tampon,
+qui est considérée comme temporairement la fenêtre sélectionnée. Vous
+pouvez toujours sortir du mini-tampon en tapant \texttt{C-g}. Voir le
+chapitre\cfch{5} [mini-tampon], page\cfchg{5}. \par 
+
+
+\section{Le mode ligne}\etchs{1}{3}
+Au bas de chaque fenêtre il y a une ligne de mode, qui décrit ce qui
+se passe dans le tampon en cours. Quand il y a une seule fenêtre, la
+ligne de mode apparaît juste au-dessus de la zone d'écho; il s'agit de
+l'avant-dernière ligne dans le cadre. En mode graphique, la ligne de
+mode est dessiné avec une apparence de boîte 3D. Emacs aussi dessine
+habituellement la ligne de mode de la fenêtre sélectionnée avec une
+couleur différente de celle des fenêtres non sélectionnées, afin de la
+faire ressortir.\par
+
+Le texte affiché dans la ligne de mode est de la forme :
+\begin{center}
+  \texttt{cs:ch-fr}\quad \texttt{buf}\qquad \texttt{pos line}\quad
+  \texttt{(major minor)}
+\end{center}
+Sur un terminal de texte, le texte est suivi par une série de traits
+qui s'étendent vers le bord droit de la fenêtre. Ces traits sont omis
+en mode graphique.\par
+
+La chaîne \emph{cs} et le caractère deux-points qui la suit décrivent
+le jeu de caractères de la nouvelle ligne et les conventions utilisées
+pour le tampon courant. Normalement, Emacs gère automatiquement ces
+paramètres pour vous, mais il est parfois utile d'avoir cette
+information.\par
+
+\emph{cs} décrit le jeu de caractères du texte dans le tampon (voir
+section\cfchs{19}{6} [systèmes d'encodage],
+page\cfchsg{19}{6}). S'il s'agit d'un tiret (<<->>), qui
+inidique l'absence de caractère spécial (avec de possibles exceptions
+de conventions de fin de ligne (césure), décrites dans le paragraphe
+suivant). <<=>> signifie aucune conversion que ce soit, et est
+habituellement utilisé pour les fichiers contenant des données
+non-textuelles. D'autres caractères représentent différents systèmes
+d'encodages  ---par exemple, <<1>> représente ISO Latin-1.\par
+
+Sur un terminal de texte, \emph{cs} est précédée par deux caractères
+supplémentaires qui décrivent les systèmes d'encodage pour la saisie
+au clavier et la sortie affichée. En outre, si vous utilisez une
+méthode de saisie, \emph{cs} est précédée par une chaîne qui identifie la
+méthode de saisie (voir section\cfchs{19}{4} [méthodes de
+saisies], page\cfchsg{19}{4}).\par
+
+Le caractère après \emph{cs} est généralement <<:>>. Si une chaîne de
+caractère est affichée, cela indique une convention de fin de ligne
+non négligeable pour encoder un fichier. Habituellement, les lignes de
+texte sont séparées par des caractères de nouvelle ligne dans un
+fichier, mais deux autres conventions sont parfois utilisées. La
+convention MS-DOS utilise un caractère <<retour chariot>> suivie d'un
+caractère <<saut de ligne>>; lors de l'édition de ces fichiers, le
+caractère <<:>> est remplacé par (<<\textbackslash>>) ou <<(DOS)>>,
+selon l'OS. Une autre convention, employée par les anciens Mac OS,
+utilise le caractère <<retour chariot>> au lieu d'un retour à la
+ligne; lors de l'édition de ces fichiers, le caractère <<:>> est
+remplacé par (<</>>) ou <<(Mac)>> . Sur certains systèmes, Emacs
+affiche <<(Unix)>> au lieu de <<:>> pour les fichiers qui utilisent le
+saut de ligne comme séparateur de ligne.\par 
+
+L'élément suivant la ligne de mode est indiqué par la chaîne ch. Cela
+montre deux tirets (<< - - >>) si le tampon est affiché dans la fenêtre a
+le même contenu que le fichier correspondant sur le disque; à savoir
+si le tampon est <<non modifié>>. Si le tampon est modifié, il montre
+deux étoiles (<<**>>). Pour un tampon en lecture seule, il montre
+<<\%*>> si le tampon est modifié, et <<\%\%>> autrement.\par
+
+Le caractère après le \emph{ch} est normalement un tiret (<<->>). Cependant,
+si le répertoire par défaut pour le tampon courant est sur une machine
+distante, <<@>> est affiché à la place (voir la
+section\cfchs{15}{1} [noms de fichiers],
+page\cfchsg{15}{1}). \par
+
+\emph{fr} donne le nom du cadre sélectionné (voir le
+chapitre\cfch{18}[cadres], page\cfchg{18}). Il n'apparaît
+que sur les terminaux de texte. Le nom initial du cadre est
+<<F1>>.\par 
+
+\emph{buf} est le nom du tampon (buffer) affiché dans la
+fenêtre. Habituellement, c'est le même nom que le nom d'un fichier que
+vous éditez. Voir le chapitre\cfch{16} [tampons],
+page\cfchg{16}.\par  
+
+\emph{pos} vous indique s'il y a un texte complémentaire au-dessus du haut de
+la fenêtre, ou en dessous. Si votre tampon est petit et tout est
+visible dans la fenêtre, pos est <<Tout>> (all). Sinon, il est <<Top>>
+si vous êtes à la recherche au début du tampon, <<Bot>> si vous
+cherchez à la fin du tampon, ou <<nn\%>>, où nn est le pourcentage du
+tampon au-dessus du haut de la fenêtre. Avec le mode d'indication de
+taille, vous pouvez afficher la taille du tampon. Voir
+section\cfchs{11}{18} [options du mode ligne],
+page\cfchsg{11}{18}.\par 
+
+\emph{line} est le caractère <<L>> suivi du numéro de la ligne au
+point. (Vous pouvez afficher le numéro de colonne courante aussi, en
+activant le mode numéro de colonne. Voir la section\cfchs{11}{18}
+[options du mode ligne], page\cfchsg{11}{18}.) \par
+
+\emph{major} est le nom du mode majeur utilisé dans le tampon. Un mode
+majeur est un mode d'édition principale pour le tampon, telles que le
+mode texte, le mode Lisp, le mode C, et ainsi de suite. Voir la
+section\cfchs{20}{1} [Les principaux modes],
+page\cfchsg{20}{1}. Certains modes majeurs affichent des
+informations supplémentaires après le nom du mode majeur. Par exemple,
+des tampons de compilation et des tampons de Shell affichent l'état du
+sous-processus. \par 
+
+\emph{minor} est une liste de quelques-uns des modes mineurs permis,
+qui sont les modes d'édition en option qui offrent des fonctionnalités
+supplémentaires au-dessus du mode majeur. Voir la
+section\cfchs{20}{2} [modes mineurs],
+page\cfchsg{2}{2}. \par
+
+Certaines fonctions sont répertoriées avec les modes mineurs quand ils
+sont allumés, même si elles ne sont pas vraiment des modes
+mineurs. <<Narrow>> signifie que le tampon est affiché à l'édition
+limitée à seulement une partie de son texte (voir la
+section\cfchs{11}{5} [rétrécissement],
+page\cfchsg{11}{5}). <<Def>> signifie qu'une macro clavier est
+en cours de définition (voir le chapitre\cfch{14} [macros
+clavier], page\cfchg{14}).\par 
+
+En outre, si Emacs est à l'intérier d'un niveau d'édition récursive,
+les crochets (<<[\dots{}]>>) apparaissent autour des paranthèses qui
+entourent les modes. Si Emacs est à un niveau d'édition récursive à
+l'intérieur d'un autre une paire de crochets doubles apparaît, et
+ainsi de suite. Puisque les niveaux d'édition récursifs affectent
+globalement Emacs, ces crochets apparaissent dans la ligne de mode de
+chaque fenêtre. Voir la section\cfchs{31}{9} [édition récursive],
+page\cfchsg{31}{9}.\par 
+
+Vous pouvez modifier l'apparence de la ligne de mode ainsi que le
+format de son contenu. Voir section\cfchs{11}{18} [options de mode
+ligne], page\cfchsg{11}{18}. En outre, la ligne de mode est
+sensible à la souris; en cliquant sur les différentes parties de la
+ligne de mode on effectue diverses commandes. Voir la
+section\cfchs{18}{5} [mode ligne avec souris],
+page\cfchsg{18}{5}.\par
+ 
+
+\section{La barre de menu}\etchs{1}{4}
+Chaque cadre d'Emacs a normalement une barre de menu en haut que vous
+pouvez utiliser pour effectuer des opérations communes. Il n'est pas
+nécessaire de les énumérer ici, comme vous pouvez le constater par
+vous-même. \par
+
+En mode graphique, vous pouvez utiliser la souris pour choisir une
+commande dans la barre de menu. Une flèche sur le bord droit d'un
+élément de menu signifie qu'il conduit à un menu de filiale ou
+sous-menu. La présence de <<\dots{}>> à la fin d'un élément de menu
+indique que la commande nécessite une (ou plusieurs) saisie(s)
+supplémentaires avant d'opérer.\par 
+
+Certaines de ces commandes dans la barre de menu ont des raccourcis
+clavier ordinaires ainsi; si c'est le cas, une clé de liaison est
+indiquée entre parenthèses après l'item lui-même. Pour afficher le nom
+de la commande et la documentation de l'item, tapez \texttt{C-h k},
+puis sélectionnez la barre de menu avec la souris de la façon
+habituelle (voir la section\cfchs{7}{1} [Aide pour les touches],
+page\cfchsg{7}{1}). \par 
+
+Au lieu d'utiliser la souris, vous pouvez également appeler le premier
+élément de la barre de menu en appuyant sur F10 (pour exécuter la
+commande \texttt{menu-bar-open}). Vous pouvez ensuite naviguer dans
+les menus avec les touches fléchées. Pour activer un élément de menu
+sélectionné, appuyez sur RET; navigation pour annuler le menu, appuyez
+sur ESC. \par
+
+Sur un terminal de texte, vous pouvez utiliser la barre de menu en
+tapant \texttt{M-'} ou F10 (ces touches lancent la commande
+\texttt{tmm-menubar}). Cela vous permet de sélectionner un élément de
+menu avec le clavier. Un choix provisoire apparaît dans la zone
+d'écho. Vous pouvez utiliser les touches flèches vers le haut ou vers
+le bas pour vous déplacer dans le menu, et alors vous pouvez taper RET
+pour sélectionner l'élément. Chaque élément de menu est également
+désigné par une lettre ou un chiffre (généralement la première d'un
+mot dans le nom de l'objet). Cette lettre ou ce chiffre est séparé du
+nom de l'élément par <<\texttt{==>}>>. Vous pouvez taper la lettre ou
+le chiffre de l'élément afin de le sélectionner.\par 

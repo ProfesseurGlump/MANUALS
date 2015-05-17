@@ -1,0 +1,466 @@
+\chapter{Le minibuffer ou minitampon}\label{chap5}
+
+Le \emph{mini-tampon} est l'endroit où les commandes Emacs lisent les
+arguments compliqués, comme des noms de fichiers, noms de tampons,
+noms de commandes Emacs, ou expressions Lisp. On l'appelle le
+<<mini-tampon>> parce que c'est un tampon à usage spécial avec une
+petite taille d'espace d'écran. Vous pouvez utiliser les commandes
+d'édition Emacs usuelles dans le mini-tampon pour éditer le texte de
+l'argument.\par 
+
+\section{Utilisation du minibuffer}\label{chap5sec1}
+Quand le mini-tampon est utilisé, il apparaît dans la zone d'écho,
+avec un curseur. Le mini-tampon commence avec une \emph{invite}
+(prompt), terminant habituellement avec deux points. L'invite indique
+le type de saisie attendue, et comment elle sera utilisée. L'invite
+est surlignée et utilise la face \texttt{minibuffer-prompt} (voir
+section\cfchs{11}{8} [Faces], page\cfchsg{11}{8}).\par
+
+La façon la plus simple de saisir un argument dans le mini-tampon est
+de taper le texte, puis \RET pour soumettre l'argument et
+sortir du mini-tampon. Alternativement, vous pouvez taper \rep{C}{g}
+pour sortir du mini-tampon en annulant la commande demandant
+l'argument (voir section\cfchs{34}{1} [Quitter],
+page\cfchsg{34}{1}).\par
+
+Parfois, l'invite montre un \emph{argument par défaut}, à l'intérieur
+de parenthèses avant les deux points. Cet argument par défaut sera
+utilisé comme l'argument si vous tapez juste \RET. Par
+exemple, des commandes qui lisent les noms de tampons montrent
+usuellement un nom de tampon par défaut; vous pouvez taper
+\RET pour travailler dans ce tampon par défaut.\par
+
+Si vous activez Minibuffer Electric Default mode, un mode mineur
+complet, Emacs cache l'argument par défaut dès que vous modifiez les
+contenus du mini-tampon (alors taper \RET ne soumettra plus
+l'argument par défaut). Si jamais vous ramenez le texte original du
+mini-tampon, l'invite montrera à nouveau l'argument par défaut. En
+outre, si vous changez la variable
+\texttt{minibuffer-eldef-shorten-default} avec une valeur
+non-\texttt{nil}, l'argument par défaut est affiché comme
+<<\texttt{[default]}>> au lieu de <<\texttt{(default
+  \emph{default})}>>, sauvegardant un peu d'espace d'écran. Pour
+  activer ce mode mineur, tapez \texttt{M-x
+    minibuffer-electric-default-mode}.\par 
+
+Dès que le mini-tampon apparaît dans la zone d'écho, il peut y avoir
+conflit avec d'autres usages de la zone d'écho. Si un message d'erreur
+ou un message d'information est émis pendant que le buffer est actif,
+le message cache le mini-tampon pour quelques secondes, ou jusqu'à ce
+que vous tapiez quelque chose; alors le mini-tampon revient. Pendant
+que le mini-tampon est en usage, les raccourcis ne font pas d'écho.\par  
+
+\section{Minibuffer pour les noms de fichiers}\label{chap5sec2}
+
+Des commandes comme \rec{C}{x}{C}{f} (\texttt{find-file}) utilisent le
+mini-tampon pour lire un argument de nom de fichier (voir
+section\cfchs{4}{5} [Fichiers de base], page\cfchsg{4}{5}). Quand le
+mini-tampon est utilisé pour lire un nom de fichier, \c{c}a commence
+typiquement avec du texte initial se terminant par une barre
+oblique. C'est le \emph{répertoire par défaut}. Par exemple, \c{c}a
+peut commençait par quelque chose comme \c{c}a :
+\begin{center}
+  \texttt{Find file: /u2/emacs/src/}
+\end{center}
+Ici, <<\texttt{Find file:}>> est l'invite et
+<<\texttt{/u2/emacs/src/}>> est le répertoire par défaut. Si vous
+tapez maintenant \texttt{buffer.c} comme saisie, cela spécifie le
+fichier \texttt{/u2/emacs/src/buffer.c}. Voir section\cfchs{15}{1}
+[Noms de fichiers], page\cfchsg{15}{1}, pour information à propos du
+répertoire par défaut.\par
+
+Vous pouvez spécifier le répertoire parent avec \texttt{..:
+  /a/b/../foo.el} qui est équivalent à
+\texttt{/a/foo/el}. Alternativement, vous pouvez utiliser
+\rep{M}{DEL} pour supprimer le nom du répertoire (voir
+section\cfchs{22}{1} [Mots], page\cfchsg{22}{1}).\par
+
+Pour spécifier un fichier dans un répertoire complètement différent,
+vous pouvez supprimer entièrement le répertoir par défaut avec
+\rec{C}{a}{C}{k} (voir section\cfchs{5}{3} [\'Edition du mini-tampon],
+page\cfchsg{5}{3}). Alternativement, vous pouvez ignorer le repertoire
+par défaut, et saisir un chemin absolu en commençant par une barre
+oblique ou un tilde après le répertoire par défaut. Par exemple, si
+vous spécifiez \texttt{/etc/termcap} comme suit :
+\begin{center}
+  \texttt{Find file: /u2/emacs/src//etc/termcap}
+\end{center}
+Emacs interprète une double barre oblique comme <<ignore tout ce qu'il
+y a avant la seconde barre oblique dans la paire>>. Dans l'exemple
+ci-dessus, \texttt{/u2/emacs/src/} est ignoré, donc l'argument que
+vous soumettez est \texttt{/etc/termcap}. La partie ignorée du chemin
+ignoré est grisée si le terminal le permet. (Pour désactiver ce
+grisement, désactiver le mode File Name Shadow avec la commande
+\texttt{M-x file-name-shadow-mode}.)\par
+
+Emacs interprète \texttt{\textasciitilde/} comme votre répertoir
+personnel. Donc, \texttt{\textasciitilde/foo/bar.txt} spécifie un nom
+de fichier \texttt{bar.txt}, dans un répertoire nommé \texttt{foo},
+qui est localisé dans votre répertoire personnel. De plus,
+\texttt{\textasciitilde user-id/} signifie : le répertoire personnel
+d'un utilisateur dont l'identifiant est \emph{user-id}. N'importe quel
+nom de répertoire avant le \texttt{\textasciitilde} est ignoré: donc,
+\texttt{/u2/emacs/\textasciitilde/foo/bar.txt} est équivalent à
+\texttt{\textasciitilde/foo/bar.txt}.\par 
+
+Sur des systèmes MS-Windows et MS-DOS, où l'utilisateur n'a pas
+toujours de repertoire personnel, Emacs utilise plusieurs
+alternatives. Pour MS-Windows, voir section\cfaps{G}{5} [Windows
+HOME], page\cfapsg{G}{5}; pour MS-DOS, voir section <<MS-DOS File
+Names>> dans \emph{la version numérique du manuel Emacs}. Sur ces
+systèmes, le \texttt{\textasciitilde user-id/} construit est supporté
+uniquement pour l'utilisateur en court i.e, seulement si
+\emph{user-id} est l'identifiant de l'utilisateur en court.\par
+
+Pour prévenir Emacs de l'insertion du répertoire par défaut lors de la
+lecture de noms de fichiers, modifier la variable
+\texttt{insert-default-directory} à \texttt{nil}. Dans ce cas, le
+mini-tampon démarre vide. Néanmoins, les arguments de noms de fichiers
+sont encore interprétés basés sur le même répertoire par défaut.\par
+
+Vous pouvez aussi saisir des noms de fichiers distants dans le
+mini-tampon. Voir section\cfchs{15}{13} [Fichiers distants],
+page\cfchsg{15}{13}.\par 
+
+\section{\'Edition dans le minibuffer}\label{chap5sec3}
+
+Le mini-tampon est un tampon Emacs, quoique particulier, et les
+commandes Emacs usuelles sont disponibles pour l'édition du texte de
+l'argument. (L'invite, toutefois, est \emph{en lecture seule}, et ne
+peut pas être modifiée.)\par 
+
+Dès que \RET dans le mini-tampon soumet l'argument, vous ne
+pouvez pas l'utiliser pour insérer une nouvelle ligne. Vous pouvez
+faire ça avec \rec{C}{q}{C}{j}, qui insère un caractère de contrôle
+\rep{C}{j}, qui est formellement équivalent à un caractère de
+nouvelle ligne (voir section\cfchs{4}{1} [Insertion de texte],
+page\cfchs{4}{1}). Alternativement, vous pouvez utiliser la commande
+\texttt{C-o (open-line)} (voir section\cfchs{4}{7} [Lignes vierges],
+page\cfchs{4}{7}). \par
+
+Dans le mini-tampon, les touches \TAB,\SPC et \texttt{?} sont
+souvent liées à \emph{des commmandes de complétion}, qui vous
+permettent de facilement remplir le texte désiré sans le taper en
+entier. Voir section\cfchs{5}{4} [Complétion], page\cfchs{5}{4}. Comme
+avec \RET, vous pouvez utiliser \texttt{C-q} pour insérer un caractère
+\TAB,\SPC ou \texttt{?}.\par
+
+Par commodité, \texttt{C-a (moving-beginning-of-line)} dans le
+mini-tampon déplace le point au début de l'argument de texte, mais pas
+au début de l'invite. Par exemple, cela vous permet d'effacer
+l'argument entier avec \rec{C}{a}{C}{k}.\par
+
+Quand le mini-tampon est actif, la zone d'écho est traitée plus comme
+une fenêtre Emacs ordinaire. Par exemple, vous pouvez changer pour une
+autre fenêtre (avec \texttt{C-x o}), éditer du texte là, ensuite
+revenir à la fenêtre du mini-tampon pour finir l'argument. Vous pouvez
+même supprimer du texte dans une autre fenêtre, revenir dans la
+fenêtre du mini-tampon, et coller le texte dans l'argument. Il y a
+quelques restrictions dans la fenêtre du mini-tampon, toutefois: par
+exemple, vous ne pouvez pas la découper. Voir chapitre\cfch{17}
+[Fenêtres], page\cfchg{17}.\par
+
+Normalement, la fenêtre de mini-tapon occupe une seule ligne
+d'écran. Toutefois, si vous ajouter deux ou plusieurs lignes de texte
+dans le mini-tampon, sa taille augmente automatiquement de façon à
+s'adapter au texte. La variable \texttt{resize-mini-windows} contrôle
+la redimension du mini-tampon. La valeur par défaut est
+\texttt{grow-only}, qui signifie le comportement que nous venons juste
+de décrire. Si la valeur est \texttt{t}, la fenêtre du mini-tampon
+sera aussi automatiquement rétractable si vous effacez des lignes de
+texte du mini-tampon, jusqu'au minimum d'une ligne d'écran. Si la
+valeur est \texttt{nil}, la fenêtre du mini-tampon ne changera jamais
+de taille automatiquement, mais vous pouvez utiliser la commande
+usuelle de redimensionnement de la fenêtre (voir chapitre\cfch{17}
+[Fenêtres], page\cfchg{17}). \par
+
+La variable \texttt{max-mini-window-height} contrôle la hauteur
+maximale de redimensionnement de la fenêtre du mini-tampon. Un nombre
+à virgule spécifie une fraction de la hauteur du cadre; un entier
+spécifie le nombre maximal de lignes; \texttt{nil} signifie : ne pas
+redimensionner la fenêtre du mini-tampon automatiquement. La valeur
+par défaut est $0.25$.\par 
+
+La commande \texttt{C-M-v} dans le mini-tampon fait défiler le texte
+d'aide de commandes qui affiche l'aide de texte de toute sorte
+dans une autre fenêtre. Vous pouvez aussi faire défiler l'aide de
+texte avec \rep{M}{prior} et \rep{M}{next} (ou, de façon
+équivalente, \rep{M}{PageUp} et \rep{M}{PageDown}). C'est
+particulièrement utile avec des listes longues de complétions
+possible. Voir section\cfchs{17}{3} [Autre fenêtre],
+page\cfchs{17}{3}.\par
+
+Emacs normalement ne permet pas la plupart des commandes qui utilisent
+le mini-tampon pendant que le mini-tampon est actif. Pour autoriser de
+telles commandes dans le mini-tampon, initialiser la variable
+\texttt{enable-recursive-minibuffers} à \texttt{t}.\par
+
+Quand il n'est pas actif, le mini-tampon est en
+\texttt{minibuffer-inactive-mode}, et en cliquant \rep{Mouse}{1}
+cela montre le tampon \texttt{*Messages*}. Si vous utilisez un cadre
+dédié pour le mini-tampon, Emacs reconnaît aussi certaines touches là,
+par exemple \texttt{n} pour créer un nouveau cadre.\par
+
+
+\section{Complétion (ou complémentation)}\label{chap5sec4}
+Vous pouvez souvent utiliser la fonction appelée \emph{complétion} qui
+aide à saisir les arguments. Cela signifie qu'après que vous tapiez
+une partie de l'argument, Emacs peut remplir le reste, ou une partie,
+basée sur ce qui a déjà été rempli.\par
+
+Quand la complétion est disponible, certaines touches (usuellement
+\TAB, \RET, et \SPC) sont réservées dans le mini-tampon
+pour des commandes de complétions spéciales (voir
+section\cfchss{5}{4}{2} [Commandes de complétion],
+page\cfchss{5}{4}{2}). Ces commandes attendent de compléter le texte
+dans le mini-tampon, basées sur un \emph{ensemble de complétion
+  alternatives} fournies par la commande qui requiert un
+argument. Vous pouvez généralement taper \texttt{?} pour voir une
+liste de complétions alternatives.\par
+
+Bien que la complétion est généralement faite dans le mini-tampon, la
+fonction est parfois disponible dans les tampons ordinaires
+aussi. Voir section\cfchs{23}{8} [Symbole de complétion],
+page\cfchsg{23}{8}.\par
+
+\subsection{Exemple de complétion}\label{chap5sec4subsec1}
+Un exemple simple peut aider ici. \rep{M}{x} utilise le minitampon
+pour lire le nom d'une commande, donc la complétion fonctionne par
+correspondance du texte du minitampon avec les noms des commandes
+Emacs existantes. Supposons que vous souhaitiez lancer la commande
+\texttt{auto-fill-mode}. Vous pouvez le faire en tapant \texttt{M-x
+  auto-fill-mode RET}, mais il est plus facile d'utiliser la
+complétion.\par
+
+Si vous tapez \texttt{M-x a u TAB}, la \TAB cherche les
+complétions alternatives (dans ce cas, les noms de commandes) qui
+démarrent par <<\texttt{au}>>. Il y en a plusieurs, incluant
+\texttt{auto-fill-mode} et \texttt{autoconf-mode}, mais elles
+commencent toutes avec \texttt{auto}, donc le <<\texttt{au}>> dans le
+minitampon se complète en <<\texttt{auto}>>. (Plus de commandes
+peuvent être définies dans votre session Emacs. Par exemple, si une
+commande appelée \texttt{authorize-me} était définie, Emacs pourrait
+seulement compléter jusqu'à <<\texttt{aut}>>.)\par
+
+Si vous tapez \TAB encore immédiatement, il ne peut pas
+déterminer le prochain caractère; cela pourrait être <<\texttt{-}>>,
+<<\texttt{a}>>, ou <<\texttt{c}>>. Donc il n'ajoute aucun caractère;
+au lieu, \TAB affiche une liste de toutes les complétions
+possibles dans une autre fenêtre.\par
+
+Ensuite, tapez \texttt{-f}. Le minitampon contient désormais
+<<\texttt{auto-f}>>, et le seul nom de commande qui démarre avec ça
+est <<\texttt{auto-fill-mode}>>. Si vous tapez maintenant
+\TAB, la complétion rempli le reste de l'argument
+<<\texttt{auto-fill-mode}>> dans le minitampon. \par
+
+D'où, taper juste \texttt{a u TAB -f TAB} vous permet d'entrer
+<<\texttt{auto-fill-mode}>>. \par
+
+\subsection{Commandes de complétion}\label{chap5sec4subsec2}
+
+Voici une liste des commandes de complétions définies dans le
+minitampon la complétion est permise.
+
+\begin{tabular}[m]{>{\ttfamily}lp{13cm}}
+  TAB & Complète le texte dans le minitampon autant que possible; si
+  pas possible de compléter, affiche une liste des complétions
+  possibles (\texttt{minibuffer-complete}). \\
+  SPC & Complète jusqu'à un mot du texte du minitampon avant le point
+  (\texttt{minibuffer-complete-word}). Cette commande n'est pas
+  disponible pour des arguments qui incluent souvent des espaces,
+  comme des noms de fichiers. \\
+  RET & Présente le texte dans le minitampon comme argument,
+  complétant éventuellement le premier
+  (\texttt{minibuffer-complete-and-exit}). Voir section\cfchss{5}{4}{3}
+  [Sortie de complétion], page\cfchssg{5}{4}{3}.  \\
+  ? & Affiche une liste des complétions
+  (\texttt{minibuffer-completion-help}). 
+\end{tabular}
+
+\TAB(\texttt{minibuffer-complete}) est la commande de
+complétion la plus fondamentale. Elle cherche toutes les complétions
+possibles qui correspondent au texte existant dans le minitampon, et
+tente de le compléter autant que possible. Voir
+section\cfchss{5}{4}{4}[Styles de complétion], page\cfchssg{5}{4}{4},
+pour savoir comment les complétions alternatives sont choisies.\par
+
+\SPC (\texttt{minibuffer-complete-word}) complète comme
+\TAB, mais seulement jusqu'au prochain tiret ou espace. Si
+vous avez <<\texttt{auto-f}>> dans le minitampon et tapez
+\SPC, cela trouvera la complétion <<\texttt{auto-fill-mode}>>,
+mais cela insère seulement <<\texttt{ill-}>>, donnant
+<<\texttt{auto-fill}>>. Un autre \SPC à cet endroit complète
+le reste jusqu'à <<\texttt{auto-fill-mode}>>.\par
+
+Si \TAB ou \SPC n'arrive pas à compléter, cela affiche
+une liste des complétions alternatives correspondantes (s'il y en a)
+dans une autre fenêtre. Vous pouvez afficher la même liste avec
+\texttt{?} (\texttt{minibuffer-completion-help}). Les commandes
+suivantes peuvent être utilisées avec la liste de complétion :
+
+\begin{tabular}[m]{>{\ttfamily}lp{13cm}}
+  Mouse-1 & \\
+  Mouse-2 & Cliquer sur le bouton 1 ou 2 sur une complétion
+  alternative la choisis (\texttt{mouse-choose-completion}). \\
+  M-v & \\
+  PageUp & \\
+  prior & Taper \texttt{M-v}, dans le minitampon, sélectionne la
+  fenêtre montrant la liste de complétion
+  (\texttt{switch-to-completions}). Cela ouvre la voie à l'aide des
+  commandes ci-dessous. \texttt{PageUp} ou \texttt{prior} fait la
+  même. Vous pouvez aussi sélectionner la fenêtre d'autres manières
+  (voir \cfch{17}[Fenêtres], page\cfchg{17}). \\
+  RET & Dans le tampon de la liste de complétion, cela choisit la
+  complétion au point (\texttt{choose-completion}). \\
+  Right & Dans le tampon de la liste de complétion, cela déplace le
+  point à la complétion alternative suivante
+  (\texttt{next-completion}). \\
+  Left & Dans le tampon de la liste de complétion, cela déplace le
+  point à la complétion alternative précédente
+  (\texttt{previous-completion}). 
+\end{tabular}
+
+\subsection{Sortie de complétion}\label{chap5sec4subsec3}
+
+Quand une commande lit un argument utilisant le minitampon avec
+complétion, cela contrôle aussi ce qui se passe lorsque vous tapez
+\RET (\texttt{minibuffer-complete-and-exit}) pour présenter
+l'argument. Il y a quatre types de comportements :
+\begin{itemize}
+\item \textit{Complétion stricte} accepte seulement les complétions
+  correspondantes exactes. Taper \RET sort du minitampon
+  seulement si le texte du minitampon est une correspondance exacte,
+  ou la complète en une. Sinon, Emacs refuse de quitter le minitampon;
+  au lieu de cela il essaie de compléter, et si aucune complétion ne
+  peut être faite il affiche momentanément <<[\texttt{No match}]>>
+  après le texte du minitampon. (Vous pouvez toujours quitter le
+  minitampon en tapant \rep{C}{g} pour annuler la commande.)
+
+  Un exemple d'une commande qui utilise ce comportement est
+  \rep{M}{x}, car ça n'a pas de sens pour elle d'accepter un de
+  commande inexistante.
+\item \textit{La complétion prudente} est comme la complétion stricte,
+  sauf que \RET sort seulement si le texte est déjà une
+  correspondance exacte. Si le texte complète en une correspondance
+  exacte, \RET accompli cette complétion mais ne sort pas
+  encore; vous devez taper \RET une seconde fois pour sortir.
+
+  La complétion prudente est utilisée pour lire les noms de fichiers
+  de fichiers qui existent déjà, par exemple.
+\item \textit{La complétion permissive} autorise n'importe qu'elle
+  saisie; les candidats à la complétion sont justes des
+  suggestions. Taper \RET ne complète pas, ça présente juste
+  l'argument comme vous l'avez entré.
+\item \textit{La complétion permissive avec confirmation} est comme la
+  complétion permissive, à une exception : si vous tapez \TAB
+  et que ça complète le texte jusqu'à un état intermédiaire (i.e, un
+  qui n'est pas une complétion correspondante exacte), taper
+  \RET juste après ne présente pas l'argument. Au lieu de ça,
+  Emacs demande une confirmation en affichant momentanément
+  <<[\texttt{Confirm}]>> après le texte; taper \RET encore
+  pour confirmer et présenter le texte. Cela empêche une erreur
+  classique, dans laquelle une frappe \RET avant de realiser
+  que \TAB n'avait pas complété aussi loin que souhaité.
+
+  Vous pouvez modifier le comportement de la confirmation par la
+  personnalisation de la variable
+  \texttt{confirm-nonexistent-file-or-buffer}. La valeur par défaut,
+  \texttt{after-completion}, donne le comportement que nous venons de
+  décrire. Si vous la changez à \texttt{nil}, Emacs ne demandera pas
+  de confirmation, retombant en complétion permissive. Si vous la
+  changez en n'importe qu'elle autre valeur non\texttt{-nil}, Emacs
+  demandera une confirmation que la précédente comme soit \TAB
+  ou pas.
+
+  Ce comportement est utilisé par la plupart des commandes qui lisent
+  des noms de fichiers, comme \rec{C}{x}{C}{f}, et les commandes qui
+  lisent les noms de tampons, comme \texttt{C-x b}.
+\end{itemize}
+
+\subsection{Comment sont choisies les alternatives de
+  complétion}\label{chap5sec4subsec4} 
+
+Les commandes de complétion fonctionnent par rétrécissement d'une
+grande liste de complétions alternatives possibles vers un sous
+ensemble qui <<correspond>> avec ce que vous avez tapé dans le mini
+tampon. Dans la section \cfchss{5}{4}{1} [Exemple de complétion],
+page\cfchssg{5}{4}{1}, nous avons donné un exemple simple d'une telle
+correspondance. Emacs tente d'offrir les complétions plausibles dans
+la plupart des cas.
+
+Emacs réalise les complétions en utilisant un ou plusieurs
+\textit{styles de complétion}---ensembles de critères de
+correspondance pour le texte du mini tampon pour les complétions
+alternatives. Durant la complétion, Emacs essaie chaque style de
+complétion tour à tour. Si un style donne une ou plusieurs
+correspondances, qui est utilisée comme liste de complétions
+alternatives. Si un style ne produit pas de correspondance, Emacs
+retombe sur le style suivant.
+
+Cette variable liste \texttt{completion-styles} spécifie les styles de
+complétions à utiliser. Chaque élément de la liste est le nom d'un
+style de complétion (un symbole Lisp). Les styles de complétion par
+défaut sont (par ordre):
+\begin{description}
+\item[\texttt{basic}] une complétion alternative doit avoir le même début que
+  le texte dans le mini-tampon avant le point. En outre, s'il y a un
+  texte dans le mini-tampon après le point, le reste de la complétion
+  alternative doit contenir ce texte comme sous chaîne.
+\item[\texttt{partial-completion}] 
+
+Ce style de complétion agressif divise le texte du mini-tampon en mots
+séparés par des tirets ou des espaces, et termine chaque mot
+séparément. (Par exemple, quand il complète les noms de commandes,
+<<\texttt{em-l-m}>> complète en <<\texttt{emacs-lisp-mode}>>.)
+
+En outre, une <<$\star$>> dans le texte du mini-tampon est traité
+comme un \texttt{joker}---ça correspond à n'importe quel caractère à
+la position associée dans la complétion alternative.
+\item[\texttt{emacs22}] Ce style de complétion est similaire du
+  \texttt{basic}, sauf qu'il ignore le texte dans le mini-tampon après
+  le point. Il est appelé ainsi parce qu'il correspond au comportement
+  de complétion dans Emacs 22.
+\end{description}
+Les styles de complétion supplémentaires suivants sont aussi définis,
+et vous pouvez les ajouter au \texttt{completion-styles} si vous le
+souhaitez (voir Chapitre \cfch{33} [Personnalisation], page
+\cfchg{33}):
+
+% petite macro maison
+\newcommand{\citcom}[1]{<<\texttt{#1}>>}
+
+\begin{description}
+\item[\texttt{substring}] une correspondance de complétion alternative doit
+  contenir le texte dans le mini-tampon avant le point, et le texte
+  dans le mini-tampon après le point, comme chaînes (dans le même
+  ordre).
+
+Alors, si le texte dans le mini-tampon est \citcom{foobar}, avec
+le point entre \citcom{foo} et \citcom{bar}, qui correspond à
+\citcom{afoo\textit{b}barc}, où \textit{a},\textit{b}, et \textit{c}
+peuvent être n'importe quelle chaîne incluant la chaîne vide.
+\item[\texttt{initials}] Ce style de complétion très agressif tente de
+  compléter les acronymes et sigles. Par exemple, quand il complète
+  les noms de commandes, il fait correspondre \citcom{lch} avec
+  \citcom{list-command-history}. 
+\end{description}
+Il y a aussi un style de complétion très simple appelé
+\texttt{emacs21}. Dans ce style, si le texte dans le mini-tampon est
+\citcom{foobar}, seules les correspondances commençant avec
+\citcom{foobar} sont considérées.
+
+Vous pouvez utiliser des styles de complétion différents dans
+différentes situations, en réglant la variable
+\texttt{completion-category-overrides}. Par exemple, le réglage par
+défaut dit d'utiliser seulement la complétion \texttt{basic} et
+\texttt{substring} pour les noms de tampons.
+
+\subsection{Options de  complétion}\label{chap5sec4subsec5} 
+
+
+\section{Historique du minibuffer}\label{chap5sec5}
+
+\section{Répétition des commandes du minibuffer}\label{chap5sec6}
+\section{Création de mot de passe}\label{chap5sec7}
+\section{Oui ou Non du prompt (invite de commande)}\label{chap5sec8}

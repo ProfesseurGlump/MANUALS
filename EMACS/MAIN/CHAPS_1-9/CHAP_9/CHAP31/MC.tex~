@@ -1,0 +1,43 @@
+\chapter{Commandes diverses}
+\section{Gnus}
+\subsection{Buffers Gnus}
+\subsection{Démarrage de Gnus}
+\subsection{Utilisation du buffer du groupe Gnus}
+\subsection{Utilisation du buffer du résumé Gnus}
+\section{Visonnage de document}
+\subsection{Navigation dans DocView}
+\subsection{Recherche dans DocView}
+\subsection{Coupe dans DocView}
+\subsection{Conversion dans DocView}
+\section{Lancement de commandes Shell depuis Emacs}
+\subsection{Commandes Shell simples}
+\subsection{Subshell intéractif}
+\subsection{Mode Shell}
+\subsection{Prompts Shell}
+\subsection{Historique des commandes Shell}
+\subsubsection{Anneau d'historique Shell}
+\subsubsection{Copie d'historique Shell}
+\subsubsection{Références d'historique Shell}
+\subsection{Suivi de répertoire}
+\subsection{Options du mode Shell}
+\subsection{\'Emulateur de terminal dans Emacs}
+\subsection{Mode term}
+\subsection{Shell hôte distant}
+\subsection{Série de terminaux}
+\section{Utilisation d'Emacs comme serveur}
+\subsection{Invocation de \texttt{emacsclient}}
+\subsection{Options \texttt{emacsclient}}
+\section{Impression de copies}
+\subsection{PostScript}
+\subsection{Variables PostScript}
+\subsection{Extension d'impression}
+\section{Tri de texte}
+\section{\'Edition de fichier binaires}
+\section{Sauvegarde de sessions Emacs}
+\section{Niveaux d'édition récursives}
+\section{\'Emulation}
+\section{Fonctions de navigation et hyperliens}
+\subsection{Suivi URLs}
+\subsection{Activation URLs}
+\subsection{Fichiers trouvés et URLs à point}
+\section{D'autres amusements}

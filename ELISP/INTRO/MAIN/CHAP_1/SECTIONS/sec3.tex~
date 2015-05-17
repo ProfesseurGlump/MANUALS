@@ -1,0 +1,122 @@
+\section{Générer un message d'erreur}\etchs{1}{3}
+
+Partant de sorte que vous ne vous inquiétez pas si vous le faites
+accidentellement, nous allons maintenant donner un ordre à
+l'interprète Lisp qui génère un message d'erreur. C'est une activité
+inoffensive; et en effet, nous allons souvent essayer de générer des
+messages d'erreur intentionnellement. Une fois que vous comprenez le
+jargon, les messages d'erreur peuvent être informatif. Au lieu d'être
+appelé ``messages d'erreur'', ils devraient être appelés messages
+``d'aide''. Ils sont comme des panneaux pour un voyageur dans un pays
+étranger ; les déchiffrer peut être difficile, mais une fois compris,
+ils peuvent indiquer la voie. 
+
+Le message d'erreur est généré par un débogueur \gem intégré. Nous
+allons <<entrer dans le débogueur>>. Pour sortir du débogueur taper
+\tm{q}.
+
+Ce que nous allons faire c'est d'évaluer une liste qui n'a pas de
+quote la précédant et qui n'a pas de commande significative comme
+premier élément. Voici une liste presque exactement la même que celle
+que nous avons utilisé, mais sans la quote la précédant. Placez le
+curseur juste après et taper \rec{C}{x}{C}{e}:
+\begin{center}
+  \tm{(this is an unquoted list)}
+\end{center}
+
+(this is an unquoted list)
+Une fenêtre \tm{*Backtrace*} s'ouvrira et vous devriez voir ce qui suit:
+{\ttfamily
+\begin{flushleft}
+  Debugger entered--Lisp error: (void-function this)
+  
+  (this is an unquoted list)
+
+  eval((this is an unquoted list))
+
+  eval-last-sexp-1(nil)
+
+  eval-last-sexp(nil)
+
+  call-interactively(eval-last-sexp)
+\end{flushleft}}
+
+Votre curseur sera dans cette fenêtre (vous pouvez avoir à attendre
+quelques secondes avant qu'il ne devienne visible). Pour quitter le
+débogueur et faire la fenêtre du débogueur s'en aller, tapez: \tm{q}.
+
+S'il vous plaît tapez \tm{q} maintenant, alors vous devenez plus
+confiant et vous pouvez sortir du débogueur. Ensuite, tapez
+\rec{C}{x}{C}{e} de nouveau pour y rentrer.
+
+Sur la base de ce que nous savons déjà, nous pouvons presque lire ce
+message d'erreur.
+
+Vous avez lu le tampon \tm{*Backtrace*} de bas en haut; il vous dit ce
+que Emacs fait. Lorsque vous avez tapé \rec{C}{x}{C}{e}, vous avez
+fait un appel à la commande \tm{eval-last-sexp}. \tm{eval} est une
+abréviation pour <<évaluer>> et \tm{sexp} est une abréviation pour
+<<expression symbolique>>. La signification de cette commande est
+<<évaluer la dernière expression symbolique>>, qui est l'expression
+juste avant le curseur.
+
+Chaque ligne ci-dessus vous indique ce que l'interprète Lisp évalue
+après. L'action la plus récente est en haut. Le tampon est appelé
+\tm{*Backtrace*} car il vous permet de suivre Emacs en arrière.
+
+En haut du tampon \tm{*Backtrace*}, vous voyez la ligne :
+\begin{center}
+  \tm{Debugger entered--Lisp error: (void-function this)}
+\end{center}
+
+L'interprète Lisp a tenté d'évaluer le premier atome de la liste, le
+mot <<this>>. C'est cette action qui a généré le message d'erreur
+<<void-finction this>>. 
+
+Le message contient les mots <<void-function>> et <<this>>. Le mot
+<<function>> a été mentionné une seule fois auparavant. C'est un mot
+très important.
+
+Pour nos fins, nous pouvons la définir en disant qu'une fonction est
+un ensemble d'instructions données à l'ordinateur qui signale à
+l'oridnateur de faire quelque chose. 
+
+Maintenant, nous pouvons commencer à comprendre le message d'erreur:
+<<\tm{void-function this}>>. La fonction (ce mot est le mot
+<<\tm{this}>> n'a pas de définition d'un ensemble d'instructions que
+l'ordinateur peut mener à bien. 
+
+Le mot un peu bizarre, <<\tm{void-function}>>, est conçu pour couvrir
+la façon dont Emacs Lisp est mis en \oe{}uvre, qui est que lorsqu'un
+symbole n'a pas de définition de fonction attaché à lui, la place qui
+doit contenir les instructions est <<\tm{void}>>.
+
+D'autre part, puisque nous avons pu ajouter 2 plus 2 avec succès, en
+évaluant \tm{(+ 2 2)} nous pouvons en déduire que le symbole \tm{+}
+doit avoir un ensemble d'instructions pour l'ordinateur qui doit obéir
+et ces instructions doivent être ajouter les nombres qui suivent le
+\tm{+}.
+
+Il est possible de prévenir Emacs d'entrer dans le débogueur dans de
+tels cas. Nous n'expliquons pas comment faire ici, mais nous allons
+parler de ce à quoi le résultat ressemble, parce que vous pouvez
+rencontrer une situation similaire s'il y a un bogue dans un code
+Emacs que vous utilisez. Dans de tels cas, vous verrez seulement une
+ligne de message d'erreur ; il apparaîtra dans la zone écho et
+ressemblera à ceci:
+\begin{center}
+  \tm{Symbol's function definition is void: this}
+\end{center}
+
+Le message disparaît dès que vous tapez une touche, même juste pour
+déplacer le curseur. Nous savons que le sens du mot
+<<\tm{Symbol}>>. Il se réfère au premier atome de la liste, le mot
+<<\tm{this}>>. Le mot <<\tm{function}>> se réfère aux instructions qui
+indiquent à l'ordinateur ce qu'il faut faire. (Techniquement, le
+symbole indique à l'ordinateur où trouver les instructions, mais c'est
+une complication que nous pouvons ignorer pour le moment.) Le message
+d'erreur peut être compris: <<\tm{Symbol's function definition is
+  void: this}>>. Le symbole (c'est le mot <<\tm{this}>>) manque
+d'instructions pour que l'ordinateur les mènent à bien. 
+
+

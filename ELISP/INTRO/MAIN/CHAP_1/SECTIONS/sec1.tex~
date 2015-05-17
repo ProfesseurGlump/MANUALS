@@ -1,0 +1,175 @@
+\section{Listes Lisp}\etchs{1}{1}
+
+En Lisp, une liste ressemble à ça : \tm{'(rose violet daisy
+  buttercup)}. Cette liste est précédée d'une apostrophe. Elle
+pourrait être écrit comme suit, qui ressemble plus au type de liste
+dont vous avez l'habitude:
+\begin{center}
+  \begin{tabular}[m]{l}
+  \tm{'(rose} \\
+  \tm{violet} \\
+  \tm{daisy} \\
+  \tm{buttercup)}
+  \end{tabular}
+\end{center}
+Les éléments de cette liste sont les noms de quatre fleurs différentes,
+séparés par des espaces et entourés par des parenthèses, comme des
+fleurs dans un champ avec un mur de pierre autour d'elles.
+
+Les listes peuvent aussi contenir des nombres, comme dans cette liste
+: \tm{(+ 2 2)}. Cette liste a un signe plus, <<\tm{+}>>, suivi
+par deux <<\tm{2}>>, chacun séparé par un espace.
+
+En Lisp, les données et les programmes sont représentés de la même
+façon; autrement dit, ils sont tous les deux des listes de mots, de
+chiffres ou d'autres listes, séparées par des espaces et entourées par
+des parenthèses. (Puisqu'un programme ressemble à des données, un
+programme peut facilement servir de donnée pour un autre, ce qui est
+une fonctionnalité très puissante de Lisp.) (Soit dit en passant, ces
+deux remarques entre parenthèses ne sont pas des listes Lisp, car
+elles contiennent des <<\tm{;}>> et <<\tm{.}>> comme signes de
+ponctuation.) 
+
+Voici une autre liste, cette fois avec une liste à l'intérieur:
+
+\tm{'(this list has (a list inside of it))}
+
+\newcommand{\citcom}[1]{<<\tm{#1}>>}
+
+Les composants de cette liste sont les mots <<\tm{this}>>,
+\citcom{list}, \citcom{has}, et la liste \citcom{(a list inside of
+  it)}. La liste intérieure est constituée des mots \citcom{a},
+\citcom{list}, \citcom{inside}, \citcom{of}, \citcom{it}.
+
+\subsection{Atomes Lisp}\etchss{1}{1}{1}
+
+En Lisp, ce que nous appelons mots est appelé \textit{atomes}. Ce
+terme vient du sens historique du mot atome, qui signifie
+<<indivisible>>. En ce qui concerne Lisp, les mots que nous avons
+utilisés dans les listes ne peuvent être divisés en parties plus
+petites et de même dans le cadre d'un programme ;
+même avec des chiffres et des symboles de caractères unique comme
+\citcom{+}. D'autre part, contrairement à un atome antique, une liste
+peut être divisée en plusieurs parties.(Voir chapitre \cfch{7}
+<<\tm{car cdr \& cons} Fonctions Fondamentales>>, page\cfchg{7}.)
+
+Dans une liste, les atomes sont séparés les uns des autres par des
+espaces. Ils peuvent être juste à côté d'une parenthèse. 
+
+Techniquement parlant, une liste en Lisp consiste en une paire de
+parenthèses entourant des atomes séparés par des espaces ou entourant
+d'autres listes ou entourant à la fois des atomes et d'autres
+listes. Une liste peut n'avoir qu'un seul atome ou ne contenir rien du
+tout. Une liste avec rien du tout ressemble à ça : (), et est appelée
+la \textit{liste vide}. Contrairement à n'importe quoi d'autre, une
+liste vide est considérée à la fois comme un atome et comme une liste.
+
+La représentation imprimée des atomes et listes est appelée
+\textit{symbolic expressions} ou, de façon plus concise,
+\textit{s-expressions}. Le mot \textit{expression} par lui-même peut
+référer à la fois à la représentation imprimée, ou à la liste comme
+elle est perçue dans l'ordinateur. Souvent, les gens utilisent le
+terme \textit{expression} sans distinction. (Aussi, dans beaucoup de
+textes, le mot \textit{forme} est utilisé comme synonyme pour
+expression.)
+
+Incidemment, les atomes qui contituent notre univers étaient nommés
+ de telle façon lorsque nous pensions qu'ils étaient indivisibles. Les parties
+peuvent s'éclater en atome ou peuvent se fissionner en deux parties à
+peu près égales en taille. Les atomes physique ont été nommé
+prématurément, avant que leur vraie nature ne soit découverte. En
+Lisp, certains types d'atome, comme un tableau, peuvent être séparés en
+plusieurs parties; mais le mécanisme pour faire cela est différent de
+celui pour éclater une liste. Autant qu'une liste d'opération est
+concernée, les atomes d'une liste sont irréductible.
+
+Comme en Anglais, les sens de la composition des lettres d'un atome
+Lisp sont différents du sens que les lettres font pour former un mot. Par
+exemple, le mot pour le sud américain sloth, le '\tm{ai}', est
+complètement différent des deux mots, '\tm{a}', et '\tm{i}'.
+
+Il y a beaucoup de types d'atome dans la nature mais seulement
+quelques uns en Lisp: par exemple, \textit{numbers}, comme 37, 511, ou
+1729, et \textit{symbols}, comme '\tm{+}', '\tm{foo}', ou
+'\tm{forward-line}'. Les mots que nous avons listés dans les
+exemples au-dessus sont tous des symboles. Dans une conversation Lisp
+de tous les jours, le mot ``atome'' n'est pas souvent utilisé, parce
+que les programmeurs essaient d'habitude d'être plus spécifique au
+sujet du type d'atome avec lesquels ils travaillent. La programmation
+Lisp est beaucoup plus à propos des symboles (et parfois des nombres)
+avec des lists. (Incidemment, les trois mots précédant la remarque
+entre parenthèse forment un liste en Lisp, dès qu'elle contient des
+atomes, qui sont dans ce cas des symboles, séparés par des espaces et
+encapsulés par des parenthèses, sans acune ponctuation non-Lips.)
+
+Le texte entre les guillemets---même des phrases ou paragraphes---est
+aussi un atome. Voici un exemple : 
+\begin{center}
+  \tm{'(this list includes ``text between quotation marks.'')}
+\end{center}
+
+En Lisp, tous les textes entre les guillemets incluant la marque de
+ponctuation et les espaces est un atome simple. Ce type d'atome est
+appelé une \textit{chaîne} (pour 'chaîne de caractères') et est le
+type de chose qui est utilisée pour des messages que l'ordinateur peut
+afficher pour un humain. Les chaînes sont un type d'atome différent
+des nombres ou des symboles et sont utilisées différemment. 
+
+\subsection{Espaces dans les listes}\etchss{1}{1}{2}
+
+Le nombre d'espace dans une liste ne compte pas. Du point de vue du
+langage Lisp,
+\begin{center}
+  \begin{tabular}[m]{>{\ttfamily}l}
+    '(this list\\
+    \quad looks like this)
+  \end{tabular}
+\end{center}
+
+est exactement identique à ça :
+\begin{center}
+  \tm{'(this list looks like this)}
+\end{center}
+
+Les deux exemples montrent ce qui pour Lisp est la même liste, la
+liste composée des symboles '\tm{this}', '\tm{list}', '\tm{looks}',
+'\tm{like}', et '\tm{this}' dans cet ordre.
+
+Les espaces supplémentaires ou les nouvelles lignes sont faites pour
+construire une liste plus lisible pour les humains. Quand Lisp lit les
+expressions, il se débarrasse de tous les espaces blancs
+supplémentaires (mais il doit avoir au moins un espace entre les
+atomes afin de les distinguer.)
+
+Aussi étrange que cela semble, les exemples que nous avons vu couvrent
+la quasi-totalité des listes en Lisp ! Toute autre liste en Lisp
+ressemble plus ou moins à l'un de ces exemples, sauf que la liste
+pourrait être plus longue et plus complexe. En bref, une liste est
+entre parenthèses, une chaîne est entre guillemets, un symbole
+ressemble à un mot, et un nombre ressemble à un nombre. (Pour
+certaines situations, des crochets, des points et quelques autres
+caractères spéciaux peuvent être utilisés ; cependant, nous allons
+aller très loin sans eux.)
+
+\subsection{\gem vous aide à taper les listes}\etchss{1}{1}{3}
+
+Lorsque vous tapez une expression Lisp dans \gem en utilisant
+soit le mode d'interaction Lisp ou le mode Emacs Lisp, vous avez à
+votre disposition plusieurs commandes pour formater l'expression Lisp
+de sorte qu'il soit facile à lire. Par exemple, appuyer sur la
+touche \TAB indente automatiquement la ligne où se trouve le curseur
+avec le bon décalage. Une commande pour indenter proprement le code
+dans une zone est habituellement liée à \rec{M}{C}{\textbackslash}{.}
+L'indentation est conçue de sorte que vous pouvez voir quels sont les
+éléments d'une liste qui appartiennent à la liste---les éléments d'une
+sous-liste sont plus indentés que les éléments de la liste qui
+l'encapsule.
+
+En outre, lorsque vous tapez une parenthèse fermante, Emacs saute
+momentanément le curseur sur la parenthèse ouvrante correspondante, de
+sorte que vous pouvez voir laquelle est-ce. C'est très utile, car
+chaque liste que vous tapez dans Lisp doit avoir sa parenthèse
+fermante correspondant à celle ouvrante. (Voir la section <<mode
+majeurs>> dans le Manuel \gem, pour plus d'information sur les
+modes Emacs.)
+

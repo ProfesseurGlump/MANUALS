@@ -1,0 +1,27 @@
+\chapter{Recherche et remplacement}\label{chap12}
+\section{Recherche incrémentale}\label{chap12sec1}
+\subsection{Base de la recherche incrémentale}\label{chap12sec1subsec1}
+\subsection{Répétition de recherche incrémentale}\label{chap12sec1subsec2}
+\subsection{Erreurs en recherche incrémentale}\label{chap12sec1subsec3}
+\subsection{Saisie spéciale pour la recherche
+  incrémentale}\label{chap12sec1subsec4} 
+\subsection{Recherche avec collage}\label{chap12sec1subsec4}
+\subsection{Défilement durant la recherche
+  incrémentale}\label{chap12sec1subsec5} 
+\subsection{Recherche dans le minibuffer}\label{chap12sec1subsec6}
+\section{Recherche non incrémentale}\label{chap12sec2}
+\section{Recherche de mot}\label{chap12sec3}
+\section{Recherche de symbole}\label{chap12sec4}
+\section{Recherche avec une expression régulière}\label{chap12sec5}
+\section{Syntaxe des expressions régulières}\label{chap12sec6}
+\section{Anti-slash (ou contre-oblique) dans une expression
+  régulière}\label{chap12sec7}
+\section{Exemple d'expression régulière (Regexp)}\label{chap12sec8}
+\section{Recherche et casse}\label{chap12sec9}
+\section{Commandes de remplacement}\label{chap12sec10}
+\subsection{Remplacement sans condition}\label{chap12sec10subsec1}
+\subsection{Remplacement d'une regexp}\label{chap12sec10subsec2}
+\subsection{Commandes de remplacement et casse}\label{chap12sec10subsec3}
+\subsection{Requête de remplacement}\label{chap12sec10subsec4}
+\section{Autres commandes de recherches et boucles}\label{chap12sec11}
+

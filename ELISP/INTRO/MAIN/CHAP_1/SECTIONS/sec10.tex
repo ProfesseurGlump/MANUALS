@@ -1,0 +1,40 @@
+\section{Résumé}\etchs{1}{10}
+
+L'apprentissage de Lisp est comme l'escalade d'une colline dans
+laquelle la première partie est la plus dure. Vous avez maintenant
+grimpé la partie la plus difficile; ce qui reste deviendra plus facile
+maintenant que vous avez progressé.
+
+En résumé,
+\begin{itemize}
+\item Les programmes Lisp sont constitués d'expressions, qui sont des
+  listes ou des atomes individuels.
+\item Les listes sont constituées de 0 ou plusieurs atomes ou de
+  listes internes, séparées par des espaces et entourées par des
+  parenthèses. Une liste peut être vide.
+\item Les atomes sont des symboles multi-caractères, comme
+  \tm{forward-paragraph}, symboles caractère simple comme \tm{+},
+  chaînes de caractères entre guillemets, ou des nombres.
+\item Un nombre s'évalue lui-même.
+\item Une chaîne entre guillemets s'évalue également elle-même.
+\item Lorsque vous évaluez un symbole par lui-même, sa valeur est
+  renvoyée.
+\item Lorsque vous évaluez une liste, l'interprète Lisp regarde
+  d'abord le premier symbole dans la liste et ensuite la fonction liée
+  à ce symbole. Ensuite les instructions dans la définition de
+  fonction sont effectuées.
+\item Un guillemet simple (quote), \tm{'}, dit à l'interprète Lisp
+  qu'il devrait renvoyer l'expression suivante comme écrite, et ne pas
+  l'évaluer comme si la quote n'était pas là.
+\item Les arguments sont des information passées à la fonction. Les
+  arguments d'une fonction sont calculés par évaluation du reste des
+  éléments de la liste dont la fonction est le premier élément.
+\item Une fonction renvoie toujours une valeur quand elle est évaluée
+  ( à moins d'obtenir une erreur); en outre, il peut aussi effectuer
+  une action appelée <<effet secondaire>>. Dans de nombreux cas, le
+  but principal d'une fonction est de créer un effet secondaire.
+\end{itemize}
+
+
+
+

@@ -1,0 +1,18 @@
+\chapter{Dired, the Directory Editor (l'éditeur de répertoire)}
+\section{Entrée dans Dired}
+\section{Navigation dans le buffer Dired}
+\section{Marquage de beaucoup de fichiers immédiatement}
+\section{Visionnage des fichiers dans Dired}
+\section{Marquages Dired vs Drapeaux}
+\section{Opération sur les fichiers}
+\section{Commandes shell dans Dired}
+\section{Transformation de noms de fichiers dans Dired}
+\section{Comparaison de fichiers avec Dired}
+\section{Sous-répertoires dans Dired}
+\section{Déplacement dans les sous-répertoires}
+\section{Sous-répertoires cachés}
+\section{Mise à jour du buffer Dired}
+\section{Dired et \texttt{find}}
+\section{\'Edition du buffer Dired}
+\section{Vision d'image dans Dired}
+\section{Autres fonctions de Dired}

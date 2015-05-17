@@ -1,0 +1,55 @@
+\chapter{Comment écrire des définitions de fonctions}\etch{3}
+
+Lorsque l'interprète Lisp évalue une liste, il regarde si le premier
+symbole sur la liste a une définition de fonction attachée à lui; ou,
+en d'autres termes, si le symbole pointe vers une définition de
+fonction. Dans le cas contraire, l'ordinateur exécute les instructions
+dans la définition. Un symbole qui a une définition de fonction est
+appelé, tout simplement, une fonction (même si, à proprement parler,
+la définition est la fonction et le symbole se réfère à elle.)
+
+Toutes les fonctions sont définies en termes d'autres fonctions, à
+l'exception de quelques fonctions primitives qui sont écrites dans le
+langage de programmation C. Lorsque vous écrivez les définitions de
+fonctions, vous les écrirez en Emacs Lisp et utiliserez d'autres
+fonctions comme blocs de construction. Certaines des fonctions que
+vous utiliserez seront elles-mêmes écrites en Emacs Lisp (peut être
+par vous) et certaines seront des primitives écrites en C. Les
+fonctions primitives sont utilisées exactement comme celles écrites en
+Emacs Lisp et se comportent comme elles. Elles sont écrites en C afin
+que nous puissions facilement lancer \gem sur tout ordinateur d'une
+puissance suffisante pour faire fonctionner C.
+
+Permettez-moi de souligner de nouveau ceci: quand vous écrivez du code
+en Emacs Lisp, vous ne distinguez pas celles écrites en C de celles
+écrites en Emacs Lisp. La différence est sans importance. Je mentionne
+la distinction seulement parce qu'il est intéressant de le savoir. En
+effet, à moins que vous ne l'étudiez, vous ne saurez pas si une
+fonction déjà écrite est écrite en Emacs Lisp ou en C.
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec1}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec2}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec3}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec4}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec5}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec6}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec7}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec8}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec9}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec10}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec11}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_3/SECTIONS/sec12}
+
+
+

@@ -1,0 +1,72 @@
+\section{Différentes options pour \texttt{interactive}}\etchs{3}{4}
+Dans l'exemple, \tm{multiply-by-seven} utilisait \tm{''p''} comme un
+argument pour \tm{interactive}. Cet argument disait à Emacs
+d'interpréter votre frappe soit \tm{C-u} suivi d'un nombre soit
+\tm{META} suivi d'un nombre comme une commande à passer ce nombre à la
+fonction comme son argument. Emacs a plus de vingt caractères
+prédéfinis pour l'utilisation avec \tm{interactive}. Dans presque tous
+les cas, une de ces options vous permettra de passer la bonne
+information interactivement à la fonction. (Voir Section <<Caractère
+de code pour \tm{interactive}>> dans \textit{The GNU Emacs Lisp
+  Reference Manual}.)
+\begin{center}
+  Considérez la fonction \tm{zap-to-char}. Son expression interactive
+  est
+
+  \tm{(interactive ''p\textbackslash~nZap to char: '')}
+\end{center}
+
+La première partie de l'argument de \tm{interactive} est \tm{'p'},
+avec ce dont vous êtes déjà familier. Cet argument dit à Emacs
+d'interpréter un <<préfixe>>, comme un nombre qui doit être passé à la
+fonction. Vous pouvez spécifier un préfixe soit en tapant \tm{C-u}
+suivi d'un nombre soit en tapant \tm{META} suivi par un nombre. Le
+préfixe est le nombre de caractères spécifiés. Ainsi, si votre préfixe
+est trois et le caractère spécifié est \tm{'x'}, alors vous effacerez
+tout le texte jusqu'à et y compris la troisième occurence de
+\tm{'x'}. Si vous n'initialisez pas un préfixe, alors vous effacerez
+tout le texte jusqu'à et y compris le caractère spécifié, mais pas
+plus. 
+
+Le \tm{'c'} indique à la fonction le nom du caractère qu'elle doit
+supprimer.
+
+Plus formellement, une fonction avec plusieurs arguments peut avoir
+des informations passées à chacun des argument en ajoutant des
+parties à la chaîne qui suit \tm{interactive}. Lorsque vous faîtes ça,
+l'information est passée à chaque argument dans le même ordre qu'elle
+est spécifiée dans la liste \tm{interactive}. Dans la chaîne, chaque
+partie est séparée de la suivante par un \tm{'\textbackslash'}, qui
+est une nouvelle ligne. Par exemple, vous pouvez suivre \tm{'p'} avec
+un \tm{'\textbackslash~n'} et un \tm{'cZap to char: '}. Cela incite
+Emacs à passer la valeur de l'argument préfixé (s'il y en a un) et le
+caractère. 
+
+Dans ce cas, la définition ressemble à la suivante, où \tm{arg} et
+\tm{char} sont les symbole auxquels \tm{interactive} lie l'argument
+préfixé et le caractère spécifié :
+\begin{center}
+  \tm{(defun \textit{name-of-function} (arg char)}
+
+  \tm{''\textit{documentation}\dots''}
+
+  \tm{(interactive ''p\textbackslash~ncZap to char; '')}
+  
+  \tm{\textit{body-of-function}\dots)}
+\end{center}
+(L'espace après les deux points dans l'invite lui donne une meilleure
+apparence lorsque vous êtes invité. Voir Section \cfchs{5}{1} <<La
+définition de \tm{copy-to-buffer}>>, page \cfchsg{5}{1}, par exemple.)
+
+Quand une fonction ne prend pas d'arguments, \tm{interactive} n'en
+nécessite aucun. Une telle fonction contient l'expression simple
+\tm{(interactive)}. La fonction \tm{mark-whole-buffer} est comme ça.
+
+Alternativement, si les lettres-codes ne sont pas bonnes pour votre
+application, vous pouvez passer vos propres arguments à
+\tm{interactive} comme une liste.
+
+Voir Section \cfchs{4}{4} <<La définition de \tm{append-to-buffer}>>,
+page \cfchsg{4}{4}, par exemple. Voir Section <<Utilisation de
+\tm{Interactive}>> dans \textit{The GNU Emacs Lisp Reference Manual},
+pour une explication plus complète à propos de cette technique. 

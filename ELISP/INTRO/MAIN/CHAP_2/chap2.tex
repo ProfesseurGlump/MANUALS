@@ -1,0 +1,49 @@
+\chapter{\'Evaluation pratique}
+
+Avant d'apprendre à écrire une définition de fonction dans Emacs Lisp,
+il est utile de passer un peu de temps à évaluer diverses expressions
+qui ont déjà été écrites. Ces expressions seront des listes avec des
+fonctions pour premier (et souvent seul) élément. Puisque certaines des
+fonctions associées avec des tampons sont à la fois simples et
+intéressantes, nous allons commencer avec elles. Dans cette section,
+nous allons en évaluer quelques-unes. Dans une autre section, nous
+étudierons le code de plusieurs autres fonctions reliées à des
+tampons, pour voir comment elles ont été écrites. 
+
+\textit{Chaque fois que vous donnez une commande d'édition} à Emacs
+Lisp, comme la commande pour déplacer le curseur ou pour faire défiler
+l'écran, \textit{vous évaluez une expression}, le premier élément est
+une fonction. \textit{C'est comme cela qu'Emacs fonctionne.}
+
+Lorsque vous tapez des touches, vous provoquez l'interprète Lisp pour
+évaluer une expression et c'est comme cela que vous obtenez un
+résultat. Même taper le texte brut implique une évaluation d'une
+fonction Emacs Lisp, dans ce cas, celle qui utilise
+\tm{self-insert-command}, qui insère simplement le caractère que vous
+avez saisi. Les fonctions que vous évaluez en tapant des raccourcis
+sont appelées fonctions \textit{interactives}, ou \textit{commandes};
+comment vous faire une fonction interactive sera illustré dans le
+chapitre comment écrire des définitions de fonctions. Voir Section
+\cfchs{3}{3} ``Faire une fonction interactive'', page \cfchsg{3}{3}.
+
+En plus de la saisie des commandes clavier, nous avons vu une seconde
+façon d'évaluer une expression : en positionnant le curseur après une
+liste et en tapant \tm{C-x C-e}. C'est ce que nous allons faire dans
+le reste de cette section. Il y a d'autres façons d'évaluer une
+expression; celles-ci seront décrites lorsque nous viendront à elles.
+
+En plus d'être utilisées pour pratiquer l'évaluation, les fonctions
+présentées dans les prochaines sections sont importantes en
+elles-mêmes. Une étude de ces fonctions opère une nette distinction
+entre les tampons et les fichiers, comme changer de tampon, et comment
+déterminer un emplacement à l'intérieur.
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_2/SECTIONS/sec1}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_2/SECTIONS/sec2}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_2/SECTIONS/sec3}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_2/SECTIONS/sec4}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_2/SECTIONS/sec5}

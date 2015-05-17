@@ -1,0 +1,73 @@
+\section{Interpréteur Lisp}\etchs{1}{5}
+
+Sur la base de ce que nous avons vu, nous pouvons maintenant commencer
+à comprendre ce que l'interprète Lisp fait lorsque nous commandons à
+évaluer une liste. Tout d'abord, il semble pour voir s'il y a une
+citation avant que la liste ; s'il y a, l'interprète nous donne juste
+la liste. D'un autre côté, s'il n'y a pas de citation, l'interprète
+regarde le premier élément de la liste et voit si elle a une
+définition de fonction. Si c'est le cas, l'interpréteur exécute les
+instructions dans la définition de fonction. Sinon, l'interpréteur
+affiche un message d'erreur. 
+
+C'est ainsi que fonctionne Lisp simple. Il y a des complications
+supplémentaires que nous allons obtenir dans une minute, mais ce sont
+les fondamentaux. Bien sûr, pour écrire des programmes Lisp, vous
+devez savoir comment écrire les définitions de fonctions et leur
+donner des noms, et comment le faire sans confondre vous-même ou
+l'ordinateur. 
+
+Maintenant, pour la première complication, en plus de la liste,
+l'interpréteur Lisp peut évaluer un symbole qui n'a pas de quote et
+qui n'a pas de parenthèses autour de lui. L'interprète Lisp tentera de
+déterminer la valeur du symbole comme une variable. Cette situation
+est décrite dans la section sur les variables. (Voir la
+section\cfchs{1}{7} <<Variables>>, page\cfchsg{1}{7}.)
+
+La deuxième complication se produit parce que certaines fonctions sont
+inhabituelles et ne fonctionnent pas de manière habituelle. Celles qui
+ne le font pas sont appelées formes spéciales. Elles sont utilisées
+pour des tâches spéciales, comme la définition d'une fonction, et il
+n'y en a pas beaucoup. Dans les prochains chapitres, vous serez initié
+à plusieurs de ces formes spéciales les plus importantes. 
+
+La troisième et dernière complication est la suivante: si la fonction
+que l'interprète Lisp regarde n'est pas une forme particulière, et si
+elle fait partie d'une liste, l'interprète Lisp regarde pour voir si
+la liste a une liste à l'intérieur de celui-ci. S'il y a une liste
+interne, l'interprète Lisp décide ce qu'il doit faire avec la
+liste intérieur en premier, puis il travaille sur la liste
+extérieure. S'il y a encore une autre liste incorporée à l'intérieur
+de la liste intérieure, cela fonctionne sur celui-là en premier, et
+ainsi de suite. Il travaille toujours sur la liste la plus profonde en
+premier. L'interprète travaille sur la liste la plus interne d'abord,
+pour évaluer le résultat de cette liste. Le résultat peut être utilisé
+par l'expression l'encapsulant.
+
+Sinon, l'interprète travaille de gauche à droite, d'une expression à
+l'autre.
+
+\subsection{Compilation d'octet}\etchss{1}{5}{1}
+
+Un autre aspect de l'interprétation : l'interprète Lisp est capable
+d'interpréter deux types d'entités : du code lisible par des humains,
+sur lequel nous nous concentrerons exclusivement, et du code
+spécialement traité, appelé byte code compilé, qui n'est pas lisible
+par les humains. Le byte code compilé s'exécute plus rapidement que le
+code lisible par les humains. 
+
+Vous pouvez transformer un code lisible pour les humains en un byte
+code compilé en exécutant l'une des commandes de compilation telles
+que \tm{byte-compile-file}. Le byte code compilé est généralement
+stocké dans un fichier qui se termine par une extension \tm{.elc}
+plutôt qu'une extension \tm{.el}. Vous verrez deux types de fichier
+dans le répertoire \tm{emacs/lisp} ; les fichiers à lire sont ceux qui
+portent l'extension \tm{.el}.
+
+En pratique, pour la plupart des choses que vous pourriez faire pour
+personnaliser ou étendre Emacs, vous n'avez pas besoin d'une
+compilation de byte code ; et je ne vais pas en parler ici. Voir la
+section <<Byte compilation>> dans le manuel Emacs Lisp reference, pour
+une description complète la byte compilation.
+ 
+

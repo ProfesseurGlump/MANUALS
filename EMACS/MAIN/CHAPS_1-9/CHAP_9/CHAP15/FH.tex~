@@ -1,0 +1,31 @@
+\chapter{Traitement de fichier}
+\section{Noms de fichier}
+\section{Visionnage de fichiers}
+\section{Sauvegarde de fichiers}
+\subsection{Commandes de sauvergardes des fichiers}
+\subsection{Fichiers de sauvegardes}
+\subsubsection{Sauvegardes uniques ou numérotées}
+\subsubsection{Destruction automatique des sauvegardes}
+\subsubsection{Copie vs. renommage}
+\subsection{Personnalisation de la sauvegarde de fichier}
+\subsection{Protection contre l'édition simultanée}
+\subsection{Fichiers cachés}
+\subsection{Mise à jour automatique de l'heure}
+\section{Retour vers un buffer}
+\section{Sauvegarde automatique : protection contre les désastres}
+\subsection{Sauvegarde automatique des fichiers}
+\subsection{Contrôle de la sauvegarde automatique}
+\subsection{Récupérer des données à partir des sauvegardes
+  automatiques}
+\section{Alias}
+\section{Répertoires}
+\section{Comparaison de fichiers}
+\section{Mode diff}
+\section{Opérations diverses sur les fichiers}
+\section{Accéder à des fichiers compressés}
+\section{Fichier archives}
+\section{Fichiers distants (sur une autre machine)}
+\section{Nom de fichier entre guillemet}
+\section{Nom de fichier cache}
+\section{Fonctions commodes pour trouver des fichiers}
+\section{Ensemble de fichiers}

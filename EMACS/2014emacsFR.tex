@@ -1,0 +1,195 @@
+%!utf-8
+% Ceci est le fichier principal du manuel Emacs
+\documentclass[french]{book}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% paquetages ou extensions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{../PREAMBULE/extEmacs} 
+% on appelle les extensions chargées dans le ficihier
+% extEmacs.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{../PREAMBULE/titlEmacs} 
+% on appelle la page de titre écrite dans le ficihier
+% titlEmacs.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% nouvelles commandes
+\input{../PREAMBULE/macros}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FIN DU PREAMBULE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      FM      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter
+
+Ceci est la septième édition de \emph{Manuel GNU Emacs}, mis à jour
+pour la version 24.3.
+
+Copyright \copyright{} 1985-1987, 1993-2013 Free Software Foundation,
+Inc.
+
+Il est permis de copier, distribuer et/ou modifier ce document en
+suivant les termes de la GNU Free Documentation License, Version 1.3
+ou toute autre version plus récente publiée par la Free Software
+Foundation; avec les sections invariantes <<The GNU Manifesto,>>
+<<Distribution>> et <<A GNU Manual,>> et avec le texte de la quatrième de
+couverture identique à~\ref{a} ci-dessous. Une copy de la licence est
+incluse dans la section intitulée <<GNU Free Documentation License.>>
+
+\label{a}(a)Le text de la quatrième de couverture de la FSF est
+: <<Vous avez la liberté de copier et modifier ce Manuel GNU. L'achat
+de copies provenant de la FSF permet de soutenir le développement de
+GNU et de promouvoir les logiciels libres.>>
+
+
+\tableofcontents
+
+
+ \input{FM/preface}
+ \input{FM/distribution}
+ \input{FM/introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     MAIN     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter                                     
+
+\input{MAIN/CHAPS_1-9/CHAP_1/TOS}                             % chap1
+\input{MAIN/CHAPS_1-9/CHAP_2/CKC}                             % chap2
+\input{MAIN/CHAPS_1-9/CHAP_3/EEE}                             % chap3
+\input{MAIN/CHAPS_1-9/CHAP_4/BEC}                             % chap4
+\input{MAIN/CHAPS_1-9/CHAP_5/TM}                              % chap5
+\input{MAIN/CHAPS_1-9/CHAP_6/RCN}                             % chap6
+\input{MAIN/CHAPS_1-9/CHAP_7/Help}                            % chap7
+\input{MAIN/CHAPS_1-9/CHAP_8/TMR}                             % chap8
+\input{MAIN/CHAPS_1-9/CHAP_9/KMT}                             % chap9
+\input{MAIN/CHAPS_10-19/CHAP_10/R}                            % chap10
+\input{MAIN/CHAPS_10-19/CHAP_11/CD}                           % chap11
+\input{MAIN/CHAPS_10-19/CHAP_12/SR}                           % chap12
+\input{MAIN/CHAPS_10-19/CHAP_13/CFT}                          % chap13
+\input{MAIN/CHAPS_10-19/CHAP_14/KM}                           % chap14
+\input{MAIN/CHAPS_10-19/CHAP_15/FH}                           % chap15
+\input{MAIN/CHAPS_10-19/CHAP_16/UMB}                          % chap16
+\input{MAIN/CHAPS_10-19/CHAP_17/MW}                           % chap17
+\input{MAIN/CHAPS_10-19/CHAP_18/FGD}                          % chap18
+\input{MAIN/CHAPS_10-19/CHAP_19/ICSS}                         % chap19
+\input{MAIN/CHAPS_20-29/CHAP_20/MM}                           % chap20
+\input{MAIN/CHAPS_20-29/CHAP_21/I}                            % chap21
+\input{MAIN/CHAPS_20-29/CHAP_22/CHL}                          % chap22
+\input{MAIN/CHAPS_20-29/CHAP_23/EP}                           % chap23
+\input{MAIN/CHAPS_20-29/CHAP_24/CTP}                          % chap24
+\input{MAIN/CHAPS_20-29/CHAP_25/MLP}                          % chap25
+\input{MAIN/CHAPS_20-29/CHAP_26/A}                            % chap26
+\input{MAIN/CHAPS_20-29/CHAP_27/DDE}                          % chap27
+\input{MAIN/CHAPS_20-29/CHAP_28/TCD}                          % chap28
+\input{MAIN/CHAPS_20-29/CHAP_29/SM}                           % chap29
+\input{MAIN/CHAPS_30-34/CHAP_30/RMR}                          % chap30
+\input{MAIN/CHAPS_30-34/CHAP_31/MC}                           % chap31
+\input{MAIN/CHAPS_30-34/CHAP_32/ELP}                          % chap32
+\input{MAIN/CHAPS_30-34/CHAP_33/C}                            % chap33
+\input{MAIN/CHAPS_30-34/CHAP_34/DCP}                          % chap34
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     APP      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+\input{APP/APPA}                          % appendice A
+\input{APP/APPB}                          % appendice B
+\input{APP/APPC}                          % appendice C
+\input{APP/APPD}                          % appendice D
+\input{APP/APPE}                          % appendice E
+\input{APP/APPF}                          % appendice F
+\input{APP/APPG}                          % appendice G
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      BM      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\backmatter
+\input{BM/TGM}                           % The Manifesto GNU
+\input{BM/G}                             % Glossaire
+\input{BM/KCI}                           % Index des clés (touches)
+\input{BM/CFI}                           % Index des commandes
+\input{BM/VI}                            % Index des variables
+\input{BM/CI}                            % Index des concepts
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

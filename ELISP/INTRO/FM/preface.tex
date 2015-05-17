@@ -1,0 +1,219 @@
+\newcommand{\gnue}{GNU Emacs\xspace}
+\newcommand{\el}{Emacs Lisp\xspace}
+\newcommand{\MIT}{Massachussetts Institute of Technology\xspace}
+\newcommand{\cl}{Common Lisp\xspace}
+
+\subsection*{Préface}
+
+La plupart des environnements de développement intégrés \gnue  sont
+écrits dans le langage de programmation \el . Le code écrit dans
+ce langage de programmation est le logiciel---l'ensemble des
+instructions---qui disent à l'ordinateur quoi faire quand vous lui
+donnez des commandes. Emacs est conçu de sorte que vous pouvez écrire
+du nouveau code \el  et l'installer simplement comme une
+extension de l'éditeur.
+
+(\gnue  est parfois appelé <<l'éditeur modifiable>>, mais il fait
+bien plus que fournir des possibilités d'édition. C'est mieux de se
+référer à Emacs comme un <<environnement de développement
+modifiable>>. Toutefois, cette phrase est un peu pompeuse. C'est plus
+simple de se référer à Emacs tout simplement comme un éditeur. De
+plus, tout ce que vous faîtes avec Emacs---trouver une date du
+calendrier Maya et les phases de la lune, simplifier des polynômes,
+déboguer du code, gérer des fichiers, lire des lettres, écrire des
+livres---toutes ces activités sont des façons d'éditer dans le sens le
+plus général du mot.)
+
+Aussi \el  est habituellement pensé seulement en association
+avec Emacs, c'est un langage de programmation complet.Vous pouvez
+utiliser \el  comme vous le feriez pour n'importe quel autre
+langage de programmation.
+
+Peut être vous voulez comprendre la programmation; peut être vous
+voulez modifier Emacs; ou peut être vous voulez devenir un
+programmeur. Cette introduction à \el  est conçue pour vous
+faire démarrer: vous guider dans l'apprentissage des fondamentaux de
+la programmation, et plus important, vous montrer comment apprendre à
+aller plus loin.
+
+\subsection*{En lisant ce texte}
+
+\`A travers ce document, vous verrez un petit échantillon de
+programmes que vous pouvez lancer dans Emacs. Si vous lisez ce
+document dans Info dans \gnue , vous pouvez lancer les programmes
+comme ils apparaissent. (C'est facile à faire et c'est expliqué
+lorsque les programmes sont présentés.) Alternativement, vous pouvez
+lire cette introduction comme un livre imprimé pendant que vous êtes
+assis devant un ordinateur faisant tourner Emacs. (C'est ce que j'aime
+faire; j'aime les livre imprimés.) Si vous n'avez pas un Emacs qui
+tourne devant vous, vous pouvez toujours lire ce livre, mais dans ce
+cas, le mieux c'est de le traiter comme une nouvelle ou un guide de
+voyage d'un pays pas encore visité: intéressant, mais pas pareil que
+d'y être.
+
+La plupart de cette introduction est dédiée aux walkthroughs ou tours
+guidés du code utilisé dans \gnue . Ces tours sont conçus avec deux
+objectifs : d'abord, vous familiariser avec le réel, le code de
+travail (le code utilisé tous les jours); et, ensuite, vous
+familiariser avec la façon dont Emacs fonctionne. C'est très
+intéressant de voir comment un environnement de travail est
+implémenté. Aussi, j'espère que vous prendrez l'habitude de naviguer
+dans le code source. Vous pouvez y apprendre et emprunter des
+idées. Avoir \gnue est comme avoir une cave de dragons pleine de
+trésors.
+
+En supplément d'en apprendre sur Emacs comme un éditeur et \el comme
+un langage de programmation, les exemples et les tours guidés vous
+donneront une opportunité d'avoir de l'acointance avec Emacs comme un
+environnement de programmation Lisp. \gnue supporte la programmation et
+fournit des outils que vous voudrez pour devenir à l'aise dans l'usage
+comme \texttt{M-}. (la touche invoque la commande
+\texttt{find-tag}). Vous apprendrez aussi à propos des tampons et
+autre objets qui font partie de l'environnement. En apprendre au sujet
+de ces fonctionnalités d'Emacs est comme apprendre les nouvelles
+routes autour de votre ville.
+
+Finalement, j'espère convey une partie des compétences pour utiliser
+Emacs et apprendre les aspects de la programmation que vous ne
+connaissez pas. Vous pouvez utiliser souvent Emacs pour vous aider à
+comprendre ce qui vous tracasse ou pour trouver comment faire quelque
+chose de nouveau. Cette auto-reliance n'est pas seulement un plaisir,
+mais aussi un avantage.
+
+\subsection*{\`A qui s'adresse ceci}
+
+Ce texte est écrit comme une introduction élémentaire pour des gens
+qui ne sont pas programmeurs. Si vous êtes un programmeur, vous pouvez
+ne pas être satisfait par ceci. La raison est que vous êtes
+certainement devenu un expert de la lecture des manuels de référence
+et exaspéré par la façon dont ce texte est organisé.
+
+Un programmeur expert qui a relu ce texte m'a dit:
+
+{\it Je préfère apprendre avec les manuels de référence. Je <<plonge
+dans>> chaque paragraphe et <<ressors prendre de l'air>> entre les
+paragraphes.
+
+Quand j'arrive à la fin d'un paragraphe, je suppose que ce sujet est
+traité, fini, que je sais tout ce dont j'ai besoin (avec la possible
+exception du cas où le paragraphe suivant démarre en en parlant avec
+plus de détail). Je m'attends à ce qu'un bon manuel de référence
+n'aura pas beaucoup de redondance, et qu'il aura d'excellent pointeurs
+vers l'endroit où trouver l'information que je souhaite.
+}
+
+Cette introduction n'est pas écrite pour cette personne!
+
+D'abord, j'essaie de dire toute chose au moins trois fois: un, pour
+l'introduire; deux, pour la montrer dans le contexte; et trois, pour
+la montrer dans un contexte différent, ou pour la revoir.
+
+Ensuite, j'ai toujours difficilement mis toute l'information à propos
+d'un sujet  dans un endroit, dans moins qu'un paragraphe. Dans ma
+façon de penser, cela impose un pavet trop lourd pour le lecteur. \`A
+la place j'essaie d'expliquer seulement ce dont vous avez besoin de
+savoir au moment idoine. (Parfois j'inclus un peu d'information
+supplémentaire donc vous ne serez pas surpris plus tard quand
+l'information supplémentaire sera formellement introduite.)
+
+Quand vous lisez ce texte, vous ne vous attendez pas à apprendre tout
+la première fois. Souvent, vous aurez seulement besoin de faire, comme
+c'était, un <<nodding acquaintance>> avec certains des items
+mentionés. Mon espoir est d'avoir structuré le texte et de vous avoir
+donné assez d'indice qui vous alerteront sur ce qui est important, et
+que vous vous concentrerez deçu.
+
+Vous aurez besoin de <<plonger dans>> certains paragrpahes; il n'y a
+pas d'autre façon de les lire. Mais j'ai essayé de réduire le nombre
+de ces paragraphes. Ce livre est intended comme une colline
+approchable, plutôt que comme une montagne escarpée.
+
+Cette introduction \textit{Programming in \el} a un document
+compagnon, \textit{The \gnue Lisp Reference Manual}. Le manuel de
+référence a beaucoup plus de détails que cette introduction. Dans le
+manuel de référence, toute l'information à propos d'un sujet est
+concentrée dans un endroit. Vous devriez y aller si vous êtes comme le
+programmeur cité plus haut. Et, bien sûr, après avoir lu cette
+\textit{Introduction}, vous trouverez le \textit{Reference Manual}
+utile wuand vous écrirez vos propres programmes.
+
+\subsection*{Histoire de Lisp}
+
+Lisp a été développé pour la première fois à la fin des années 50 au
+\MIT pour la recherche en intelligence artificielle. La super
+puissance du langage Lisp qui le rend supérieur pour d'autres sujets
+est tant, l'écriture de commandes d'édition et les environnements
+intégrés.
+
+\gnue Lisp est largement inspiré de Maclisp, qui a été écrit au MIT
+dans les années 60. C'est en partie ce qui a inspiré \cl, qui
+est devenu un standard dans les années 80. Toutefois, \el est beaucoup
+plus simple que \cl. (La distribution standard d'Emacs
+contient une option d'extension de fichier, \texttt{cl.el} qui ajoute
+beaucoup de fonctionnalités de \cl à \el .)
+
+\subsection*{Remarque pour les novices}
+
+Si vous ne connaissez pas \gnue , vous pouvez toujours lire ce
+document avec profit. Toutefois, je recommande d'apprendre Emacs, au
+moins d'apprendre comment vous déplacer sur l'écran de votre
+ordinateur. Vous pouvez apprendre seul comment utilier Emacs avec le
+tutoriel en ligne. Pour l'utiliser, taper \texttt{C-h t}. (Cela
+signifie pressez et relachez la touche \texttt{CTRL} et le \texttt{h}
+en même temps, et puis pressez et relachez \texttt{t}.)
+
+Aussi, je ferais souvent référence à l'une des commandes standard
+d'Emacs en listant les touches que vous presserez pour invoquer la
+commande et ensuite en donnant le nom de la commande entre
+parenthèses, comme ça : \texttt{M-C-\textbackslash} (\texttt{indent-region}). Ce
+qui signifie que la commande \texttt{indent-region} est
+personnellement invoquée en tapant \texttt{M-C-\textbackslash}. (Vous pouvez, si
+vous souhaitez, changer les touches qui sont tapées pour invoquer la
+commande; cela est appelé \textit{redéfinir}. Voir section
+\cfchs{16}{8} <<Keymaps>>, page \cfchsg{16}{8}.) L'abréviation
+\texttt{M-C-\textbackslash} signifie que vous tapez votre touche \texttt{META},
+touche \texttt{CTRL} end touche \texttt{\textbackslash} toutes en même temps. (Sur
+de nombreux claviers modernes la touche \texttt{META} est étiquetée
+\texttt{ALT}.) Parfois une combinaison comme celle-là est appelée un
+accord de touche, de façon similaire à un accord de piano. Si votre
+clavier n'a pas de touche \texttt{META}, la touche \texttt{ESC}
+préfixée est utilisée à la place. Dans ce cas, \texttt{M-C-\textbackslash} signifie
+que vous pressez puis relachez la touche \texttt{ESC} et après tapez
+la touche \texttt{CTRL} et la touche \texttt{\textbackslash} en même temps. Mais
+usuellement \texttt{M-C-\textbackslash} signifie pressez la touche \texttt{CTRL}
+along avec la touche nommée \texttt{ALT} et, en même temps, pressez la
+touche \texttt{\textbackslash}.
+
+De plus taper a lone accord de touche, vous pouvez préfixer ce que
+vous tapez avec \texttt{C-u}, qui est appelé <<l'argument
+universel>>. L'accord de touche \texttt{C-u} passe un argument à la
+commande subsequent. Alors, pour indenter une région de texte plein
+par 6 espaces, marquez la région, et ensuite tapez \texttt{C-u 6
+M-C\textbackslash}. (Si vous ne spécifiez pas un nombre, Emacs passera le nombre 4
+à la commande ou alors lancera la commande différemment que ce que
+vous souhaitiez.) Voir section <<arguments numériques>> dans
+\textit{The \gnue Manual}.
+
+Si vous êtes en train de lire ça dans Info utilisant \gnue , vous
+pouvez lire à travers ça tout le document juste en pressant la barre
+espace, \texttt{SPC}. (Pour en apprendre sur Info tapez \texttt{C-h i}
+et ensuite sélectionnez Info.)
+
+Une remarque sur la terminologie: quand j'utilise le mot Lisp tout
+seul, je fais souvent référence aux variantes des dialectes de Lisp en
+général, mais quand je parle de \el , je fais référence à \gnue Lisp
+en particulier.
+
+\subsection*{Remerciements}
+
+Mes remerciements à tous ceux qui m'ont aidé pour ce livre. Un
+remerciement spécial à Jim Blandy, Noah Friedman, Jim Kingdon, Roland
+McGrath, Frank Ritter, Randy Smith, Richard M. Stallman, et Melissa
+Weisshaus. Mes remerciements également à Philip Johnson et David
+Stampe pour leur encouragement. Mes erreurs sont miennes.
+
+\begin{flushright}
+Robert J. Chassell
+
+\url{bob@gnu.org}
+\end{flushright}

@@ -1,0 +1,47 @@
+\phantomsection
+\addcontentsline{toc}{section}{Introduction}
+\section*{Introduction}\label{introduction}
+Vous lisez sur GNU Emacs, l'incarnation de l'Ã©diteur GNU,
+auto-documentÃ©, avancÃ©, personnalisable et extensible Emacs. (Le 'G'
+de 'GNU' n'est pas muet.)\par 
+
+Nous appelons Emacs avancÃ©, car il peut faire beaucoup plus que de la
+simple insertion et suppression de texte. Il peut contrÃ´ler des
+sous-processus, indenter automatiquement des programmes, afficher
+plusieurs fichiers Ã  la fois, et plus encore. Les commandes d'Ã©dition
+Emacs fonctionnent en termes de caractÃ¨res, mots, lignes, phrases,
+paragraphes, et pages, ainsi que les expressions et commentaires dans
+diffÃ©rents langages de programmation.\par 
+
+Auto-documentÃ© signifie qu'Ã  tout moment vous pouvez utiliser des
+commandes spÃ©ciales, appelÃ©es commandes d'aide, pour savoir quelles
+sont vos options, ou pour savoir ce que n'importe quelle commande
+fait, ou de trouver toutes les commandes qui se rapportent Ã  un sujet
+donnÃ©. Voir le chapitre\cfch{7} [Aide], page\cfchg{7}.\par 
+
+Personnalisable signifie que vous pouvez aisÃ©ment modifier le
+comportement des commandes Emacs de faÃ§on simple. Par exemple, si vous
+utilisez un langage de programmation dans lequel les commentaires
+commencent par \texttt{'<**'} et finissent par \texttt{'**>'}, vous
+pouvez dire Ã  Emacs de commenter les commandes de manipulation afin
+d'utiliser ces chaÃ®nes (voir Section\cfch{23}{5} [Comments],
+page\cfchg{23}{5}). Pour prendre un autre exemple, vous pouvez
+relier les commandes de base de dÃ©placement du curseur (haut, bas,
+gauche et droite) pour toutes les touches du clavier que vous trouvez
+confortable. Voir le chapitre\cfch{33} [Personnalisation],
+page\cfchg{33}.\par  
+
+Extensible signifie que vous pouvez aller au-delÃ  de la simple
+personnalisation et crÃ©er de nouvelles commandes. De nouvelles
+commandes sont tout simplement des programmes Ã©crits dans le langage
+Lisp, qui sont gÃ©rÃ©es par un interprÃ¨te Lisp d'Emacs. Les commandes
+existantes peuvent mÃªme Ãªtre redÃ©finies au milieu d'une session
+d'Ã©dtition, sans avoir Ã  redÃ©marrer Emacs. La plupart des commandes
+d'Ã©dition dans Emacs sont Ã©crites en Lisp; les quelques exceptions
+auraient pu Ãªtre Ã©crites en Lisp mais utiliser C Ã  la place est plus
+efficace. La rÃ©daction d'une extension est de la programmation, mais
+les non-programmeurs peuvent les utiliser par la suite. Voir la
+section <<PrÃ©face>> dans Introduction Ã  la programmation en Emacs
+Lisp, si vous voulez apprendre la programmation Emacs Lisp. \par
+
+

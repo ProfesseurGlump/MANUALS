@@ -1,0 +1,38 @@
+\section{Exercices}\etchs{1}{11}
+
+Quelques exercices simples :
+\begin{itemize}
+\item Générer un message d'erreur en évaluant un symbole approprié qui
+  n'est pas entre parenthèses. (Par exemple évaluer \tm{+})
+\item Générer un message d'erreur en évaluant un symbole approprié
+  entre parenthèses. (Par exemple évaluer \tm{(+ 2 bonjour)})
+\item Créer un compteur qui incrémente par deux au lieu de un. (Par
+  exemple 
+
+\tm{(setq counter 0)}
+
+\tm{setq counter (+ counter 2)}
+
+\tm{counter}
+\item \'Ecrire une expression qui affiche un message dans la zone
+  d'écho quand il est évalué. (Par exemple \tm{(message ``Ceci est un
+    message dans le tampon : \%s.'' (buffer-name))}
+\end{itemize}
+\end{itemize}
+
+
+(this is an unquoted list)
+
+fill-column
+
+(fill-column)
+
+(+ 2 fill-column)
+
+(setq trees '(pine fir oak maple) herbivores '(gazelle antelope
+zebra))
+trees
+herbivores
+
++
+(+ 2 bonjour)

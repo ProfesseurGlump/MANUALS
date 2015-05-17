@@ -1,0 +1,57 @@
+\phantomsection
+\addcontentsline{toc}{section}{Distribution}
+\section*{Distribution}\label{distribution}
+GNU Emacs est un logiciel libre; cela signifie que chacun est libre de
+l'utiliser et libre de le redistribuer sous certaines conditions. GNU
+Emacs n'est pas dans le domaine public; il est protégé et il y a des
+restrictions sur sa distribution, mais ces restrictions sont conçues
+pour permettre tout ce qu'un bon citoyen coopérant voudrait faire. Ce
+qui n'est pas autorisé est d'essayer d'empêcher les autres de partager
+plus d'une version de GNU Emacs qu'ils pourraient obtenir de vous. Les
+conditions précises se trouvent dans la GNU General Public License qui
+vient avec Emacs et apparaît également dans ce manuel1. Voir
+l'Annexe\cfap{A}[Copie], page\cfapg{A}.\par 
+
+Une faêon d'obtenir une copie de GNU Emacs est de quelqu'un d'autre
+qui l'a. Vous n'avez pas besoin de demander notre permission de le
+faire, ou le dire à personne d'autre ; il suffit de copier. Si vous
+avez accès à internet, vous pouvez obtenir la dernière version de la
+distribution de GNU Emas par FTP anonyme ; voir
+\url{://www.gnu.org/software/emacs} sur notre site Web pour plus
+d'informations. \par
+
+Vous pouvez également recevoir GNU Emacs lorsque vous achetez un
+ordinateur. Les fabriquants d'ordinateurs sont libres de distribuer
+des copies dans les mêmes conditions qui s'appliquent à tout le
+monde. Ces conditions les obligent à vous donner les sources, y
+compris les modifications qu'ils auraient peut-être fait, et vous
+permettre de redistribuer GNU Emacs reçu d'eux dans les conditions de
+la General Public License. En d'autres termes, le programme doit être
+libre pour vous lorsque vous l'obtenez, pas seulement libre pour le
+fabriquant. \par
+
+Si vous trouvez GNU Emacs utile, s'il vous plaît envoyez un don à la
+Free Software Foundation pour soutenir notre travail. Les dons à la Free
+Software Foundation sont déductibles d'impôts aux \'Etats-Unis. Si
+vous utilisez GNU Emacs sur votre lieu de travail, s'il vous plaît
+suggérez que l'entreprise fasse un don. Pour plus d'informations sur
+comment vous pouvez aider, voir
+\url{http://www.gnu.org/help/help.html}.\par
+
+Nous vendons aussi des versions papier de ce manuel et Introduction à
+la programmation en Emacs Lisp, par Robert J. Chassell. Vous pouvez
+visiter notre boutique en ligne \url{http://shop.fsf.org/}. Le revenu
+de la vente va soutenir l'objectif de la fondation: le développement
+de nouveaux logiciels libres, et l'amélioration de nos programmes
+existants, y compris GNU Emacs.\par
+
+Si vous avez besoin de contacter la Free Software Foundation, voir
+\url{http://www.fsf.org/about/}, ou écrire à 
+
+Free Software Foundation
+
+51 Franklin Street, Fifth Floor Boston, MA 02110-1301
+
+USA \par
+
+

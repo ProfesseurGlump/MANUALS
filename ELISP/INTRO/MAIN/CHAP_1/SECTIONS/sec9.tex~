@@ -1,0 +1,237 @@
+\chapter{Traitement de liste}\etch{1}
+
+Pour un \oe{}il non exercé, Lisp est un langage de programmation
+étrange. Dans du code Lisp il y a des parenthèses partout. Certains
+prétendent même que le nom signifie <<Lots of Isolated Silly
+Parentheses\footnote{Beaucoup de parenthèses idiotes isolées}>>. Mais
+cette prétention est injustifiée. Lisp signifie LISt
+Processing\footnote{traitement de liste}, et le langage de
+programmation gère les listes (et listes de listes) en les mettant entre
+parenthèses. Les parenthèses marquent les limites de la
+liste. Parfois, une liste est précédée par une apostrophe ou
+guillemet, <<'>>\footnote{L'apostrophe ou guillemet simple est
+  l'abréviation de la fonction citation; les fonctions sont définies
+  dans la section \cfchs{1}{3} Générer un message d'erreur,
+  page\cfchsg{1}{3}} les listes sont la base de Lisp.
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec1}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec2}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec3}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec4}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec5}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec6}
+ 
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec7}
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec8}
+
+
+\section{Initialisation de variable}\etchs{1}{9}
+
+Il y a plusieurs façons d'affecter une variable. Une des façons est
+d'utiliser la fonction \tm{set} ou \tm{setq}. Une autre façon est
+d'utiliser la fonction \tm{let} (voir Section \cfchs{3}{6} ``let''
+page \cfchsg{3}{6}). (Le jargon pour ce processus est de \textit{lier}
+une variable à une valeur.)
+
+Les sections suivantes ne décrivent pas seulement le fonctionnement de
+\tm{set} et \tm{setq} mais illustrent aussi comment les arguments sont
+passés. 
+
+\subsection{Utilisation de \tm{set}}\etchss{1}{9}{1}
+
+Pour affecter la valeur du symbole \tm{flowers} à la liste \tm{'(rose
+  violet daisy buttercup)}, évaluer l'expression suivante en
+positionnnant le curseur après l'expression et en tappant le raccourci
+suivant : \tm{C-x  C-e}.
+
+\tm{(set 'flowers '(rose violet daisy buttercup))}
+
+Cette liste \tm{(rose violet daisy buttercup)} apparaîtra dans la zone
+d'écho. C'est ce qui est \textit{renvoyé} par la fonction
+\tm{set}. Comme un effet secondaire, le symbole \tm{flowers} est lié à
+la liste; qui est, le symbole \tm{flowers} qui peut être considéré
+comme une variable, est donné à la liste comme sa valeur. (Ce
+processus, par la manière, illustre comment un effet secondaire à
+l'interprète Lisp, réglage de la valeur, peut être l'effet principal
+qui nous intéresse nous les humains. C'est parce que chaque
+fonction Lisp doit renvoyer une valeur si elle ne reçoit pas une
+erreur, mais elle aura seulement un effet secondaire si elle est conçue
+pour avoir un.) 
+
+Après l'évaluation de l'expression \tm{set}, vous pouvez évaluer le
+symbole \tm{flowers} et cela vous renverra la valeur que vous venez de
+régler. Voici le symbole. Placez le curseur après lui et tapez la
+séquence de touche \tm{C-x C-e}.
+
+\tm{flowers}
+
+Quand vous évaluez \tm{flowers}, la liste \tm{(rose violet daisy
+  buttercup)} apparaît dans la zone d'écho. 
+
+Incidemment, si vous évaluez \tm{'flowers}, la variable avec une quote
+devant elle, ce que vous verrez dans la zone d'écho c'est le symbole
+lui-même. Voici le symbole quoté, donc vous pouvez essayer ça :
+
+\tm{'flowers}
+
+Notez aussi, que lorsque vous utilisez aussi \tm{set}, vous avez
+besoin de quotes pour chaque argument de \tm{set}, à moins que vous ne
+souhaitiez qu'ils soient évalués. Puisque nous ne voulons pas non plus
+évalué les arguments ni de la variable \tm{flowers} ni de la liste
+\tm{(rose violet daisy buttercup)}, les deux sont quotés. (Lorsque
+vous utilisez \tm{set} sans quote pour son premier argument, le
+premier argument est evalué avant que n'importe quoi d'autre soit
+fait. Si vous aviez fait ça et que \tm{flowers} n'avait pas encore de
+valeur, vous auriez reçu un message d'erreur disant que \tm{'Symbol's
+  value as variable is void'}; d'autre part, si \tm{flowers} avait
+renvoyé une valeur après qu'elle ait été évalué, le \tm{set} tenterait
+de régler la valeur qui a été renvoyé. Il y a des situations où c'est
+la bonne chose à faire pour la fonction; mais de telles situations
+sont rares.)
+
+\subsection{Utilisation de \tm{setq}}\etchss{1}{9}{2}
+
+En pratique, vous mettez une quote presque toujours devant le premier
+argument de \tm{set}. La combinaison de \tm{set} et d'une quote pour
+le premier argument et si fréquente qu'elle a son propre nom: la forme
+spéciale \tm{setq}. Cette forme spéciale est comme \tm{set} sauf que
+le premier argument a automatiquement une quote, donc vous n'avez pas
+besoin de tapez une quote vous-même. En outre, par commodité,
+\tm{setq} vous permez de régler plusieurs variables différentes avec
+différentes valeurs, toutes en une expression.
+
+Pour affecter la variable \tm{carnivores} de la liste \tm{'(lion tiger
+  leopard)} en utilisant \tm{setq}, l'expression suivante est utilisée
+:
+
+\tm{(setq carnivores '(lion tiger leopard))}
+
+Avec \tm{set}, l'expression ressemblerait à ça :
+
+\tm{(set 'carnivores '(lion tiger leopard))}
+
+En outre, \tm{setq} peut être utlisée pour assigner différentes
+valeurs à différentes variables. Le premier argument est lié à la
+valeur du second argument, le troisième est lié à la valeur du
+quatrième, et ainsi de suite. Par exemple, vous pouvez utiliser ce qui
+suit pour affecter une liste d'arbres au symbole \tm{trees} et une
+liste d'herbivores au symbole \tm{herbivores} : 
+
+\tm{(setq trees '(pine fir oak maple)}
+
+\tm{herbivores '(gazelle antelope zebra))}
+
+(L'expression aurait aussi bien pu être sur une seule ligne, mais ça
+n'aurait pas été bien mis en page; et les humains trouvent qu'il est
+plus simple de lire les listes qui sont bien mises en page.)
+
+Même si j'utilise le terme 'assigner', il y a une autre façon de
+penser le travail de \tm{set} et \tm{setq}; et c'est de dire que
+\tm{set} et \tm{setq} mettent le symbole \textit{point} dans la
+liste. Cette dernière façon de penser est très communes et dans les
+chapitres à venir nous verrons au moins un symbole qui a 'pointer'
+comme partie de son nom. Le nome est choisi parcee le symbole a une
+valeur, spécifiquement une liste, attachée à lui; ou, dit autrement,
+le symbole est réglé pour <<pointer>> sur la liste.
+
+\subsection{Compteurs}\etchss{1}{9}{3}
+
+Voici un exemple qui montre comment utiliser \tm{setq} dans un
+compteur. Vous devez utiliser cela pour compter combien de fois une
+partie de votre programme se répète. D'abord initialiser une variable
+à zéro; ensuite ajouter un au nombre chaque fois que le programme se
+répète. Pour faire cela, vous avez besoin d'une variable qui sert à
+compter, et de deux expressions: une expression \tm{setq} initiale qui
+affecte le compteur à zéro; et une seconde expression \tm{setq} qui
+incrémente le compteur chaque fois qu'elle est évaluée.
+
+\begin{center}
+  \begin{tabular}[m]{ll}
+    \tm{(setq counter 0)} & ; appelons-le l'initialisateur  \\
+    \tm{(setq counter (+ counter 1))} & ; c'est l'incrémenteur \\
+    \tm{counter}                     & ; c'est le compteur
+  \end{tabular}
+\end{center}
+
+(Le texte suivant le ';' sont des commentaires. Voir Section
+\cfchss{3}{2}{1} ``Change a Function Definition'', page
+\cfchssg{3}{2}{1}.)
+
+Si vous évaluez la première de ces expressions, l'initialisateur,
+\tm{(setq counter 0)}, et ensuite évaluez la troisième expression,
+\tm{counter}, le nombre 0 apparaît dans la zone d'écho. Si vous
+évaluez ensuite la seconde expression, l'incrémenteur, \tm{(setq
+  counter (+ counter 1))}, le compteur aura la valeur 1. Donc si vous
+évaluez \tm{counter}, le nombre 1 apparaîtra dans la zone
+d'écho. Chaque fois que évaluez la seconde expression, la valeur du
+compteur sera incrémentée.
+
+Quand vous évaluez l'incrémenteur, \tm{(setq counter (+ counter 1))},
+l'interprète Lisp évalue d'abord la liste la plus interne; c'est
+l'addition. Afin d'évaluer cette liste, il doit évaluer la variable
+\tm{counter} et le nombre 1. Quand il évalue la variable \tm{counter},
+il reçoit sa valeur courante. Il passe cette valeur et le nombre 1 à
+la fonction \tm{+} qui les ajoute ensemble. La somme est ensuite
+renvoyée à la valeur de la liste qui la contient et passée à la
+fonction \tm{setq} qui affecte la variable \tm{counter} de cette
+nouvelle valeur. Ainsi la valeur de la variable, \tm{counter}, est modifiée.
+
+\section{Résumé}\etchs{1}{10}
+
+L'apprentissage de Lisp est comme l'escalade d'une colline dans
+laquelle la première partie est la plus dure. Vous avez maintenant
+grimpé la partie la plus difficile; ce qui reste deviendra plus facile
+maintenant que vous avez progressé.
+
+En résumé,
+\begin{itemize}
+\item Les programmes Lisp sont constitués d'expressions, qui sont des
+  listes ou des atomes individuels.
+\item Les listes sont constituées de 0 ou plusieurs atomes ou de
+  listes internes, séparées par des espaces et entourées par des
+  parenthèses. Une liste peut être vide.
+\item Les atomes sont des symboles multi-caractères, comme
+  \tm{forward-paragraph}, symboles caractère simple comme \tm{+},
+  chaînes de caractères entre guillemets, ou des nombres.
+\item Un nombre s'évalue lui-même.
+\item Une chaîne entre guillemets s'évalue également elle-même.
+\item Lorsque vous évaluez un symbole par lui-même, sa valeur est
+  renvoyée.
+\item Lorsque vous évaluez une liste, l'interprète Lisp regarde
+  d'abord le premier symbole dans la liste et ensuite la fonction liée
+  à ce symbole. Ensuite les instructions dans la définition de
+  fonction sont effectuées.
+\item Un guillemet simple (quote), \tm{'}, dit à l'interprète Lisp
+  qu'il devrait renvoyer l'expression suivante comme écrite, et ne pas
+  l'évaluer comme si la quote n'était pas là.
+\item Les arguments sont des information passées à la fonction. Les
+  arguments d'une fonction sont calculés par évaluation du reste des
+  éléments de la liste dont la fonction est le premier élément.
+\item Une fonction renvoie toujours une valeur quand elle est évaluée
+  ( à moins d'obtenir une erreur); en outre, il peut aussi effectuer
+  une action appelée <<effet secondaire>>. Dans de nombreux cas, le
+  but principal d'une fonction est de créer un effet secondaire.
+\end{itemize}
+
+
+
+\section{Exercices}\etchs{1}{11}
+
+Quelques exercices simples :
+\begin{itemize}
+\item Générer un message d'erreur en évaluant un symbole approprié qui
+  n'est pas entre parenthèses.
+\item Générer un message d'erreur en évaluant un symbole approprié
+  entre parenthèses.
+\item Créer un compteur qui incrémente par deux au lieu de un.
+\item \'Ecrire une expression qui affiche un message dans la zone
+  d'écho quand il est évalué.
+\end{itemize}
+
+

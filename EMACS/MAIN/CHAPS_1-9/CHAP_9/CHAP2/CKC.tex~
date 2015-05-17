@@ -1,0 +1,164 @@
+\chapter{Caractères, touches et commandes}\etch{2}
+Ce chapitre explique les jeux de caractères utilisés par Emacs pour
+les commandes de saisie, et les concepts fondamentaux de touches et
+commandes, avec lesquels Emacs interprète vos saisies claviers et
+clics de souris.\par
+
+\section{Type de saisies}\etchs{2}{1}
+GNU Emacs est principalement conçu pour être utilisé avec le
+clavier. Bien qu'il soit possible d'utiliser la souris pour lancer des
+commandes d'édition grâce à la barre de menu et celle d'outils, ce
+n'est pas aussi efficace qu'à l'aide du clavier. Par conséquent, ce
+manuel documente principalement comment éditer avec le clavier.\par
+
+Les saisies au clavier dans Emacs sont basées sur une version
+fortement augmentée du code ASCII. Des caractères simples, comme
+<<a>>, <<B>>, <<3>>, <<=>>, et le caractère espace (noté SPC), sont
+saisies en tapant sur les touches correspondante. Les caractères de
+contrôle, comme RET (entrée), TAB (tabulation), DEL, ESC (échap), F1,
+Accueil, et à gauche, sont également saisis de cette façon, comme le
+sont certains caractères figurant sur les claviers non-anglais (voir
+le chapitre\cfch{19} [international], page\cfchg{19}).\par 
+
+Emacs reconnaît également les caractères de contrôle qui sont saisis à
+l'aide des touches modificatrices. Deux touches modificatrices
+couramment utilisées sont la touche contrôle (généralement étiquetée
+Ctrl), et la touche Meta (généralement étiquetée Alt)\footnote{Pour
+  des raisons historiques nous nous référons à Alt comme à Meta}. Par
+exemple, Ctrl + A est saisi en maintenant la touche Ctrl enfoncée tout
+en appuyant sur la touche A; nous allons nous référer à ça comme
+\texttt{C-a} pour faire court. De même \texttt{Meta-a}, ou
+\texttt{M-a} pour faire court, est entré en maintenant enfoncée la
+touche Alt puis en pressant la touche A. Les touches modificatrices
+peuvent églament être appliquées à des caractères non alphanumériques,
+par exemple, \texttt{C-F1} ou \texttt{M-gauche}.\par 
+
+Vous pouvez aussi taper des caractères Meta en utilisant des séquences
+de deux caractères commençant par ESC. Ainsi vous pouvez saisir
+\texttt{M-a} en tapant ESC a. Contrairement à Meta, \bsc{esc} est
+saisie comme un caractère distinct. Vous ne maintenez pas la touche
+\bsc{esc} tout en tapant le caractère suivant; à la place, vous
+pressez \bsc{esc} et la relâchez, puis saisissez le caractère
+suivant. Cette fonction est utile sur certains terminaux de texte où
+la touche Meta ne fonction pas de manière fiable.\par 
+
+En mode graphique, le gestionnaire de fenêtre peut bloquer certaines
+saisies au clavier, y compris \texttt{M-TAB, M-SPC, C-M-d} et
+\texttt{C-M-l}. Si vous avez ce problème, vous pouvez personnaliser
+votre gestionnaire de fenêtre pour ne pas bloquer les touches, ou
+<<relier>> les commandes Emacs touchées (voir chapitre\cfch{33}
+[Personnalisation], page\cfchg{33}).\par
+
+Des caractères simples et des caractères de contrôle, ainsi que
+certaines saisies non-clavier tels que les clics de souris, sont
+collectivement appelés événements de saisies. Pour plus de détails sur
+la façon dont Emacs gère en internes les événements de saisies, voir
+la section <<\'Evénements de saisies>> dans le manuel de référence
+Emacs Lisp.\par
+
+\section{Touches (du clavier)}\etchs{2}{2}
+Certaines commandes Emacs sont invoquées par un seul événement de
+saisie; par exemple \texttt{C-f} avance d'un caractère dans le
+tampon. D'autres commandes ont deux ou plusieurs événements de saisies
+à invoquer, comme \texttt{C-x C-f} et \texttt{C-x 4 C-f}.\par 
+
+Une séquence de touches, ou touche pour faire court, est une séquence
+d'un ou plusieurs événements de saisies qui est significatif comme une
+unité. Si une séquence de touches appelle une commande, nous appelons
+cela une touche complète; par exemple, \texttt{C-f, C-x C-f} et
+\texttt{C-x 4 C-f} sont des touches complètes. Si une séquence de
+touches n'est pas assez longue pour invoquer une commande, nous
+appelons cela une touche préfixée; de l'exemple précédent nous voyons
+que \texttt{C-x} est \texttt{C-x 4} sont des touches préfixées. Chaque
+séquence de touches est soit une touche complète soit une touche
+préfixée.\par 
+
+Une touche préfixée se combine avec l'événement de saisie suivant pour
+faire une séquence de touches plus longue. Par exemple, \texttt{C-x}
+est une touche préfixée, donc \texttt{C-x} seule n'invoque pas une
+commande; à la place, Emacs attend une autre entrée (si vous vous
+arrêtez prendant plus d'une seconde, il fait écho à la touche
+\texttt{C-x} pour vous inviter à poursuivre la saisie; voir la
+section\cfch{1sec2} [zone d'écho],
+page\cfchg{1sec2}). \texttt{C-x} se combine avec le prochain événement de
+saisie pour faire une touche à deux événements ce qui pourrait être
+une touche préfixée (comme \texttt{C-x 4}), ou une touche complète
+(comme \texttt{C-x C-f}). Il n'y a pas de limite à la longueur des
+séquences de touches, mais en pratique, ils sont rarement plus de
+trois ou quatre événéments de saisies.\par 
+
+Vous ne pouvez pas ajouter des événements de saisie sur une touche
+complète. Par exemple, parce que \texttt{C-f} est une touche complète, la
+séquence à deux événements \texttt{C-f C-k} est une séquence à deux
+touches, pas à une seule.\par
+
+Par défaut, les touches préfixées dans Emacs sont \texttt{C-c, C-h,
+  C-x, C-x RET, C-x @, C-x a, C-x, n, C-x r, C-x v, C-x 4, C-x 5, C-x
+  6, ESC, M-g} et \texttt{M-o}. (F1 et F2 sont des alias pour
+\texttt{C-h} et \texttt{C-x 6}.) Cette liste n'est pas coulée dans le
+béton; si vous personnalisez Emacs, vous pouvez faire de nouvelles
+touches préfixées. Vous pouvez même en éliminer, mais ce n'est pas
+recommandé pour la plupart des utilisateurs; par exemple, si vous
+supprimez la définition du préfixe \texttt{C-x 4}, alors \texttt{C-x 4
+  C-f} deviendrait une séquence de touche non valide. Voir la
+section\cfchs{33}{3} [combinaison de touches],
+page\cfchsg{33}{3}.\par 
+
+Taper le caractère d'aide (\texttt{C-h} ou F1) après une touche
+préfixée affiche une liste de commandes commençant par ce préfixe. La
+seule exception à cette règle est \texttt{\bsc{esc}:\bsc{esc} C-h} est
+équivalent à \texttt{C-M-h}, qui fait tout autre chose. Vous pouvez,
+cependant, utiliser F1 pour afficher une liste de commandes commençant
+par \texttt{\bsc{esc}}.\par 
+
+\section{Touches et commandes}\etchs{2}{3}
+Ce manuel est plein de passages qui vous indiquent ce que font les touches
+particulières. Mais Emacs n'assigne pas de sens directement aux
+touches. Au lieu de cela, Emacs attribue des significations aux
+commandes nommées, puis donne aux touches leurs significations en les
+liant aux commandes.\par
+
+Chaque commande a un nom choisi par un programmeur. Le nom est
+généralement fait de quelques mots d'anglais séparés par des tirets;
+par exemple, la prochaine ligne ou avant-mot. En interne, chaque
+commande est un type spécial de fonction Lisp, et les actions
+associées à la commande sont réalisées en exécutant la fonction. Voir
+la section <<Qu'est-ce qu'une fonction>> dans le manuel de référence
+Emacs Lisp.\par 
+
+Les liens entre les touches et les commandes sont enregistrés dans des
+tableaux appelés claviers. Voir la section\cfch{33sec3subsec1}
+[claviers], page\cfchssg{33}{3}{1}.\par 
+
+Quand nous disons que <<\texttt{C-n} déplace verticalement une ligne
+vers le bas>> nous faisons l'impasse sur une distinction subtile qui
+n'est pas pertinente dans l'usage ordinaire, mais vitale pour la
+personnalisation d'Emacs. La commande ligne suivante fait un
+déplacement vertical vers le bas. \texttt{C-n} a cet effet, car cette
+touche est liée à la commande \texttt{prochaine-ligne}. Si vous changez le lien
+en liant \texttt{C-n} à la commande \texttt{prochain-mot}, alors \texttt{C-n}
+va se déplacer d'un mot au lieu d'une ligne.\par 
+
+Dans ce manuel, nous allons souvent parler de touches comme
+\texttt{C-n} comme d'une commande, même si à proprement parler cette
+touche est liée à une commande. Habituellement nous indiquons le nom
+de la commande qui fait vraiment le travail entre parenthèses après la
+mention de la touche qui l'exécute. Par exemple, nous dirons que <<la
+commande \texttt{C-n} (\texttt{next-line}) déplace le point
+verticalement vers le bas>>, ce qui signifie que la commande
+\texttt{next-line} se déplace verticalement vers le bas, et la touche
+\texttt{C-n} est normalement liée à elle.\par 
+
+Puisque nous parlons de personnalisation, nous devons vous en dire
+plus sur les variables. Souvent la description d'une commande dira :
+<<Pour changer cela, réglez la varibale \texttt{mumble-foo}.>> Une
+variable est un nom utilisé pour stocker une valeur. La plupart des
+variables documentées dans ce manuel sont destinées à la
+personnalisation : certaines commandes ou d'autres parties d'Emacs
+examinent la variable et se comportent différemment selon la valeur que
+vous définissez. Vous pouvez ignorer les informations sur les
+variables jusqu'à ce que vous soyez intéressé par la
+personnalisation. Ensuite, lisez les informations de base sur les
+variables (voir Section\cfchs{33}{2} [variables],
+page\cfchsg{33}{2}) et les informations sur les variables
+spécifiques prendront tout leur sens.\par

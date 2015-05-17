@@ -1,0 +1,120 @@
+\section{Noms des tampons}\etchs{2}{1}
+
+Les deux fonctions, \tm{buffer-name} et \tm{buffer-file-name},
+montrent la différence entre un fichier et un tampon. Lorsque vous
+évaluez l'expression suivante, \tm{(buffer-name)}, le nom du tampon
+apparaît dans la zone d'écho. Quand vous évaluez
+\tm{(buffer-file-name)}, le nom du fichier auquel se réfère le tampon
+est affiché dans la zone d'écho. Habituellement, le nom renvoyé par
+\tm{(buffer-name)}  est le même que le nom de fichier auquel il fait
+référence, et le nom renvoyé par \tm{(buffer-file-name)} est le nom de
+chemin complet du fichier. 
+
+Un fichier et un tampon sont deux entités différentes. Un fichier est
+une information enregistrée de façon permanente dans l'ordinateur (à
+moins que vous ne l'effaciez). Un tampon, d'un autre côté, est une
+information à l'intérieur d'Emacs qui va disparaître à la fin de la
+session (ou quand vous <<tuez>> le tampon). Habituellement, un tampon
+contient des informations que vous avez copié à partir d'un fichier;
+nous disons que le tampon \textit{visite} ce fichier. Cette copie est
+ce que vous travaillez et modifiez. Les changements du tampon ne
+change pas le fichier, jusqu'à ce que vous enregistrez le
+tampon. Lorsque vous sauvegardez le tampon, le tampon est copié dans
+le fichier et est donc sauvegardé de façon permanente.
+
+Si vous lisez ceici dans Info à l'intérieur de \gem , vous pouvez
+évaluer chacune des expressions suivantes en positionnant le curseur
+après et en tapant \tm{C-x C-e}. 
+
+\tm{(buffer-name)}
+
+\tm{(buffer-file-name)}
+
+Quand je fais cela dans Info, la valeur renvoyée par l'évaluation de
+\tm{(buffer-name)} est \tm{''*info*''}, et la valeur renvoyée par
+\tm{(buffer-file-name)} est \tm{nil}.
+
+D'autre part, pendant que je vous écris ce document, la valeur
+renvoyée par l'évaluation de \tm{(buffer-name)} est
+\tm{''introduction.texinfo''}, et la valeur renvoyée par l'évaluation
+de \tm{(buffer-file-name)} est
+\tm{''/gnu/work/intro/introduction.texinfo''}.
+
+Le premier est le nom du tampon et le dernier est le nom du
+fichier. Dans Info, le nom du tampon est \tm{''*info*''}. Info ne
+pointe vers aucun fichier, donc le résultat de l'évaluation de
+\tm{(buffer-file-name)} est \tm{nil}. Le symbole \tm{nil} vient du mot
+Latin pour 'rien'; dans ce cas, cela signifie que le tampon n'est
+associé à aucun fichier. (En Lisp, \tm{nil} est aussi utilisé pour
+signifié 'faux' et est un synonyme pour la liste vide, \tm{()}.)
+
+Lorsque j'écris, le nom de mon tampon est
+\tm{''introduction.texinfo''}. Le nom du fichier vers lequel il pointe
+est \tm{''/gnu/work/intro/introduction.texinfo''}.
+
+(Dans ces expressions, les parenthèses disent à l'interprète Lisp de
+traiter \tm{buffer-name} et \tm{buffer-file-name} comme des fonctions;
+sans les parenthèses, l'interprète serait tenté d'évaluer les symboles
+comme des variables. Voir Section \cfchs{1}{7} ''Variables'', page
+\cfchsg{1}{7}.) 
+
+En dépit de la distinction entre les fichiers et les tampons, vous
+trouverez souvent que les gens se réfèrent à un fichier quand ils
+veulent dire tampon et vice-versa. En effet, la plupart des gens
+disent : <<Je suis dans l'édition d'un fichier>>, plutôt que de dire :
+<<Je suis dans l'édition d'un tampon que je vais bientôt enregistrer
+dans un fichier.>> Il est presque toujours clair à partir du contexte
+de deviner ce que les gens veulent dire. Lorsque vous traitez avec des
+programmes informatiques, cependant, il est important de garder à
+l'esprit la distinction, puisque l'ordinateur n'est pas aussi
+intelligent qu'une personne (pour deviner).
+
+Le mot <<tampon>>, en passant, vient de la signification du mot
+coussin qui amortit la force d'une collision. Dans les premiers
+ordinateurs, un tampon amortissait l'interaction entre les fichiers et
+l'unité centrale de traitement de l'ordinateur. Les tambours ou bandes
+qui tenaient un fichier et l'unité centrale de traitement étaient des
+pièces d'équipement qui étaient très différentes les unes des autres,
+à travailler à leurs propres vitesses, par à-coups. Le tampon a rendu
+possible pour eux de travailler ensemble efficacement. Finalement, le
+tampon est passé du statut d'intermédiaire, un lieu de détention
+temporaire, à celui de lieu où le travail se fait. Cette
+transformation est un peu comme celle d'un petit port qui a grandi
+dans une grande ville : au début il était simplement le lieu où des
+marchandises étaint entreposées temporairement avant d'être chargées
+sur les bateaux; puis il est devenu un centre commercial et culturel. 
+
+Pas tous les tampons sont associés à des fichiers. Par exemple, un
+tampon \tm{*scratch*} ne visite aucun fichier. De même, un tampon
+\tm{*Help*} n'est associé à aucun fichier. 
+
+Dans les anciens temps, lorsque vous aviez manqué un fichier
+\tm{~/.emacs} et commencé une session Emacs en tapant la commande
+\tm{emacs} seule, sans nommer aucun fichier, Emacs démarrait avec le
+tampon \tm{*scratch*}. De nos jours, vous verrez un écran de
+démarrage. Vous pouvez suivre l'une des commandes proposées sur
+l'écran de démarrage, visiter un fichier ou appuyer sur la barre
+d'espace pour atteindre le tampon \tm{*scratch*}.
+
+Si vous passez au tampon \tm{*scratch*}, tapez \tm{(buffer-name)},
+positionnez le curseur à la suite, et tapez \tm{C-x C-e} pour évaluer
+l'expression. Le nom \tm{''*scratch*''} sera renvoyé et apparaîtra
+dans la zone d'écho. \tm{''*scratch*''} est le nom du tampon. Quand
+vous tapez \tm{(buffer-file-name)} dans le tampon \tm{*scratch*} et
+évaluez ça, \tm{nil} apparaît dans la zone d'écho, juste comme ça le
+fait lorsque vous évaluez \tm{(buffer-file-name)} dans Info.
+
+Incidemment, si vous êtes dans le tampon \tm{*scratch*} et souhaitez
+que la valeur renvoyée par une expression apparaisse dans le tampon
+\tm{*scratch*} lui-même au lieu de la zone d'écho, tapez \tm{C-u C-x
+  C-e} au lieu de \tm{C-x C-e}. Cela provoque l'apparition de la
+valeur renvoyée après l'expression. Le tampon ressemblera à ça :
+
+\tm{(buffer-name)''*scratch*''}
+
+Vous ne pouvez pas faire ça dans Info puisque Info est en lecture
+seule et ne vous autorisera pas à changer le contenu de son
+tampon. Mais vous pouvez faire cela dans n'importe quel tampon que
+vous éditez; et quand vous écrivez du code ou une documentation (comme
+ce livre), c'est fonction sont très utiles.
+

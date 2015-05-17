@@ -1,0 +1,24 @@
+\chapter{Lecture de mail avec Rmail}
+\section{Concepts de base de Rmail}
+\section{Défilement dans un message}
+\section{Déplacement à travers les messages}
+\section{Suppression de messages}
+\section{Fichiers Rmail et boîtes de réception}
+\section{Fichiers Rmail multiple}
+\section{Copier des messages en dehors des fichiers}
+\section{\'Etiquettes}
+\section{Attributs Rmail}
+\section{Envoi de réponses}
+\section{Résumés}
+\subsection{Création de résumés}
+\subsection{\'Edition de résumés}
+\section{Tri des fichiers Rmail}
+\section{Affichage des messages}
+\section{Rmail et systèmes de codages}
+\section{\'Edition dans un message}
+\section{Messages digestes}
+\section{Lecture des messages Rot13}
+\section{Programme \texttt{movemail}}
+\section{Recouvrement de mail de boîtes distantes}
+\section{Recouvrement de mail de boîtes locales dans des formats
+  variés}

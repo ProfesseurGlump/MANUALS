@@ -1,0 +1,331 @@
+\section{Arguments}\etchs{1}{8}
+
+Pour voir comment l'information est transmise à des fonctions,
+regardons de nouveau notre vieille veille, l'ajout de deux plus
+deux. En Lisp, ça s'écrit comme suit :
+\begin{center}
+  \tm{(+ 2 2)}
+\end{center}
+
+Si vous évaluez cette expression, le nombre 4 apparaîtra dans votre
+zone écho. Ce que fait l'interprète Lisp c'est d'ajouter les nombres
+qui suivent le \tm{+}.
+
+Les nombres ajoutés par \tm{+} sont appelés les arguments de la
+fonction \tm{+}. Ces nombres sont les informations que l'on donne à ou
+transmis à la fonction. 
+
+Le mot <<argument>> vient de la façon dont il est utilisé en
+mathématiques et ne se réfère pas à une dispute entre deux personnes;
+au contraire, il se réfère à l'information présentée à la fonction,
+dans ce cas, à la fonction \tm{+}. En Lisp, les arguments d'une
+fonction sont les atomes ou les listes qui suivent la fonction. Les
+valeurs renvoyées par l'évaluation de ces atomes ou des listes sont
+passées à la fonction. Différentes fonctions nécessitent différents
+nombres d'arguments; certaines fonctions n'en exigent pas du
+tout\footnote{Il est curieux de suivre le chemin par lequel le mot
+  <<argument>> est venu d'avoir deux significations différentes, l'une
+  en mathématiques et l'autre en anglais de tous les jours. Selon le
+  Oxford English Dictionary, le mot dérive du Latin <<\tm{faire
+    comprendre, prouver}>>; ainsi venu à signifier, par un fil de
+  dérivation, <<la preuve présentée comme preuve>>, c'est-à-dire,
+  <<l'information offerte>>, qui a conduit à sa signification en
+  Lisp. Mais dans l'autre fil de dérivation, il est venu à signifier
+  <<d'affirmer d'une manière contre laquelle d'autres peuvent faire
+  des contre affirmations>>, qui ont conduit à la signification du mot
+  comme une dispute. (Notons ici que le mot anglais a deux définitions
+  différentes qui s'y rattachent en même temps. En revanche, dans
+  Emacs Lisp, un symbole ne peut pas avoir deux définitions de
+  fonctions différentes en même temps.)}. 
+
+\subsection{Arguments des types de données}\etchss{1}{8}{1}
+
+Le type de données qui doivent être transmises à une fonction dépend
+de quel type d'information elle utilise. Les arguments d'une fonction
+telle que \tm{+} doivent avoir des valeurs qui sont des nombres,
+depuis \tm{+} ajoute des nombres. D'autres fonctions utilisent
+différents types de données pour leurs arguments.
+
+Par exemple, la fonction \tm{concat} relie ou réunit deux ou plusieurs
+chaînes de caractères pour produire une chaîne. Les arguments sont des
+chaînes. La concaténation des deux chaînes de caractères \tm{abc},
+\tm{def} produit la chaîne \tm{abcdef} seule. Ceci peut être vu par
+l'évaluation de ce qui suit : 
+\begin{center}
+  \tm{(concat 'abc' 'def')} % ne marche pas en TeX
+\end{center}
+
+La valeur produite en évaluant cette expression est <<\tm{abcdef}>>.
+
+Une fonction comme sous-chaîne utilise à la fois une chaîne et des
+nombres comme arguments. La fonction renvoie une partie de la chaîne,
+une chaîne du premier argument. Cette fonction prend trois
+arguments. Son premier argument est la chaîne de caractères, les
+deuxième et troisième arguments sont des nombres qui indiquent le
+début et la fin de la sous-chaîne. Les nombres sont un comptage du
+nombre de caractères (ponctuation et espaces compris) depuis le début
+de la chaîne.
+
+Par exemple, si vous évaluez la suivante :
+\begin{center}
+  \tm{(substring ''The quick brown fox jumped.'' 16 19)}
+\end{center}
+
+vous verrez ''\tm{fox}'' apparaître dans la zone d'écho. Les arguments
+sont la chaîne et les deux nombres. 
+
+Notez que la chaîne passée à \tm{substring} est un atome, même si elle
+est composée de plusieurs mots séparés par des espaces. Lisp compte
+tout entre les deux guillemets dans le cadre de la chaîne, y compris
+les espaces. Vous pouvez penser la fonction \tm{substring} comme une
+sorte <<d'écraseur d'atome>>, car il faut un atome contraire à
+l'indivisible et en extraire une partie. Cependant, \tm{substring} est
+seulement capable d'extraire une sous-chaîne à partir d'un argument
+qui est une chaîne, pas d'un autre type d'atome comme un nombre ou un
+symbole.
+
+
+
+\subsection{Un argument comme la valeur d'une variable ou d'une
+  liste}\etchss{1}{8}{2}
+
+Un argument peut être un symbole qui renvoie une valeur quand il est
+évalué. Par exemple, lorsque le symbole de remplissage par colonne
+lui-même est évalué, il renvoie un nombre. Ce nombre peut être utilisé
+pour une addition. Positionner le curseur après l'expression suivante
+et le type \rec{C}{x}{C}{e}:
+\begin{center}
+  \tm{(+ 2 fill-column)}
+\end{center}
+
+La valeur sera un nombre deux de plus que ce que vous obtenez en
+évaluant \tm{fill-column} seul. Pour moi, c'est 74, parce que ma
+valeur de \tm{fill-column} est 72.
+
+Comme nous venons de le voir, un argument peut être un symbole qui
+renvoie une valeur lors de l'évaluation. En outre, un argument peut
+être une liste qui renvoie une valeur quand il est évalué. Par
+exemple, dans l'expression suivante, les arguments de la fonction
+\tm{concat} sont les chaînes <<The>> et <<red foxes.>> et la liste
+\tm{(number-to-string (+ 2 fill-column))}.
+\begin{center}
+  \tm{(concat ''The '' (number-to-string (+ 2 fill-column)) '' red foxes.'')}
+\end{center}
+
+Si vous évaluez cette expression et si, comme avec mon Emacs,
+\tm{fill-column} évalue à 72---<<The 74 red foxes.>> apparaît dans la
+zone écho. (Notez que vous devez mettre des espaces après le mot
+<<The>> et avant le mot <<red>> de sorte qu'ils apparaissent dans la
+chaîne finale. La fonction \tm{number-to-string} convertit l'entier
+que la fonction d'addition renvoie à une chaîne. \tm{number-to-string}
+est également connu comme \tm{int-to-string}.)
+
+
+\subsection{Nombre variable d'arguments}\etchss{1}{8}{3}
+
+Certaines fonctions, comme \tm{concat}, \tm{+} ou \tm{*}, prendre
+n'importe quel nombre d'arguments. (Le \tm{*} est le symbole de
+multiplication.) Ceci peut être vu par l'évaluation de chacune des
+expressions suivantes de la manière habituelle. Ce que vous verrez
+dans la zone d'écho est imprimé dans ce texte après <<$\Rightarrow$>>,
+que vous pouvez lire comme <<évalué à >>.
+
+Dans la première série, les fonctions n'ont pas d'arguments:
+\begin{center}
+  \begin{tabular}[m]{lrl}
+    \tm{(+)} &$\Rightarrow$ & 0 \\
+    \tm{(*)} &$\Rightarrow$ & 1 
+  \end{tabular}
+\end{center}
+
+Dans cet ensemble, les fonctions ont un argument de chaque:
+\begin{center}
+  \begin{tabular}[m]{lrl}
+    \tm{(+ 3)} &$\Rightarrow$ & 3 \\
+    \tm{(* 3)} &$\Rightarrow$ & 3 
+  \end{tabular}
+\end{center}
+
+Dans cet ensemble, les fonctions ont trois arguments de chaque:
+\begin{center}
+  \begin{tabular}[m]{lrl}
+    \tm{(+ 3 4 5)} &$\Rightarrow$ & 12 \\
+    \tm{(* 3 4 5)} &$\Rightarrow$ & 60 
+  \end{tabular}
+\end{center}
+
+
+\subsection{Utiliser le mauvais type d'objet pour un argument}\etchss{1}{8}{4}
+
+Quand une fonction est passée un argument de type incorrect,
+l'interprète Lisp produit un message d'erreur. Par exemple, la
+fonction \tm{+} attend les valeurs de ses arguments pour être des
+nombres. Comme une expérience, nous pouvons passer le symbole cité
+bonjour au lieu d'un nombre. Positionner le curseur après l'expression
+suivante et le type \rec{C}{x}{C}{e} :
+\begin{center}
+  \tm{(+ 2 'hello)}
+\end{center}
+
+Lorsque vous faites cela, vous allez générer un message d'erreur. Ce
+qui est arrivé est que \tm{+} a essayé d'ajouter le 2 à la valeur
+renvoyée par \tm{'hello}, mais la valeur renvoyée par \tm{'hello} est
+le symbole \tm{hello}, pas un nombre. Seuls des chiffres peuvent être
+ajoutés. Donc \tm{+} ne pouvait pas mener à bien son addition. 
+
+Vous aller créer et entrer dans un tampon \tm{*Backtrace*} qui dit :
+
+{\ttfamily
+Debugger entered--Lisp error:
+\begin{center}
+  (wrong-type-argument number-or-marker-p hello)
+\end{center}
++(2 hello)
+
+eval((+ 2 (quote hello)))
+
+eval-last-sexp-1(nil)
+
+eval-last-sexp(nil)
+
+call-interactively(eval-last-sexp)
+}
+
+Comme d'habitude, le message d'erreur essaie d'être utile et logique
+après vous apprenez à lire\footnote{\tm{(quote hello)} est une
+  expansion de l'abréviation \tm{'hello}}. 
+
+La première partie du message d'erreur est simple; il est dit
+<<\tm{wrong type argument}>>. Vient ensuite le mot de jargon
+mystérieux <<\tm{number-or-marker-p}>>. Ce mot est d'essayer de vous
+dire ce genre d'argument du \tm{+} prévu. 
+
+Le symbole \tm{number-or-marker-p} dit que l'interprète Lisp essaie de
+déterminer si l'information a présenté (la valeur de l'argument) est
+un nombre ou un marqueur (un objet spécial représentant une position
+de tampon). Ce qu'il fait est le test pour voir si le \tm{+} est étant
+des nombres à ajouter. Il teste aussi de voir si l'argument est
+quelque chose appelé un marqueur, qui est une caractéristique
+spécifique de Emacs Lisp. (Dans Emacs, les emplacements dans une
+mémoire tampon sont enregistrés en tant que marqueurs. Lorsque la
+marque est réglée avec le \rep{C}{@} ou la commande \rep{C}{SPC}, sa
+position est maintenue en tant que marqueur. La marque peut être
+considérée comme un nombre---le nombre de caractères les emplacement
+est à partir du début de la mémoire tampon). En Lisp, \tm{+} peut être
+utilisé pour ajouter la valeur numérique de positions de marqueurs que
+des nombres.
+
+Le <<\tm{p}>> de <<\tm{number-or-marker-p}>> est l'incarnation d'une
+pratique a commencé dans les premiers jours de la programmation
+Lisp. Le <<\tm{p}>> signifie <<prédicat>>. Dans le jargon, utilisé par
+les chercheurs Lisp, un prédicat renvoie à une fonction pour
+déterminer si une propriété est vraie ou fausse. Ainsi, le <<\tm{p}>>
+nous dit que ce \tm{number-or-marker-p} est le nom d'une fonction qui
+détermine si c'est vrai ou faux que l'argument fourni est un nombre ou
+un marqueur. Autres symboles Lisp qui se terminent par <<\tm{p}>>
+comprennent \tm{zerop}, une fonction qui teste si son argument a la
+valeur de zéro, et \tm{listp}, une fonction qui teste si son argument
+est une liste. 
+
+Enfin, la dernière partie du message d'erreur est le symbole
+\tm{hello}. C'est la valeur de l'argument qui a été adopté pour
+\tm{+}. Si l'addition avait été adoptée le bon type d'objet, la valeur
+passée aurait été un certain nombre, comme 37, plutôt qu'un symbole
+comme \tm{hello}. Mais alors vous n'auriez pas reçu le message d'erreur.
+
+\subsection{La fonction \tm{message}}\etchss{1}{8}{5}
+
+Comme \texttt{+}, la fonction de \texttt{message} prend un nombre
+variable d'arguments. Elle est utilisée pour envoyer des messages à
+l'utilisateur et est si utile que nous allons la décrire ici.
+
+Un message est imprimé dans la zone écho. Par exemple, vous pouvez
+imprimer un message dans votre zone de répercussion en évaluant la
+liste suivante :   
+
+\tm{(message ``This message appears in the echo area'')}
+
+L'ensemble de la chaîne de caractères entre guillemets est un argument
+unique et est imprimé dans sa totalité. (Notez que dans cet exemple,
+le message lui-même apparaît dans la zone écho entre guillemets; cela
+parce que vous voyez la valeur retournée par la fonction
+\tm{message}. Dans la plupart des utilisations de \tm{message} dans
+les programmes que vous écrivez, le texte sera imprimé dans la zone
+d'écho comme un effet secondaire, sans les guillemets. Voir Section
+\cfchss{3}{3}{1} ``multiply-by-seven in detail'' page
+\cfchssg{3}{3}{1}, pour un exemple de cela).
+
+Cependant, s'il y a un '\tm{\%s}' dans la chaîne de caractères entre
+guillemets, la fonction \tm{message} n'imprimera pas le '\tm{\%s}' en
+tant que tel, mais l'assimile à un argument qui suit la chaîne. Elle
+évalue le second argument et imprime sa valeur à l'endroit où se situe
+'\tm{\%s}' dans la chaîne.
+
+Vous pouvez voir cela en positionnant le curseur après l'expression
+suivante et en tapant \tm{C-x C-e}:
+
+\tm{(message ``The name of this buffer is : \%s.'' (buffer-name))}
+
+Dans Info, \tm{``The name of this buffer is :*info*.''} apparaîtra
+dans la zone d'écho. La fonction \tm{buffer-name} renvoie  le nom du
+tampon comme une chaîne, où la fonction \tm{message} insère à la place
+de \tm{'\%s'}.
+
+Pour imprimer une valeur comme un entier, utiliser \tm{'\%d'} de la
+même manière que \tm{'\%s'}.  Par exemple, pour imprimer un message
+dans la zone écho qui indique la valeur de \tm{fill-column}, évaluer les
+points suivants:
+
+\tm{(message ``The value of fill-column is: \%d.'' fill-column)}
+
+Sur mon système, lorsque j'évalue cette list, \tm{``The value of
+  fill-column is 72.''} apparaît dans ma zone d'écho.\footnote{En fait
+    vous pouvez utiliser \tm{'\%s'} pour afficher un nombre. Ce n'est
+    pas spécifique. \tm{\%d} n'affiche que la partie à gauche de la
+    virgule d'un nombre décimal, et rien d'autre qui ne soit un
+    nombre.}
+
+S'il y a plus qu'un \tm{'\%s'} dans la chaîne entre les quotes, la
+valeur du premier argument est affichée à l'endroit du premier
+\tm{'\%s'}, la valeur du deuxième argument est affichée à l'endroit du
+deuxième \tm{'\%s'} et ansi de suite.
+
+Par exemple, si vous faites l'évaluation suivante : 
+
+\tm{(message ``There are \%d \%s in the office!''}
+
+\hspace{1.5cm}\tm{(- fill-column 14) ``pink elephants'')}
+
+un message plutôt lunatique apparaîtra dans votre zone de
+répercussion. Sur mon système, il dit, 
+
+\tm{``The are 58 pink elephants in the office!''}.
+
+L'expression \tm{(- fill-column 14)} est évaluée et le nombre
+résultant est inséré à la place de \tm{'\%d'}; et la chaîne de
+caractères \tm{``pink elephants''}, est traitée comme un argument
+simple et insérée à la place de \tm{'\%s'} :
+
+{\tt 
+  \begin{center}
+    \begin{tabular}[m]{*{3}l}
+      (message &''He saw \%d \%s''  & \\
+               & (- fill-column 32) & \\
+               & (concat ``red ``   & \\
+               &                    & (substring \\
+               &                    & ``The quick brown foxes
+                                      jumped.'' 16 21) \\
+               &                    & `` leaping.''))
+    \end{tabular}
+  \end{center}
+ }
+
+Dans cet exemple, la fonction \tm{message} a trois arguments : la
+chaîne \tm{``He saw \%d \%s''}, l'expression \tm{(- fill-column 32)}
+est insérée à la place de \tm{'\%d'}; et la valeur renvoyée par l'expression
+commençant par \tm{concat} est insérée à la place de \tm{'\%s'}. 
+
+Lorsque votre colonne de remplissage est de 70 et que vous évaluer
+l'expression, le message \tm{``He saw 38 red foxes leaping.''} aparaît
+dans votre zone d'écho.
+

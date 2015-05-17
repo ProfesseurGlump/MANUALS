@@ -1,0 +1,40 @@
+\chapter{Maintenace de gros programmes}
+\section{Contrôle de version}
+\subsection{Introduction à la contrôle de version}
+\subsubsection{Compréhension du problème adressé}
+\subsubsection{contrôle de version du système supportée}
+\subsubsection{Concepts de contrôle de version}
+\subsubsection{Merge-based vs lock-based contrôle de version}
+\subsubsection{Changeset-based vs File-based contrôle de version}
+\subsubsection{Décentralisé vs répertoires centralisés}
+\subsubsection{Types de fichiers log}
+\subsection{Contrôle de version et mode ligne}
+\subsection{\'Edition de base sous contrôle de version}
+\subsubsection{Contrôle de version de base avec fusion}
+\subsubsection{Contrôle de version de base avec verrouillage}
+\subsubsection{Contrôle avancé avec \texttt{C-x v v}}
+\subsection{Fonctions du log d'entrée de buffer}
+\subsection{Enregistrement d'un fichier de contrôle de version}
+\subsection{Examen et comparaison des anciennes versions}
+\subsection{VC Chance Log}
+\subsection{Refaire les actions de contrôle de version}
+\subsection{VC mode répertoire}
+\subsubsection{Le buffer VC répertoire}
+\subsubsection{VC commandes de répertoire}
+\subsection{Branches de contrôle de version}
+\subsubsection{Changement entre les branches}
+\subsubsection{Changement dans une branche}
+\subsubsection{Fusion de branches}
+\subsubsection{Création de nouvelles branches}
+\section{Changement de logs}
+\subsection{Commandes de changements de logs}
+\subsection{Format de changement de log}
+\section{Tables de tags}
+\subsection{Fichier source de syntaxe de tag}
+\subsection{Création de tables de tags}
+\subsection{Etags expression régulière}
+\subsection{Sélection d'une table de tags}
+\subsection{Trouver un tag}
+\subsection{Recherche et remplacement avec les tables de tags}
+\subsection{Enquêtes de table tags}
+\section{Environement de développement Emacs}

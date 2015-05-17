@@ -1,0 +1,25 @@
+\chapter{Compilation et test de programmes}
+\section{Lancer des compilations sous Emacs}
+\section{Mode compilation}
+\section{Sous-shells pour compilation}
+\section{Recherche avec Grep sous Emacs}
+\section{Trouver des erreurs de syntaxes au vol}
+\section{Lancement de debogueur sous Emacs}
+\subsection{Démarrer GUD}
+\subsection{Opération de débogage}
+\subsection{Commandes de GUD}
+\subsection{Personnalisation de GUD}
+\subsection{GDB interface graphique}
+\subsubsection{GDB disposition d'interface utilisateur}
+\subsubsection{Source buffer}
+\subsubsection{Points de marque buffer}
+\subsubsection{Threads buffer}
+\subsubsection{Stack Buffer}
+\subsubsection{Autre GDB buffers}
+\subsubsection{Expressions de regards}
+\subsubsection{Débogage multithread}
+\section{Exécution d'expressions Lisp}
+\section{Bibliothèque de Lisp codées pour Emacs}
+\section{\'Evaluation d'expressions Lisp pour Emacs}
+\section{Intéraction Lisp dans les buffers}
+\section{Lancement d'un Lisp extérieur}

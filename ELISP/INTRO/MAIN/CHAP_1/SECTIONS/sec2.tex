@@ -1,0 +1,60 @@
+\section{Lancer un programme}\etchs{1}{2}
+
+Une liste en Lisp---toute---liste est un programme prêt à
+fonctionner. Si vous l'exécutez (en jargon Lisp on dit évaluer),
+l'ordinateur fera l'une des trois choses: ne rien faire, sauf renvoyer
+la liste elle-même; vous envoyer un message d'erreur; ou traiter le
+premier symbole dans la liste comme une commande pour faire quelque
+chose. (Habituellement, bien sûr, c'est le dernier cas que vous voulez
+vraiment!) 
+
+L'apostrophe (ou guillemet simple), ', que j'ai mise en face de quelques-uns des
+exemples de listes dans les sections précédentes est appelé
+quote\footnote{En anglais dans le texte car la traduction <<devis>> ne
+  m'a pas paru pertinente. De plus quote est bien plus court à écrire
+  que guillemet simple ou apostrophe d'autant qu'il ne s'agit pas ici
+  d'un symbole de ponctuation mais d'un symbole propre au langage
+  Lisp.}; quand il précède une liste, il dit à Lisp 
+de ne rien faire avec la liste, autre que de la prendre comme elle est
+écrite. Mais s'il n'y a pas de quote précédent une liste, le premier
+élément de la liste est spécial: c'est une commande à laquelle
+l'ordinateur doit obéir. (En Lisp, ces commandes sont appelées
+fonctions.) La liste \tm{(+ 2 2)} ci-dessus n'a pas de quote la
+précédant, de sorte que Lisp comprend que le \tm{+} est une
+instruction pour faire quelque chose avec le reste de la liste:
+ajouter les chiffres qui suivent. 
+
+Si vous lisez ce manuel à depuis \gem dans Info, voici comment
+vous pouvez évaluer une telle liste : placez votre curseur
+immédiatement après la parenthèse de droite de la liste suivante et
+puis tapez \rec{C}{x}{C}{e}:
+\begin{center}
+  \tm{(+ 2 2)}
+\end{center}
+
+Vous verrez que le nombre 4 appraît dans la zone écho. (Dans le jargon, ce
+que vous venez de faire est ``d'évaluer la liste.'' La zone d'écho est
+la ligne en bas de l'écran qui affiche (ou ``fait échos'' au) le texte.)
+Maintenant, essayez la même chose avec une liste avec quote: placer le
+curseur après la liste suivante et tapez \rec{C}{x}{C}{e}:
+\begin{center}
+  \tm{'(this is a quoted list)}
+\end{center}
+
+Vous verrez \tm{(this is a quoted list)} apparaître dans la zone
+d'écho.
+
+Dans les deux cas, ce que vous faites est de donner un ordre à
+l'intérieur du programme \gem appelé l'interprète Lisp---lui donnant
+une commande pour évaluer l'expression Lisp. Le nom de l'interprète
+Lisp vient du mot pour la tâche accomplie par un être humain qui
+traduit une langue en une autre.
+
+Vous pouvez également évaluer un atome qui ne fait pas partie d'une
+liste et un qui n'est pas entouré par des parenthèses; encore une
+fois, l'interprète Lisp traduit de l'expression lisible par l'homme vers
+la langue de l'ordinateur. Mais avant de discuter de cela (voir
+section\cfchs{1}{7} ``Variables'', page\cfchsg{1}{7}), nous allons
+discuter de ce que l'interprète Lisp fait quand vous faites une
+erreur. 
+

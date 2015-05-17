@@ -1,0 +1,13 @@
+\chapter{Utilisation de multiple buffers (ou tampons)}
+
+\section{Création et sélection de buffers}
+\section{Listing des buffers existants}
+\section{Diverses opérations sur les buffers}
+\section{Fermeture de buffers}
+\section{Opération sur plusieurs buffers}
+\section{Buffers indirects}
+\section{Fonctions commodes et personnalisation du traitement de
+  buffer}
+\subsection{Création de noms de buffer unique}
+\subsection{Changer entre les buffers en utilisant des sous-chaînes}
+\subsection{Personnalisation de menus de buffer}

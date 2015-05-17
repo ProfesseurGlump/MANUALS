@@ -1,0 +1,57 @@
+\section{Obtenir un tampon}\etchs{2}{2}
+
+La fonction \tm{buffer-name} renvoie le \textit{nom} du tampon; pour
+obtenir le tampon \textit{lui-même}, une fonction différente est
+nécessaire : la fonction \tm{current-buffer}. Si vous utilisez cette
+fonction dans un code, ce que vous obtenez est le tampon lui-même.
+
+Un nom d'objet et l'objet ou l'entité à laquelle se réfère le nom sont
+différents entre eux. Vous n'êtes pas votre nom. Vous êtes une
+personne à laquelle les autres font référence par votre nom. Si vous
+demandez à parler à George et quelqu'un vous donne une carte avec les
+lettres \tm{'G', 'e', 'o', 'r', 'g', 'e'} écrites dessus, vous serez
+peut être amusé, mais vous ne serez pas satisfait. Vous ne voulez pas
+parler au nom, mais à la personne à laquelle le nom fait
+référence. Un tampon est similaire : le nom du tampon scratch est
+\tm{*scratch*}, mais le nom n'est pas le tampon. Pour obtenir le
+tampon lui-même vous avez besoin d'utiliser une fonction comme
+\tm{current-buffer}.
+
+Cependant, il y a une légère complication : si vous évaluez
+\tm{current-buffer} dans une expression, comme nous le ferons ici, ce
+que vous voyez est une représentation imprimée du nom du tampon sans
+le contenu du tampon. Emacs travaille de cette façon pour deux raisons
+: la tampon peut être des milliers de lignes de long---trop long pour
+être affiché; et, un autre tampon peut avoir le même contenu mais un
+nom différent, et il est important de pouvoir les distinguer.
+
+Voici une expression contenant la fonction :
+
+\tm{(current-buffer)}
+
+Si vous évaluez cette expression dans Info dans Emacs de la façon
+habituelle, \tm{\#<buffer *info*>} apparaîtra dans la zone d'écho. Le
+format spécial indique que le tampon lui-même est renvoyé, plutôt que
+juste son nom.
+
+Incidemment, pendant que vous pouvez taper un nombre ou symbole dans
+un programme, vous ne pouvez pas faire ça avec une représentation
+imprimée d'un tampon : la seule façon d'obtenir un tampon lui-même
+c'est avec une fonction telle que \tm{current-buffer}.
+
+Une fonction liée est \tm{other-buffer}. Elle renvoie le tampon le
+plus récemment sélectionné autre que celui sur lequel vous êtes en ce
+moment, pas une représentation imprimée de son nom. Si vous avez
+récemment changé depuis le tampon \tm{*scratch*}, \tm{other-buffer}
+renverra ce tampon. 
+
+Vous pouvez voir ça en évaluant l'expression :
+
+\tm{(other-buffer)}
+
+Vous devriez voir \tm{\#<buffer *scratch*>} apparaître dans la zone
+d'écho, ou le nom de n'importe quel autre tampon que vous avez changé
+récemment.\footnote{En fait, par défaut, si le tampon à partir duquel
+  vous venez de changer est visible pour vous dans une autre fenêtre,
+  un autre tampon sera choisi, le plus récent que vous ne pouvez pas
+  voir; ceci est une subtilité que j'oublie souvent.}

@@ -1,0 +1,19 @@
+\chapter{Couper et déplacer du texte}\label{chap9}
+\section{Suppression et coupure}\label{chap9sec1}
+\subsection{Suppression}\label{chap9sec1subsec1}
+\subsection{Coupure par ligne}\label{chap9sec1subsec2}
+\subsection{Autres commandes de coupure}\label{chap9sec1subsec3}
+\subsection{Options de coupure}\label{chap9sec1subsec4}
+\section{Collage}\label{chap9sec2}
+\subsection{L'anneau de coupure}\label{chap9sec2subsec1}
+\subsection{Coller les coupures précédentes}\label{chap9sec2subsec2}
+\subsection{Ajout de coupures}\label{chap9sec2subsec3}
+\section{<<Couper et coller>> opération sur l'affichage
+  graphique}\label{chap9sec3} 
+\subsection{Usage du clippboard (menu avec boutons)}\label{chap9sec3subsec1}
+\subsection{Couper et coller avec d'autres applications
+  fenêtre}\label{chap9sec3subsec1} 
+\subsection{Sélection secondaire}\label{chap9sec3subsec2}
+\section{Accumulation de texte}\label{chap9sec3subsec3}
+\section{Rectangles}\label{chap9sec3subsec4}
+\section{CUA raccourcis}\label{chap9sec3subsec5}

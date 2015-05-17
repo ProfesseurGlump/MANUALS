@@ -1,0 +1,187 @@
+\chapter{Emacs et Mac OS/GNUstep}\label{appF}
+
+Cette section décrit les particularités d'utiliser l'Emacs construit
+avec les bibliothèques GNUSTEP sur GNU/LINUX ou d'autres systèmes
+d'exploitation, ou sur Mac OS X avec système de fenêtre natif. Sur le
+Mac OS X, l'Emacs peut être construit sans support système de fenêtre,
+avec X11, ou avec l'interface de Cocoa; cette section s'applique
+seulement à la construction Cocoa. Ceci ne concerne  pas les
+versions de Mac OS X antérieures à la version 10.4.
+
+Pour des raisons historiques et techniques diverses, l'Emacs utilise
+le terme <<\texttt{Nextstep}>> intérieurement, au lieu <<de Cocoa>> ou <<Mac OS
+X>>; par exemple, la plupart des commandes et des variables décrites
+dans cette section commencent par <<\texttt{ns-}>>, qui est un raccourci pour 
+<<\texttt{Nextstep}>>. NeXTstep était une interface d'application
+sortie par NeXT Inc pendant les années 1980, dont le Cocoa est un
+descendant direct. En dehors du Cocoa, il y a un autre système de
+NeXTstep-style : GNUstep, qui est le logiciel libre. À partir de cette
+écriture, le support Emacs GNUstep est le statut alpha
+(voir\cfaps{F}{4}), mais nous espérons l'améliorer dans l'avenir.
+
+\section{Utilisation de base Emacs sous Mac OS et
+  GNUstep}\label{appFsec1} 
+
+Par défaut, les touches \texttt{alt} et \texttt{option} sont les même
+que \texttt{Meta}. La touche Mac \texttt{Cmd} est la même que
+  \texttt{Super}, et Emacs fournit un jeu de raccourcis clavier
+  utilisant cette touche modificatrice comme imitation d'autres
+  applications Mac / GNUstep (voir\cfaps{F}{3}). Vous pouvez changer ces
+  raccourcis clavier en utilisant la manière habituelle (voir page
+  420).
+
+La variable \texttt{ns-right-alternate-modifier} contrôle le
+comportement de la touche droite \texttt{alt} et
+\texttt{options}. Cette touche se comporte comme la touche gauche si
+la valeur est \texttt{left} (par défaut). Une valeur de
+\texttt{control}, \texttt{meta}, \texttt{alt}, \texttt{super}, ou
+\texttt{hyper} les fait se comporter comme des touches modificatrices;
+une valeur \texttt{none} dit à Emacs de les ignorer.
+
+\texttt{S-Mouse-1} ajuste la région à la position du clic, comme
+\texttt{Mouse-3} (\texttt{mouse-save-then-kill}); cela ne produit pas
+un menu pop up pour changer la face par défaut, comme
+\texttt{S-Mouse-1} fait normalement (voir page 76). Ce changement fait
+Emacs se comporter plus comme les autres applications Mac / GNUstep.
+
+Quand vous ouvrez ou sauvez des fichiers en utilisant les menus, ou en
+utilisant \texttt{Cmd-O} et \texttt{Cmd-S}, Emacs utilise les boîtes
+de dialogues pour lire les noms de fichiers.
+
+Sur GNUstep, dans un environnement X-windows vous avez besoin
+d'utiliser \texttt{Cmd-C} à la place de \texttt{C-w} ou \texttt{M-w}
+pour transférer du texte vers la première sélection X; d'autre part,
+Emacs va utiliser la sélection <<clipboard>>. Comme,  \texttt{Cmd-y}
+(au lieu de  \texttt{C-y}) pour coller depuis une première sélection X
+au lieu de kill-ring ou clipboard.
+
+ 
+\subsection{Variables d'environnement grabbing}\label{appFsec1subsec1}
+
+Beaucoup de programmes qui peuvent tourner sous Emacs, comme latex ou
+man, dépendent de la configuration des variables d'environnement. Si
+Emacs est lancé depuis le shell, il héritera automatiquement de ces
+variables d'environnement et ses sous-processus en hériteront
+aussi. Mais si Emacs est lancé depuis le Finder il n'est pas un
+descendant d'aucun shell, donc son environnement de variables n'a pas
+été configuré, ce qui provoque souvent que les sous-processus qu'il
+déclenche se comportent différemment que s'ils étaient lancés depuis
+le shell.
+
+Pour le PATH et MANPATH des variables, un large système de méthodes de
+configuration PATH est recommandé sur Mac OS X 10.5 et antérieur, en
+utilisant les fichiers \texttt{/etc/paths} et le répertoire
+\texttt{/etc/paths.d}. 
+
+
+\section{Personnalisation Mac / GNUstep}\label{appFsec2}
+
+Emacs peut être personnalisé de plusieurs manières en plus des buffers
+de personnalisation standard et le menu d'Options. 
+
+\subsection{Panels de fontes et couleurs}\label{appFsec2subsec1}
+
+Les panels de fontes et couleurs standard Mac / GNUstep sont
+accessible via des commandes Lisp. Le panel de fontes peut être obtenu
+avec \texttt{M-x ns-popup-font-panel}. Ca configurera par défaut la
+fonte de la diapositive la plus récente ou cliquer dessus.
+
+Vous pouvez soulever un panneau coloré avec \texttt{M-x ns-popup-color-panel}
+et glisser la couleur que vous voulez sur la face d'Emacs que vous
+voulez changer. Le glissement normal altèrera la couleur de premier
+plan. Le glissement shift altèrera la couleur de fond. Pour renoncer
+(annuler) les changements (de configuration), créer une nouvelle
+diapositive et fermer celle qui a subi les altérations.
+
+Très utile dans ce contexte, la liste complète des face est obtenue
+avec \texttt{M-x list-faces-display}.
+
+\subsection{Personnalisation spécifique pour Mac OS /
+  GNUstep}\label{appFsec2subsec2} 
+
+Les options de personnalisation suivantes sont spécifiques à Nextstep
+\texttt{ns-auto-hide-menu-bar}
+
+Non-nil signifie que la barre de menu est cachée par défaut, mais
+apparaît si vous déplacez le pointeur de la souris dessus. (Nécessite
+Mac OS X 10.6 ou ultérieur.)
+
+\section{Système de fenêtrage sous Mac OS / GNUstep}\label{appFsec3}
+
+Les applications Nextstep reçoivent un nombre spécial d'événements qui
+n'ont pas d'équivalent X. Ils sont envoyés comme clés spécialement
+définies, ce qui ne correspond à aucune combinaisons de touche. Sous
+Emacs, ces événements <<clés>> peuvent être ajoutés aux fonctions
+comme n'importe quel macros.
+
+Voici une liste des ces événements.
+\begin{description}
+\item[\texttt{ns-open-file}] cet événement se produit lorsqu'une autre
+  application Nextstep demande à Emacs d'ouvrir un fichier. Une raison
+  typique pour cela serait qu'un utilisateur double-clique sur un
+  fichier dans le Finder. Par défaut, Emacs répond à cet événement en
+  ouvrant un nouveau cadre (frame) et en visitant le fichier dans ce
+  cadre \texttt{(ns-find-file)}. Par exception, si le tampon (buffer)
+  choisi est le tampon \texttt{*scratch*}, Emacs visite le fichier
+  dans le cadre sélectionné.
+
+Vous pouvez changer la façon dont Emacs répond à un événement
+\texttt{ns-open-file} en changeant la variable
+\texttt{ns-pop-up-frames}. Sa valeur par défaut, \texttt{'fresh'}, est
+ce que nous venons de décrire. Une valeur de \texttt{t} signifie que l'on
+visite toujours le fichier dans un nouveau cadre. Une valeur de
+\texttt{nil} signifie que l'on visite toujours le fichier dans le
+cadre existant.
+\item[\texttt{ns-open-temp-file}] cet événement se produit lorsqu'une
+  autre application demande à Emacs d'ouvrir un fichier
+  temporaire. Par défaut, c'est géré par la création d'un événement
+  \texttt{ns-open-file}, dont les résultats sont décrits ci-dessus.
+\item[\texttt{ns-open-file-line}] certaines applications, telles que
+  ProjectBuilder et gdb, demandent non seulement un fichier
+  particulier, mais aussi une ligne ou une suite de lignes
+  particulières dans le fichier. Emacs gère en visitant ce fichier et
+  en soulignant la ligne demandée \texttt{(ns-open-file-select-line)}.
+\item[\texttt{ns-drag-file}] cet événement se produit lorsqu'un
+  utilisateur fait glisser des fichiers à partir d'une autre
+  application dans un cadre Emacs. Le comportement par défaut est
+  d'insérer le contenu de tous les fichiers déplacés dans le tampon
+  courant \texttt{(ns-insert-files)}. La liste des fichiers déplacés
+  est stockée dans la variable \texttt{ns-input-file}.
+\item[ns-drag-color] cet événement se produit lorsqu'un utilisateur
+  fait glisser une couleur depuis le color well (ou d'une autre
+  source) dans un cadre Emacs. Le comportement par défaut est de
+  modifier la couleur de premier plan de la zone dont la couleur a été
+  glissée sur \texttt{(ns-set-foreground-at-mouse)}. Si cet événement
+  est délivré avec le modifieur Shift, Emacs change la couleur de fond
+  à la place \texttt{(ns-set-background-at-mouse)}. Le nom de la
+  couleur glissée est stockée dans la variable
+  \texttt{ns-input-color}.
+\item[\texttt{ns-change-font}] cet événement se produit lorsque
+  l'utilisateur sélectionne une fonte (police) dans un panel Nextstep
+  (qui peut être ouvert avec \texttt{Cmd-t}. Le comportement par
+  défaut est d'ajuster la fonte (police) du cadre sélectionné
+  \texttt{(ns-respond-to-changefont)}. Le nom et la taille de la fonte
+  (police) sélectionnnée sont stockés dans les variables
+  \texttt{ns-input-fontsize}, respectivement.
+\item[\texttt{ns-power-off}] cet événement se produit lorsque
+  l'utilisateur se déconnecte et Emacs est encore en cours
+  d'exécution, ou lorsque \texttt{'Quit Emacs'} est choisi dans le
+  menu de l'application. Le comportement par défaut est de sauver tous
+  les tampons de visite de fichier.  
+\end{description}
+Emacs permet également aux utilisateurs de faire usage de services
+Nextstep, via un ensemble de commandes dont le nom commence par
+\texttt{'ns-service'} et se termine par le nom du service. Tapez
+\texttt{M-x ns-service-TAB} pour voir la liste de ces commandes. Ces
+fonctions opèrent soit sur le texte marqué (le remplaçant par la
+suite) ou prennent un argument de chaîne et renvoient le résultat sous
+forme de chaîne. Vous pouvez également utiliser la fonction Lisp
+\texttt{ns-perform-service} pour passer des chaînes arbitraires à
+l'appel services arbitraires et recevoir les résultats en
+retour. Notez que vous devrez peut-être redémarrer Emacs pour accéder
+aux services nouvellement disponibles.
+
+\section{Support GNUstep}\label{appFsec4}
+Emacs peut être construit et tourner sous GNUstep, mais il y a encore
+des problèmes à régler. Les développeurs intéressés devraient
+contacter \url{emacs-devel@gnu.org}.

@@ -1,0 +1,149 @@
+\chapter{Entrer et sortir de Emacs}\etch{3}
+Ce chapitre explique comment entrer dans Emacs, et comment en
+sortir.\par
+
+\section{Entrer dans Emacs}\etchs{3}{1}
+La façon habituelle d'invoquer Emacs est avec la commande emacs
+shell. Dans une fenêtre de terminal fonctionnant sous le système X
+Window, vous pouvez exécuter Emacs en arrière-plan avec emacs \&; de
+cette façon, Emacs ne sera pas attaché à la fenêtre du terminal, de
+sorte que vous pouvez l'utiliser pour exécuter d'autres commandes
+shell.\par 
+
+Quand Emacs démarre, le cadre initial affiche un tampon spécial appelé
+<<*GNU Emacs*>>. Cet écran de démarrage contient des informations sur
+Emacs et des liens vers les tâches courantes qui sont utiles pour les
+utilisateurs débutants. Par exemple, en activant le lien <<Tutoriel
+Emacs>> Emacs ouvre le tutoriel; ce qui fait la même chose que la
+commande \texttt{C-h t (help-with-tutorial)}. Pour activer un lien,
+soit déplacer le point sur celui-ci et taper \texttt{RET}, ou cliquer
+dessus avec \texttt{mouse-1} (le bouton gauche de la souris).\par  
+
+En utilisant un argument de ligne de commande, vous pouvez demander
+à Emacs de visiter un ou plusieurs fichiers dès qu'il démarre. Par
+exemple, \texttt{emacs foo.txt} démarre Emacs avec un tampon affichant
+le contenu du fichier <<\texttt{toto.txt}>>. Cette fonctionnalité
+existe principalement pour la compatibilité avec d'autres éditeurs,
+qui sont conçus pour être lancés à partir de l'enveloppe pour les
+sessions d'éditions courtes. Si vous appelez Emacs de cette façon, le
+cadre initial est divisé en deux fenêtres ---une montrant le fichier
+spécifié, et l'autre montrant l'écran de démarrage. Voir le
+chapitre\cfch{17} [fenêtres], page\cfchg{17}.\par
+
+En général, il est inutile et coûteux de commencer un nouveau Emacs
+chaque fois que vous souhaitez éditer un fichier. La méthode
+recommandée pour utiliser Emacs est de commencer juste une fois, juste
+après que vous vous soyez connecté faites toute votre édition dans la
+même session Emacs. Voir le chapitre\cfch{15} [fichiers],
+page\cfchg{15}, pour plus d'informations sur la visite de plus
+d'un fichier. Si vous utilisez Emacs de cette façon, la session Emacs
+accumule des données précieuses, comme l'anneau de kill, les
+registres, l'historique des actions (à défaire), l'anneau des données
+de marques, qui forment un ensemble d'édition plus pratique. Ces
+caractéristiques sont décrites plus loin dans le manuel.\par 
+
+Pour éditer un fichier d'un autre programme tout en gardant Emacs en
+cours, vous pouvez utiliser le programme \texttt{emacsclient} d'aide
+pour ouvrir un fichier dans la session Emacs existante. Voir la
+section\cfchs{31}{4} [serveur Emacs],
+page\cfchsg{31}{4}.\par 
+
+Emacs accepte d'autres arguments en ligne de commande qui lui
+indiquent de charger certains fichiers Lisp, où mettre la trame
+initiale, et ainsi de suite. Voir l'annexe\cfap{C} [invocation
+Emacs], page\cfapg{C}.\par 
+
+Si la variable \texttt{inhibit-startup-screen} est non-\texttt{nil},
+Emacs n'affiche pas l'écran de démarrage. Dans ce cas, si un ou
+plusieurs fichiers ont été spécifiés sur la ligne de commande, Emacs
+affiche simplement ces fichiers, sinon, il affiche un tampon appelé
+\texttt{*scratch*}, qui peut être utilisé pour évaluer de façon
+interactive les expressions Emacs Lisp. Voir la
+section\cfchs{24}{10} [intéraction Lisp],
+page\cfchsg{24}{10}. Vous pouvez régler la variable
+\texttt{inhibit-startup-screen} en utilisant le menu de
+personnalisation facile (voir section\cfchs{33}{1}
+[personnalisation facile], page\cfchsg{33}{1}), ou en éditant
+votre fichier d'initialisation (voir section\cfchs{33}{4} [fichier
+d'initialisation], page\cfchsg{33}{4})\footnote{Le réglage
+  de la variable \texttt{inhibit-startup-screen} dans le programme
+  \texttt{site-start.el} ne fonctionne pas, parce que l'écran de
+  démarrage est mis en place avant la lecture du programme
+  \texttt{site-start.el}. Voir section\cfchs{33}{4} [fichier
+  d'initialisation], page\cfchsg{33}{4}, pour plus
+  d'information à propos de \texttt{site-start.el}}.\par 
+
+Vous pouvez également forcer Emacs pour afficher un fichier ou un
+répertoire au démarrage en définissant la variable
+\texttt{initial-buffer-choice} à une valeur non-\texttt{nil}. (Dans ce
+cas, même si vous spécifiez un ou plusieurs fichiers en ligne de
+commande, Emacs s'ouvre mais ne les affiche pas). La valeur de
+\texttt{initial-buffer-choice} devrait être le nom du fichier ou du
+répertoire souhaité.\par 
+
+  
+\section{Sortir de Emacs}\etchs{3}{2}
+\begin{description}
+\item[\texttt{C-x C-c}] kill (quitter) Emacs
+  (\texttt{save-buffers-kill-terminal}).
+\item[\texttt{C-z}] dans un terminal texte, suspend Emacs; en mode
+  graphique, iconise le cadre sélectionné (\texttt{suspend-emacs}).
+\end{description}
+
+Kill Emacs signifie que le programme Emacs va se fermer. Pour faire cela,
+tapez la séquence \texttt{C-x C-c} (\texttt{save-buffers-kill-terminal}). Une
+séquence de touches à deux caractères est utilisée pour rendre
+difficile de la taper par accident. S'il y a des tampons de fichiers
+visités modifiés quand vous tapez \texttt{C-x C-c}, Emacs vous propose
+d'abord de sauvegarder les tampons. Si vous ne les sauvegardez pas
+tous, il vous demande encore la confirmation, alors les fichiers non
+sauvés seront perdus. Emacs demande également confirmation si des
+sous-processus sont encore en cours, car quitter Emacs va aussi clôre
+les sous-processus (voir section\cfchs{31}{3} [Shell],
+page\cfchsg{31}{3}).\par 
+
+\texttt{C-x C-c} se comporte spécialement si Emacs est utilisé comme
+serveur. Si vous la tapez à partir d'un <<cadre client>>, il ferme la
+connexion du client. Voir section\cfchs{31}{4} [serveur Emacs],
+page\cfchsg{31}{4}.\par 
+
+Emacs peut, le cas échéant, enregistrer certaines informations de
+session quand vous le quittez, tels que les fichiez que vous visitiez
+à ce moment là. Cette information est alors disponible lors de la
+prochaine session Emacs. Voir section\cfchs{31}{8} [sauvegarde de
+sessions Emacs], page\cfchsg{31}{8}.\par 
+
+Si la valeur de la variable \texttt{confirm-kill-emacs} est
+non-\texttt{nil}, \texttt{C-x C-c} suppose que cette valeur est une
+fonction de prédicat, et appelle cette fonction. Si le résultat de la
+fonction appelée est non-\texttt{nil}, la session est terminée, sinon
+Emacs continue à tourner. Une fonction pratique à utiliser comme
+valeur de \texttt{confirm-kill-emacs} est la fonction
+\texttt{yes-or-no-p}. La valeur par défaut de
+\texttt{confirm-kill-emacs} est \texttt{nil}.\par 
+
+Pour quitter Emacs sans être invité à sauvegarder, tapez \texttt{M-x
+  kill-emacs}. 
+
+\texttt{C-z} lance la commande \texttt{suspend-frame}. En mode
+graphique, cette commande iconise le cadre Emacs sélectionné, le
+cachant de façon à vous laisser le ramener plus tard (la façon exacte
+avec laquelle il se cache dépend du système de fenêtrage). Sur un
+terminal de texte, la commande \texttt{C-z} suspend Emacs, arrêtant
+temporairement le programme et retournant vers le processus parent
+(habituellement un shell); dans beaucoup de shells, vous pouvez
+reprendre Emacs après sa suspension avec la commande shell
+\texttt{\%emacs}.\par 
+
+Les terminaux textuels ont l'habitude de recevoir des caractères
+spéciaux pour quitter ou suspendre un programme en cours. Cette
+fonction du terminal est éteinte pendant que vous êtes dans Emacs. Les
+significations de \texttt{C-z} et de \texttt{C-x C-c} comme touches
+dans Emacs ont été inspirées par l'utilisation de \texttt{C-z} et
+\texttt{C-c} sur plusieurs systèmes d'exploitation comme caratères
+pour interrompre ou clôre un programme, mais c'est leur seul lien avec
+le système d'exploitation. Vous pouvez personnaliser ces touches pour
+exécuter les commandes de votre choix (voir
+section\cfchss{33}{3}{1} [claviers],
+page\cfchssg{33}{3}{1}).\par 
+

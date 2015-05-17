@@ -1,0 +1,18 @@
+\chapter{Arguments de ligne de commandes pour invocation par
+  Emacs}\label{appC} 
+\section{Arguments d'une action}\label{appCsec1}
+\section{Options initiales}\label{appCsec2}
+\section{Exemple d'argument de commande}\label{appCsec3}
+\section{Variables d'environnement}\label{appCsec4}
+\subsection{Variables générales}\label{appCsec4subsec1}
+\subsection{Variables diverses}\label{appCsec4subsec2}
+\subsection{Système de registre MS-Windows}\label{appCsec4subsec3}
+\section{Spécification du nom d'affichage}\label{appCsec5}
+\section{Options de spécification de fonte}\label{appCsec6}
+\section{Options de couleur de fenêtre}\label{appCsec7}
+\section{Options pour la taille et la position de
+  fenêtre}\label{appCsec8}
+\section{Bords internes et externes}\label{appCsec9}
+\section{Titres de diapositive}\label{appCsec10}
+\section{Icônes}\label{appCsec11}
+\section{Autres options d'affichage}\label{appCsec12}

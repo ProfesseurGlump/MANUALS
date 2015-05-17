@@ -1,0 +1,38 @@
+\section{Noms de symboles et noms de fonctions}\etchs{1}{4}
+
+Nous pouvons exprimer une caractéristique de Lisp basée sur ce que
+nous avons discuté jusqu'à présent---une caractéristique importante :
+un symbole, comme \tm{+}, n'est pas lui-même l'ensemble des
+instructions de l'ordinateur pour mener à bien. Au contraire, le
+symbole est utilisé, peut-être temporairement, comme un moyen de
+localisation de la définition ou un ensemble d'instructions. Ce que
+nous voyons est le nom par lequel les instructions peuvent être
+trouvées. Noms des personnes fonctionnent de la même manière. Je peux
+être <<\tm{Bob}>> ; cependant, je ne suis pas les lettres <<\tm{B}>>,
+<<\tm{o}>>, <<\tm{b}>>, mais je suis ou étais, la conscience toujours
+associée à une forme de vie particulière. Le nom n'est pas moi, mais
+il peut être utilisé pour se référer à moi. 
+
+En Lisp, un ensemble d'instructions peut être attaché à plusieurs
+noms. Par exemple, les instructions informatiques pour l'ajout de
+nombres peuvent être liées au symbole, plus ainsi que pour le symbole
+\tm{+} (et sont dans certains dialectes de Lisp). Chez les humains, je
+peux être appelé <<\tm{Robert}>> ainsi que <<\tm{Bob}>> et par
+d'autres mots ainsi. 
+
+D'autre part, un symbole peut avoir seulement une définition de la
+fonction attachée à elle à la fois. Sinon, l'ordinateur serait confus
+quant à la définition à utiliser. Si c'était le cas chez les
+personnes, une seule personne dans le monde pourrait être nommé
+<<\tm{Bob}>>. Cependant, la définition de la fonction à laquelle le
+nom se réfère peut être modifié facilement. (Voir la
+section\cfchs{3}{2} <<Installer une définition de fonction>>,
+page\cfchsg{3}{2}.) 
+
+Depuis Emacs Lisp est grand, il est d'usage de symboles nom d'une
+manière qui identifie la partie d'Emacs auquel la fonction
+appartient. Ainsi, tous les noms de fonctions qui traitent de Texinfo
+commencent par <<\tm{texinfo-}>> et ceux pour les fonctions qui
+traitent de la lecture du courrier de départ avec <<\tm{rmail-}>>.
+
+

@@ -1,0 +1,143 @@
+\section{La forme spéciale \texttt{defun}}\etchs{3}{1}
+
+En Lisp, un symbole tel que \tm{mark-whole-buffer} a un code qui lui
+est attaché et qui dit à l'ordinateur que faire lorsque la fonction
+est appélée. Ce code est appelé la \textit{définition de fonction} et est
+créé par l'évaluation d'une expression Lisp qui commence par le
+symbole \tm{defun} ( qui est une abréviation pour \textit{define
+  function}\footnote{définition de fonction}). Parce que \tm{defun}
+n'évalue pas ses arguments de la manière habituelle, elle est appelée
+une \textit{forme spéciale}.
+
+Dans les sections suivantes, nous allons examiner les définitions de
+fonctions à partir du code source Emacs, comme
+\tm{mark-whole-buffer}. Dans cette section, nous allons décrire une
+définition de fonction simple de sorte que vous puissiez voir à quoi
+ça ressemble. Cette définition de fonction utilise l'arithmétique, car
+cela en fait un exemple simple. Certaines personnes détestent les
+exemples utilisant l'arithmétique; toutefois, si vous êtes une telle
+personne, ne désespérez pas. Pratiquement tout le code, que nous
+allons étudier par la suite de cette introdcution implique
+l'arithmétique ou les mathématiques. Les exemples concernent
+essentiellement du texte d'une manière ou d'une autre.
+
+Une définition de fonction a jusqu'à cinq parties suivant le mot
+\tm{defun} :
+\begin{enumerate}
+\item Le nom du symbole à laquelle la définition de fonction doit être
+  jointe.
+\item Une liste des arguments qui seront passés à la fonction. Si
+  aucun argument ne seront passés à la fonction, ceci est une liste
+  vide, \tm{()}.
+\item Une documentation décrivant la fonction. (Techniquement
+  facultatif, mais fortement recommandé.)
+\item \'Eventuellement, une expression pour rendre la fonction
+  interactive de sorte que vous pouvez l'utiliser en tapant \tm{M-x},
+  puis le nom de la fonction; ou en tapant sur une touche ou une
+  combinaison de touches appropriées.
+\item Le code qui indique à l'ordinateur ce qu'il doit faire: le
+  \textit{corps} de la fonction.
+\end{enumerate}
+
+Il est utile de penser aux cinq parties d'une définition de fonction
+comme étant organisé dans un modèle, avec des fentes pour chaque
+partie:
+
+\tm{(defun \textit{function-name} (\textit{arguments} \dots)}
+
+\tm{``\textit{optional-documentation}\dots''}
+
+\tm{(interactive \textit{argument-passing-info})} ; optional
+
+\tm{\textit{body}\dots)}
+
+\`A titre d'exemple, voici le code pour une fonction qui multiplie son
+argument par 7. (Cet exemple n'est pas interactif. Voir la section
+\cfchs{3}{3} ``Faire une fonction interactive'', page \cfchsg{3}{3},
+pour cette information.)
+
+\tm{(defun muliply-by-seven (number)}
+
+\tm{``Multiply NUMBER by seven.''}
+
+\tm{(* 7 number))}
+
+Cette définition commence par une parenthèse et le symbole \tm{defun},
+suivi du nom de la fonction.
+
+Le nom de la fonction est suivie par une liste qui contient les
+arguments qui seront passés à la fonction. Cette liste est appelée la
+\textit{liste des arguments}. Dans cet exemple, la liste ne comporte
+qu'un seul élément, le symbole, \tm{number}. Lorsque la fonction est
+utilisée, le symbole sera lié à la valeur qui est utilisée comme
+argument de la fonction. 
+
+Au lieu de choisir le nombre de mot pour le nom de l'argument,
+j'aurais pu choisir un autre nom. Par exemple, je pourrais avoir
+choisi le mot \tm{multicplicand}. J'ai pris le mot <<nombre>> parce
+qu'il dit bien quel type de valeur est destinée à cet emplacement;
+mais je pourrais tout aussi bien avoir choisi le mot <<multiplicande>>
+pour indiquer le rôle que la valeur placée à cet endroit va jouer dans
+le fonctionnement de la fonction. J'aurais pu l'appeler \tm{foogle},
+mais cela aurait été un mauvais choix, car il ne renseignerait pas sur
+sa signification. Le choix du nom revient au programmeur et doit être
+fait pour rendre le sens de la fonction le plus clair possible.
+
+En effet, vous pouvez choisir le nom que vous souhaitez pour un
+symbole dans une liste d'arguments, même le nom d'un symbole utilisé
+dans une autre fonction : le nom que vous utilisez dans une liste
+d'arguments est réservé à cette définition particulière. Dans cette
+définition, le nom se réfère à une entité différente de n'importe
+qu'elle utilisation du même nom en dehors de cette définition de
+fonction. Supposons que vous avez un surnom <<shorty>> dans votre
+famille; lorsque un membre de votre famille se réfère à <<shorty>>, il
+parle de vous. Mais en dehors de votre famille, dans un film, par
+exemple, le nom <<shorty>> se réfère à quelqu'un d'autre. Parce qu'un
+nom dans une liste d'argument est réservé à cette définition de
+fonction, vous pouvez changer la valeur d'un tel symbole à l'intérieur
+du corps d'une fonction sans changer sa valeur en dehors de la
+fonction. L'effet est similaire à celui produit par une expression
+\tm{let}. (Voir Section \cfchs{3}{6} ``let'', page \cfchsg{3}{6}.)
+
+La liste des arguments est suivie par la documentation qui décrit la
+fonction. Ceci est ce que vous voyez lorsque vous tapez \tm{C-h f} et
+le nom d'une fonction. Incidemment, lorsque vous écrivez une
+documentation de ce genre, vous devriez faire la première ligne une
+phrase complète depuis quelques commandes, comme \tm{apropos},
+imprimer uniquement la première ligne d'une documentation
+multi-ligne. En outre, vous ne devriez pas indenter la deuxième ligne
+d'une documentation, si vous en avez une, parce que ça aurait l'air
+bizarre quand vous utilisez \tm{C-h f (describe-function)}. La
+documentation est facultative, mais elle est si utile, elle devrait
+être inclus dans presque toutes les fonctions que vous écrivez.
+
+La troisième ligne de l'exemple est constituée du corps de la
+définition de fonction. (La plupart des définitions de fonctions, bien
+sûr, sont plus longues que celle-là.) Dans cette fonction, le corps
+est la liste, \tm{(* 7 number)}, qui dit de multiplier la valeur du
+nombre de 7. (Dans Emacs Lisp, \tm{*} est la fonction de
+multiplication, comme \tm{+} est la fonction d'addition.)
+
+Lorsque vous utilisez la fonction \tm{multiply-by-seven}, l'argument
+\tm{number} évalue le nombre que vous avez utilisé. Voici un exemple
+qui montre comment \tm{multiply-by-seven} est utilisé; mais n'essayez
+pas encore de l'évaluer!
+
+\tm{(multiply-by-seven 3)}
+
+Le symbole \tm{number}, spécifié dans la définition de fonction de la
+prochaine section, est donné ou <<lié à>> la valeur 3 dans cet exemple
+d'utilisation. Notez que bien que \tm{number} était entre parenthèses
+à l'intérieur dans la définition de fonction, l'argument passé à la
+fonction \tm{(multiply-by-seven 3)} n'est pas entre parenthèses. Les
+parenthèses sont écrites dans la définition de fonction afin que
+l'ordinateur comprenne où se termine la liste d'arguments et le reste
+de la définition commence. 
+
+Si vous évaluez cet exemple, vous êtes susceptible d'obtenir un
+message d'erreur. (Allez-y, essayez!) C'est parce que nous avons écrit
+la définition de fonction, mais pas encore dit à l'ordinateur à propos
+de la définition---nous n'avons pas encore installé (ou <<chargé>>) la
+définition de fonction dans Emacs. L'installation d'une fonction est
+le processus qui dit à l'interprète Lisp qu'elle est la définition de
+fonction. L'installation est décrite dans la section suivante. 

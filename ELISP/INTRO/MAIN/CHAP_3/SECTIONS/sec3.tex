@@ -1,0 +1,127 @@
+\section{Rendre une fonction intéractive}\etchs{3}{3}
+
+Vous créez une fonction interactive en plaçant une liste qui commence
+par la forme spéciale \tm{interactive} immédiatement après la
+documentation. Un utilisateur peut invoquer une fonction interactive
+en tapant \tm{M-x} et ensuite le nom de la fonction; ou en tapant la
+combinaison de touches (raccourci clavier) à laquelle cette fonction
+est liée, par exemple, en tapant \tm{C-n} pour \tm{next-line} ou
+\tm{C-x h} pour \tm{mark-whole-buffer}. 
+
+Curieusement, lorsque vous appelez une fonction interactive de
+façon interactive, la valeur renvoyée n'est pas automatiquement
+affichée dans la zone d'écho. Cela est dû au fait que vous appelez
+souvent une fonction interactive pour ses effets secondaires, tels que
+se déplacer vers l'avant par mot ou par ligne, et non pour la valeur
+renvoyée. Si la valeur renvoyée était affichée dans la zone d'écho
+chaque fois que vous tapez un raccourci, cela serait très distrayant.
+
+Tant l'utilisation de la forme spéciale \tm{interactive} que la façon
+d'afficher une valeur dans la zone d'écho peuvent être illustrées par
+la création d'une version interactive de \tm{multiply-by-seven}.
+
+Voici le code :
+
+\tm{(defun multiply-by-seven (number)}   ; Interactive version.
+
+\tm{ ``Multiply NUMBER by seven.''}
+
+\tm{ (interactive ``p'')}
+
+\tm{ (message ``The result is \%d'' (* 7 number)))}
+
+Vous pouvez installer ce code en plaçant votre curseur après (la
+dernière parenthèse) et en tapant \tm{C-x C-e}. Le nom de la fonction
+apparaîtra dans votre zone d'écho. Ensuite, vous pouvez utiliser ce
+code en tapant \tm{C-u} et un nombre et ensuite en tapant \tm{M-x
+  multiply-by-seven} et appuer sur \RET. La phrase \tm{'The result is
+  \dots'} suivie du produit appraîtra dans la zone d'écho.
+
+De façon plus générale, vous invoquez une fonction de ce genre de
+l'une des deux manières suivantes :
+\begin{enumerate}
+\item En tapant un argument préfixé qui contient le nombre qui être
+  passé, et ensuite en tapant \tm{M-x} et le nom de la fonction, comme
+  avec \tm{C-u 3 M-x forward-sentence}; ou,
+\item En tapant la touche ou raccourci auquel la fonction est liée,
+  comme avec \tm{C-u 3 M-e}.
+\end{enumerate}
+
+Les deux exemples qui viennent d'être mentionnés fonctionnent
+identiquement pour déplacer le point vers l'avant de trois
+phrases. (Puisque \tm{multiply-by-seven} n'est liée à aucune touche
+(ni raccourci), elle ne pouvait pas être utilisée comme un exemple de
+raccourci de liaison.)
+
+(Voir Section \cfchs{16}{7} ``Quelques raccourcis'', page
+\cfchsg{16}{7}, pour apprendre comment lier une commande à une
+combinaison de touches.)
+
+Un argument préfixé est passé à une fonction interactive en tapant la
+touche \tm{META} suivi d'un numéro, par exemple, \tm{M-3 M-e}, ou en
+tapant \tm{C-u} et ensuite le nombre par exemple, \tm{C-u 3 M-e} (si
+vous tapez \tm{C-u} sans aucun nombre, par défaut ce sera 4). 
+
+
+\subsection{Une intéractive
+  \texttt{multiply-by-seven}}\etchss{3}{3}{1}
+Regardons l'utilisation de la forme spéciale \tm{interactive} et
+ensuite la fonction \tm{message} dans la version interactive de
+\tm{multiply-by-seven}. Vous vous souviendrez que la définition de
+fonction ressemble à cela :
+
+ \tm{(defun multiply-by-seven (number)}   ; Interactive version.
+
+\tm{ ``Multiply NUMBER by seven.''}
+
+\tm{ (interactive ``p'')}
+
+\tm{ (message ``The result is \%d'' (* 7 number)))}
+
+Dans cette fonction, l'expression, \tm{(interactive ``p'')}, est une
+liste à deux éléments. Le \tm{``p''} dit à Emacs de passer l'argument
+préfixé à la fonction et d'utiliser sa valeur pour l'argument de la
+fonction. 
+
+L'argument sera un nombre. Cela signifie que le symbole \tm{number}
+sera lié au nombre dans la ligne :
+
+\tm{ (message ``The result is \%d'' (* 7 number))}
+
+Par exemple, si votre argument préfixé est 5, l'interprète Lisp
+évaluera la ligne comme si elle était :
+
+\tm{ (message ``The result is \%d'' (* 7 5))}
+
+(Si vous lisez ceci dans GNU Emacs, vous pouvez évaluer cette
+expression vous-même.) Tout d'abord, l'interprète évaluera la liste
+intérieure, qui est \tm{(* 7 5)}. Cela renvoie une valeur qui est
+35. Ensuite, il évaluera la liste extérieure, en passant les valeurs
+des deuxième éléments et les suivants de la liste à la fonction
+\tm{message}.
+
+Comme nous l'avons vu, \tm{message} est une fonction Emacs Lisp
+spécialement conçue pour l'envoi de message d'une ligne pour
+l'utilisateur. (Voir Section \cfchss{1}{8}{5} <<La fonction
+\tm{message}>>, page \cfchss{1}{8}{5}.) En résumé, la fonction
+\tm{message} imprime son premier argument dans la zone d'écho tel
+quel, sauf pour les occurrences de \tm{'\%d'} ou \tm{'\%s'} (et les
+diverses autres \%-séquences que nous n'avons pas encore
+mentionnées). Quand elle voit une séquence de contrôle, la fonction
+recherche au deuxième ou arguments suivants et imprime la valeur de
+l'argument à l'emplacement dans la chaîne où la séquence de contrôle
+est située. 
+
+Dans la fonction interactive \tm{multiply-by-seven}, la chaîne de
+contrôle est \tm{'\%d'}, qui requiert un nombre, et la valeur renvoyée
+par l'évaluation de \tm{(* 7 5)} est le nombre 35. En conséquence, le
+nombre 35 est imprimé à la place de \tm{'\%d'} et le message est
+\tm{'The result is 35'}.
+
+(Notez que lorsque vous appelez la fonction \tm{multiply-by-seven}, le
+message est imprimé sans guillemets, mais quand vous appelez
+\tm{message}, le texte est imprimé avec guillemets. C'est parce que la
+valeur renvoyée par \tm{message} est ce qui appraît dans la zone
+d'écho quand vous évaluez une expression dont le premier élément est
+\tm{message}; mais lorsqu'il est incorporé dans une fonction,
+\tm{message} imprime le texte comme un effet secondaire sans guillemets.)

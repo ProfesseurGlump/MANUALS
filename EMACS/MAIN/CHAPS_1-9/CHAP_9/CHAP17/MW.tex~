@@ -1,0 +1,10 @@
+\chapter{Fenêtrage multiple}
+
+\section{Concept de la fenêtre Emacs}
+\section{Partion de fenêtre}
+\section{Utilisation d'autre fenêtre}
+\section{Affichage dans une autre fenêtre}
+\section{Suppression et ré-arrangement de fenêtre}
+\section{Affichage de buffer dans une fenêtre}
+\subsection{Comment \texttt{display-buffer} fonctionne}
+\section{Fonctions commodes pour le traitement de fenêtre} 

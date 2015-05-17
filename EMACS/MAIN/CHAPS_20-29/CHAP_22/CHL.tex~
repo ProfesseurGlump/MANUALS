@@ -1,0 +1,443 @@
+\chapter{Commandes pour les langues humaines}\etch{22}
+
+Ce chapitre décrit les commandes Emacs qui agissent sur le texte, nous
+entendons par là des séquences de caractères dans un langage humain
+(par opposition à, disons, un langage de programmation
+informatique). Ces commandes agissent de façon à prendre en compte les
+conventions syntaxiques et stylistiques de langues humaines :
+conventions impliquant des mots, des phrases, des paragraphes, et les
+lettres majuscules. Il y a aussi des commandes pour le remplissage, ce
+qui signifie réorganisation des lignes d'un paragraphe à environ la
+même longueur. Ces commandes, tandis que destinées principalement pour
+l'édition de texte, sont aussi souvent utile pour les éditions de
+programmes.
+
+Emacs dispose de plusieurs modes majeurs pour l'édition de texte de
+langue humaine. Si le fichier contient du texte ordinaire, utilisez le
+mode texte, qui personnalise Emacs dans de petits moyens pour les
+conventions syntaxiques de texte. Le mode Contour fournit des
+commandes spéciales pour opérer sur le texte avec une structure
+hiérarchique. Le mode Org étend le mode Contour et transforme Emacs en
+organiseur à part entière : vous pouvez gérer des listes à faire,
+stocker des notes et les publier dans de nombreux formats. 
+
+Voir section\cfchs{22}{8} [Mode Contour], page\cfchsg{22}{8}.
+
+Emacs a d'autres modes majeurs pour le texte qui contient des
+commandes <<embarquées>>, comme \TeX{} ou \LaTeX{} (voir
+section\cfchs{22}{10}[Mode \TeX{}] page\cfchsg{22}{10}); HTML et SGML
+(voir section\cfchs{22}{11} [Mode HTML], page\cfchsg{22}{11}); XML
+(voir le nXML mode Info manuel, qui est distribué avec Emacs); et
+Groff et Nroff (voir section\cfchs{22}{12} [Mode nroff],
+page\cfchsg{22}{12}).
+
+Si vous avez besoin d'éditer des photos fabriquées à partir de
+caractères de texte (communément appelé <<l'art ASCII>>), utilisez le
+mode d'image, un mode majeur pour l'édition spéciale de telles
+images. Voir la section ``Picture Mode'' dans \textit{Specialized
+  Emacs Features}.
+
+\section{Mots}\etchs{22}{1}
+
+Emacs définit plusieurs commandes pour déplacer ou opérer sur les mots
+:
+\begin{center}
+  \begin{tabular}[m]{>{\ttfamily}ll}
+    M-f & avance d'un mot (\texttt{forward-word}) \\
+    M-b & recule d'un mot (\texttt{backward-word}) \\
+    M-d & supprime jusqu'à la fin d'un mot (\texttt{kill-word}) \\
+    M-DEL & supprime jusqu'au début du mot (\texttt{backward-kill-word}) \\
+    M-@ & marque la fin du prochain mot (\texttt{mark-word}) \\
+    M-t & transpose deux mots ou fait glisser un mot dans d'autres
+    (\texttt{transpose-words}). 
+  \end{tabular}
+\end{center}
+
+Remarquez comment ces touches forment une série qui est parallèle à la
+base de caractère \texttt{C-f}, \texttt{C-b}, \texttt{C-d}, \DEL et
+\texttt{C-t}. \texttt{M-@} est apparenté à \texttt{C-@}, qui est un
+alias pour \texttt{C-SPC}.
+
+Les commandes \texttt{M-f} (\texttt{forward-word}) et \texttt{M-b}
+(\texttt{backward-word}) se déplacent vers l'avant et vers l'arrière
+sur les mots. Ces séquences de touches à base de \texttt{Meta} sont
+analogues aux séquences de touches \texttt{C-f} et \texttt{C-b}, qui
+se déplacent sur des caractères simples. L'analogie s'étend aux
+arguments numériques, qui servent de nombre de répétions. \texttt{M-f}
+avec un argument négatif déplace vers l'arrière, et \texttt{M-o} avec
+un argument négatif déplace vers l'avant. Le mouvement vers l'avant
+s'arrête juste après la dernière lettre du mot, tout mouvement vers
+l'arrière s'arrête juste avant la première lettre. 
+
+\texttt{M-d} (\texttt{kill-word}) efface le mot après le point. Pour
+être précis, il tue tout du point jusqu'à l'endroit où \texttt{M-f} se
+déplacerait. Ainsi, si le point est au milieu d'un mot, \texttt{M-d}
+tue juste la partie après le point. Si certains signe de ponctuation
+viennent entre le point et le mot suivant, ils sont tués avec le
+mot. (Si vous souhaitez seuelement tuer le mot suivant, mais pas les
+signes de ponctuation avant, il suffit de faire \texttt{M-f} pour
+obtenir la fin, et de tuer le mot à l'envers avec \texttt{M-DEL}.)
+\texttt{M-d} prend des arguments comme \texttt{M-f}. 
+
+\texttt{M-DEL} (\texttt{backward-kill-word}) tue le mot avant le
+point. Il tue tout du point de retour à l'endroit où \texttt{M-b}
+serait déplacé. Par exemple, si le point est après l'espace en
+'\texttt{FOO, BAR}', il tue '\texttt{FOO, }'. Si vous souhaitez
+simplement tuer '\texttt{FOO}', et non la virgule et l'espace,
+utilisez \texttt{M-b M-d} à la place de \texttt{M-DEL}.
+
+\texttt{M-t} (\texttt{transpose-words}) échange le mot avant ou
+contenant le point avec le mot suivant. Les caractères de délimitation
+entre les mots ne se déplacent pas. Par exemple, '\texttt{FOO, BAR}'
+se transpose en '\texttt{BAR, FOO}' plutôt que '\texttt{BAR FOO,
+}'. Voir la section\cfchs{13}{2} [Transposition], page\cfchsg{13}{2},
+pour plus de détails sur la transposition.
+
+Pour opérer sur les mots avec une opération qui agit sur la région,
+utiliser la commande \texttt{M-@} (\texttt{mark-word}). Cette commande
+définit la marque où \texttt{M-f} serait déplacé. Voir la
+section\cfchs{8}{2} [Marquage des objets], page\cfchsg{8}{2}, pour
+plus d'informations sur cette commande. 
+
+La compréhension des commandes de mots des limites de mots est
+contrôlée par la table de syntaxe. Tout caractère peut, par exemple,
+être déclaré un mot délimiteur. Voir la section <<Tables de syntaxe>>
+dans le manuel Emacs Lisp référence.
+
+En outre, voir la section\cfchs{4}{9} [Infos de position],
+page\cfchsg{4}{9} pour les commandes \texttt{M-=} (\texttt{count-words-region})
+et \texttt{M-x count-words}, qui comptent et signalent le nombre de
+mots dans la région ou le tampon. 
+
+\section{Phrases}\etchs{22}{2}
+\section{Paragraphes}\etchs{22}{3}
+\section{Pages}\etchs{22}{4}
+\section{Remplissement du texte}\etchs{22}{5}
+\subsection{Mode auto-remplissage}\etchss{22}{5}{1}
+\subsection{Commandes explicites de remplissage}\etchss{22}{5}{2}
+\subsection{Préfixe de remplissage}\etchss{22}{5}{3}
+\subsection{Remplissage adaptable}\etchss{22}{5}{4}
+\section{Commandes de conversion de casse}\etchs{22}{6}
+\section{Mode texte}\etchs{22}{7}
+\section{Mode Contour}\etchs{22}{8}
+\subsection{Format hors-ligne}\etchss{22}{8}{1}
+\subsection{Commandes de contour}\etchss{22}{8}{2}
+\subsection{Commandes de visibilité hors-ligne}\etchss{22}{8}{3}
+\subsection{Vue hors-ligne en fenêtre multiple}\etchss{22}{8}{4}
+\subsection{\'Edition de pilage}\etchss{22}{8}{5}
+\section{Mode org}\etchs{22}{9}
+\subsection{Org comme organisateur}\etchss{22}{9}{1}
+\subsection{Org comme système d'autorisation}\etchss{22}{9}{2}
+
+\section{Mode \TeX{}}\etchs{22}{10}
+
+\newcommand{\tek}[1]{#1\TeX\xspace}
+
+Emacs fournit les principaux modes spéciaux pour l'édition de fichiers
+écrits en \TeX{} et ses formats connexes. \TeX{} est un formateur de
+texte puissant écrit par Donald Knuth ; comme GNU Emacs, il est un
+logiciel libre. \LaTeX{} est un format d'entrée simplifiée pour
+\TeX{}, mis en oeuvre en utilisant des macros de \TeX{}. \tek{Doc} est
+un format de fichier spécial dans lequel les sources \LaTeX{} sont
+écrits, combinant sources avec la documentation. \tek{Sli} est une
+forme spéciale obsolète de \LaTeX{}\footnote{Elle a été remplacé par
+  la classe de document '\texttt{slides}', qui vient avec \LaTeX{}}.
+
+Le mode \TeX{} a quatres variantes : Plain \TeX{} mode, \LaTeX{} mode,
+\tek{Doc}, et \tek{Sli} mode. Ces modes majeurs distincts ne diffèrent
+que légèrement, et sont conçus pour l'édition des quatre formats
+différents. Emacs sélectionne le mode approprié en examinant le
+contenu de la mémoire tampon. (Cela se fait par la commande
+\texttt{tex-mode}, qui est normalement appelée automatiquement lorsque
+vous visitez un fichier \TeX{}-like. Voir section\cfchs{20}{3}
+[Choisir un mode], page\cfchsg{20}{3}.) Si les contenus sont
+insuffisants pour déterminer, Emacs choisit le mode spécifié par la
+variable \texttt{tex-default-mode}; sa valeur par défaut est le
+\texttt{latex-mode}. Si Emacs ne devine pas correctement, vous pouvez
+sélectionner la variante correcte de \TeX{} en utilisant la commande
+\texttt{M-x plain-tex-mode}, \texttt{M-x latex-mode}, \texttt{M-x
+  slitex-mode}, ou \texttt{doctex-mode}. 
+
+Les sections suivantes documentent les caractéristiques du mode \TeX{}
+et de ses variantes. Il y a plusieurs paquets Emacs relatifs à \TeX{},
+qui ne sont pas documentés dans ce manuel : 
+\begin{itemize}
+\item \tek{Bib} mode est un mode majeur pour les fichiers \tek{Bib},
+  qui sont couramment utilisés pour garder les références
+  bibliographiques des documents \LaTeX{}. Pour plus d'informations,
+  voir la chaîne de document pour \texttt{bibtex-mode} 
+\item Le paquet \tek{Ref} fournit un mode mineur qui peut être utilisé
+  avec le mode \LaTeX{} pour gérer les références
+  bibliographiques. Pour plus d'informations, consultez le manuel
+  \tek{Ref} Info, qui est distribué avec Emacs.
+\item Le paquet \tek{AUC} fournit plus de fonctions avancées pour
+  éditer du \TeX{} et ses formats relatifs, incluant la capacité
+  de prévisualiser les équations \TeX{} dans les tampons
+  Emacs. Contrairement au mode \tek{Bib} et le paquet \tek{Ref},
+  \tek{AUC} n'est pas distribué avec Emacs par défaut. Il peut être
+  téléchargé via le menu des paquets (voir le chapitre\cfch{32}
+  [Paquets], page\cfchg{32}); une fois installé, consultez le manuel
+  de \tek{AUC}, qui est inclus dans le paquet.
+\end{itemize}
+
+
+\subsection{\'Edition de commandes \TeX{}}\etchss{22}{10}{1}
+
+\begin{center}
+  \begin{tabular}[m]{>{\ttfamily}lp{.8\linewidth}}
+    " & insère, selon le contexte, soit '``' soit  '''' ou ''''
+    (\texttt{tex-insert-quote}). \\
+    C-j & insère une coupure de paragraphe (deux nouvelles lignes) et
+    vérifie les équilibres d'accolades ou de signe dollar
+    (\texttt{tex-terminate-paragraph}). \\
+    M-x tex-validate-region & vérifie chaque paragraphe dans la région
+    pour des accolades asymétriques
+    ou signes de dollar.\\
+    C-c \{ & insère '\texttt{\{\}}' et
+      le point entre elles
+      (\texttt{tex-insert-braces})
+      \\
+    C-c \} & avance passé la
+  prochaine accolade fermante
+  inégalée (\texttt{up-list}).
+  \end{tabular}
+\end{center}
+
+Dans \TeX{}, le caractère '``' n'est
+normalement pas utilisé; mais à la
+place, les citations commencent avec
+'``' et finissent par '``'. Le mode \TeX{}
+lie donc la touche \texttt{``} à la
+commande
+\texttt{tex-insert-quote}. Cela
+insère `` `` après un espace ou une
+accolade ouverte, '``' après une
+barre oblique inverse, `` `` après
+tout caractère.
+
+Comme une exception, si vous tapez
+`` lorsque le texte avant le point
+est soit `` `` ou `` ``, Emacs
+remplace celle qui précède le texte
+avec un seul '``' caractère. Vous
+pouvez donc taper `` `` pour insérer
+'``', si jamais vous avez besoin de
+le faire. (Vous pouvez également
+utiliser \texttt{C-q} `` pour
+insérer ce caractère.)
+
+En mode \TeX{}, '\$' a un code de
+syntaxe spécial qui tente de
+comprendre la façon dont le mode
+mathématique de \TeX{} délimite les
+correspondances. Lorsque vous
+insérez un '\$', qui est destiné à
+quitter le mode de calcul, la
+position de l'appariement '\$', qui
+est entré en mode mathématique est
+affiché pendant une seconde. C'est
+la même fonctionnalité qui affiche
+l'accolade ouverte qui correspond à
+une accolade fermante qui est
+inséré. Toutefois, il est impossible
+de dire si un '\$' passe en mode
+maths ou le quitte; ainsi, lorsque
+vous insérez un '\$' qui entre dans
+le mode maths, le précédent <<\$>>
+est présenté comme si c'était un
+appariemement, même si elles sont
+effectivement indépendantes.
+
+\TeX{} utilise des accolades comme
+délimiteurs qui doivent
+correspondre. Certains utilisateur
+préfèrent garder les accolades
+équilibrées en tout temps, plutôt
+que de les insérer
+individuellement. Utiliser
+\texttt{C-c \{}
+(\texttt{tex-insert-braces}) pour
+insérer une paire d'accolades. Il
+laisse le point entre les deux
+accolades de sorte que vous pouvez
+insérer le texte qui appartient à
+l'intérieur. Ensuite, utilisez la
+commande \texttt{C-c \}}
+(\texttt{up-list}) pour avancer
+au-delà du accolade fermante.
+
+Il y a deux commandes de contrôle de
+la correspondance des
+accolades. \texttt{C-j}
+(\texttt{tex-terminate-paragraph})
+vérifie le paragraphe avant le
+point, et insère deux nouvelles
+lignes pour commencer un nouveau
+paragraphe. Il affiche un message
+dans la zone écho le cas échéant si
+une discordance est
+trouvée. \texttt{M-x
+  tex-validate-region} vérifie une
+région, paragraphe par
+paragraphe. Les erreurs sont
+répertoriées dans un tampon *Occur*;
+vous pouvez utiliser les commandes
+habituelles dans ce tampon, comme
+\texttt{C-c C-c} pour visiter un
+décalage particulier (voir
+section\cfchs{12}{11} [Autres
+recherche répétition],
+page\cfchsg{12}{11}). 
+
+Notez que les commandes Emacs
+comptent les crochets et les parenthèses
+en mode \TeX{}, pas seulement les
+accolades. Ce n'est pas strictement
+exact à des fins de vérification de
+syntaxe \TeX{}. Cependant, les
+parenthèses et crochets sont
+susceptibles d'être utilisés dans le
+texte comme des séparateurs
+correspondant, et il est utile pour
+les différentes commandes de
+mouvement et affichage automatique
+de correspondance de travailler avec
+eux. 
+
+
+
+\subsection{\'Edition de commandes
+  \LaTeX{}}\etchss{22}{10}{2}
+
+
+\MakeShortVerb{=}
+
+Le mode \LaTeX{} offre quelques
+fonctionnalités supplémentaires non
+applicables aux plain \TeX{} :
+\begin{center}
+  \begin{tabular}[m]{>{\ttfamily}lp{.8\linewidth}}
+    C-c C-o & insérez '=\begin=' et
+      '=\end=' pour le bloc de
+    \LaTeX{} et point de position
+    sur une ligne entre eux
+    (\texttt{tex-latex-bloc}) \\
+    C-c C-e & ferme le bloc \LaTeX{}
+    le plus encapsulé pas encre
+    fermé (\texttt{tex-close-latex-block}).
+  \end{tabular}
+\end{center}
+
+En entrée de \LaTeX{}, les
+étiquettes '=\begin=' et
+  '=\end=', laissant une
+ligne blanche entre les deux et le
+point de s'y installer.
+
+Lors de la saisie de l'argument de
+type bloc \texttt{C-c C-o}, vous
+pouvez utiliser les commandes de
+complétion habituelles (voir
+section\cfchs{5}{4} [Complétion],
+page\cfchsg{5}{4}). La liste
+d'achèvement par défaut contient les
+types de blocs de \LaTeX{}
+standard. Si vous voulez des blocs
+supplémentaires pour l'achèvement,
+personnalisez la variable liste
+\texttt{latex-block-names}.
+
+En entrée de \LaTeX{}, les
+étiquettes '=\begin=' et
+  '=\end=', doivent
+s'équilibrer. Vous pouvez utiliser
+\texttt{C-c C-e}
+(\texttt{tex-close-latex-block})
+pour insérer une balise '=\end=' qui
+correspond à la dernière inégalée
+'=\begin='. Il décale aussi le
+  '=\end=' pour correspondre à la
+balise '=\begin=', et insère un saut
+  de ligne après la balise '=\end='
+si les point est au début de la
+ligne. Le mode mineur
+\texttt{latex-electric-env-pair-mode}
+insère automatiquement un '=\end='
+ou '=\begin=' pour vous lorsque vous
+  tapez celui correspondant.
+
+
+\subsection{Impression de commandes
+  \TeX{}}\etchss{22}{10}{3}
+
+Vous pouvez appeler \TeX{} comme un
+sous-processus de Emacs, soit
+fournir tout le contenu de la
+mémoire tampon ou seulement une
+parte de celle-ci (par exemple, un
+chapitre d'un document important). 
+
+\begin{center}
+  \begin{tabular}[m]{>{\ttfamily}lp{.8\linewidth}}
+    C-c C-b & invoque \TeX{} dans le
+    tampon courant dans son entier
+    (\texttt{tex-buffer}). \\
+    C-c C-r & invoque \TeX{} dans la
+    région courante, avec l'en-tête
+    du tampon
+    (\texttt{tex-region}). \\
+    C-c C-f & invoque \TeX{} dans le
+    fichier courant
+    (\texttt{tex-file}). \\
+    C-c C-v & prévisualise la sortie
+    depuis la dernière commande \texttt{C-c
+      C-r}, \texttt{C-c C-b}, ou
+    \texttt{C-c C-f}
+    (\texttt{tex-view}).\\
+    C-c C-p & imprime la sortie
+    depuis la dernière commande \texttt{C-c
+      C-r}, \texttt{C-c C-b}, ou
+    \texttt{C-c C-f}
+    (\texttt{tex-print}).\\
+    C-c TAB & invoque \tek{Bib} sur
+    le fichier courant
+    (\texttt{tex-bibtex-file}). \\
+    C-c C-l & recentre la fenêtre
+    d'affichage de sortie depuis
+    \TeX{} de sorte que la dernière
+    ligne puisse être vue
+    (\texttt{tex-recenter-output-buffer}). \\
+    C-c C-k & tue les sous-processus
+    \TeX{}
+    (\texttt{tex-kill-job}). \\
+    C-c C-c & invoque quelques
+    autres commandes de compilation
+    sur le tampon courant dans son
+    ensemble (\texttt{tex-compile}).
+  \end{tabular}
+\end{center}
+
+
+\subsection{Mode divers \TeX{}}\etchss{22}{10}{4}
+\section{Modes SGML et HTML}\etchs{22}{11}
+\section{Mode nroff}\etchs{22}{12}
+\section{Texte enrichi}\etchs{22}{13}
+\subsection{Mode enrichi}\etchs{22}{14}
+\subsection{Nouvelles lignes hard et soft}\etchs{22}{15}
+\subsection{Information du format d'édition}\etchs{22}{16}
+\subsection{Faces en texte enrichi}\etchs{22}{17}
+\subsection{Indentation en texte enrichi}\etchs{22}{18}
+\subsection{Justification en texte enrichi}\etchs{22}{19}
+\subsection{Réglages d'autres propriétés de textes}\etchs{22}{20}
+\section{\'Edition de tables basées sur du texte}\etchs{22}{21}
+\subsection{Qu'est-ce qu'une table basée sur du texte
+  ?}\etchss{22}{21}{1} 
+\subsection{Création de table}\etchss{22}{21}{2} 
+\subsection{Table de reconnaissance}\etchss{22}{21}{3} 
+\subsection{Commandes pour les tableaux de
+  cellules}\etchss{22}{21}{4}  
+\subsection{Justification des cellules}\etchss{22}{21}{5} 
+\subsection{Table lignes et colonnes}\etchss{22}{21}{6} 
+\subsection{Conversion entre texte plein et tables}\etchss{22}{21}{7} 
+\subsection{Diverses tables}\etchss{22}{21}{8} 
+\section{\'Edition deux colonnes}\etchs{22}{22} 

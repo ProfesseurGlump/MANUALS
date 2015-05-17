@@ -1,0 +1,86 @@
+\section{Installer une définition de fonction}\etchs{3}{2}
+
+Si vous lisez ceci à l'intérieur d'Info dans Emacs, vous pouvez
+essayer la fonction \tm{multiply-by-seven} en évaluant d'abord la
+définition de fonction puis en évaluant \tm{(multiply-by-seven
+  3)}. Une copie de la définition de la fonction suivra. Placez le
+curseur après la dernière parenthèse de la définition de fonction et
+tapez \tm{C-x C-e}. Lorsque vous faites cela, \tm{multiply-by-seven}
+apparaîtra dans la zone d'écho. (Ce que cela signifie c'est que
+lorsqu'une définition de fonction est évaluée, la valeur renvoyée est
+le nom de la fonction définie.) En même temps, cette action installe
+la définition de fonction. 
+
+\tm{(defun multiply-by-seven (number)}
+
+\tm{   ``Multiply NUMBER by seven.''}
+
+\tm{ (* 7 number))}
+
+En évaluant ce \tm{defun}, vous venez d'installer
+\tm{multiply-by-seven} dans Emacs. La fonction fait désormais autant
+partie de Emacs que \tm{forward-word} ou toute autre fonction
+d'édition que vous utilisez. (\tm{multiply-by-seven} restera installé
+jusqu'à ce que vous quittiez Emacs. Pour recharger le code
+automatiquement chaque fois que vous démarrez Emacs, voir Section
+\cfchs{3}{5} ``Installation permanente de code'', page \cfchs{3}{5}.)
+
+Vous pouvez voir l'effet de l'installation de \tm{multiply-by-seven}
+en évaluant l'échantillon suivant. Placez le curseur après
+l'expression suivante et tapez \tm{C-x C-e}. Le nombre 21 apparaîtra
+dans la zone d'écho.
+
+\tm{(multiply-by-seven 3)}
+
+Si vous le souhaitez, vous pouvez lire la documentation de la fonction
+en tapant \tm{C-h f (describe-function)} puis le nom de la fonction,
+\tm{multiply-by-seven}. Lorsque vous faîtes cela, une fenêtre
+\tm{*Help*} apparaîtra sur votre écran qui dit :
+
+\tm{multiply-by-seven is a Lisp function.}
+
+\tm{(multiply-by-seven NUMBER)}
+
+\tm{Multiply NUMBER by seven.}
+
+(Pour revenir à une fenêtre simple sur votre écran, tapez \tm{C-x 1}.)
+ 
+\subsection{Changer une définition de fonction}\etchss{3}{2}{1}
+
+Si vous souhaitez modifier le code dans \tm{multiply-by-seven}, alors
+réécrivez-le. Pour installer la nouvelle version à la place de
+l'ancienne, évaluez à nouveau la définition de fonction. Ceci est la
+façon dont vous modifiez le code dans Emacs. C'est très simple.
+
+\`A titre d'exemple, vous pouvez modifier la fonction
+\tm{multiply-by-seven} de sorte qu'elle ajoute le nombre à lui-même
+sept fois au lieu de multiplier le nombre par sept. Cela produit le
+même résultat, mais par un chemin différent. En même temps, nous
+ajouterons un commentaire à ce code; un commentaire est un texte que
+l'interprète Lisp ignore, mais qu'un lecteur humain peut trouver utile
+ou instructif. Le commentaire est <<seconde version>>.
+
+\tm{(defun multiply-by-seven (number)   ;} Second version.
+
+\tm{ ``Multiply NUMBER by seven.''}
+
+\tm{ (+ number number number number number number number))}
+
+Le commentaire suit un point-virgule, '\tm{;}'. En Lisp, tout sur une
+ligne qui suit un point-virgule est un commentaire. La fin de ligne
+est la fin du commentaire. Pour étirer un commentaire sur deux ou
+plusieurs lignes, chaque ligne doit commencer par un point-virgule.
+
+Voir Section 16.3 ``Commencer un fichier \tm{.emacs}'', page 187, et
+Section ``Commentaires'' dans \textit{The GNU Emacs Lisp Reference
+  Manual}, pour plus de renseignements à propos des commentaires.
+
+Vous pouvez installer cette version de la fonction
+\tm{multiply-by-seven} en l'évaluant de la même manière que vous avez
+évalué la première fonction : placez le curseur après la dernière
+parenthèse et tapez \tm{C-x C-e}.
+
+En résumé, voici comment vous écrivez du code en Emacs Lisp: vous
+écrivez une fonction; vous l'installez; vous la testez; et ensuite
+vous faites des corrections ou améliorations et vous l'installez à
+nouveau. 

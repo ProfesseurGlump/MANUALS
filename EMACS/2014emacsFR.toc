@@ -1,0 +1,644 @@
+\select@language {french}
+\contentsline {section}{Préface}{xvi}{section*.2}
+\contentsline {section}{Distribution}{xvii}{section*.4}
+\contentsline {section}{Introduction}{xviii}{section*.6}
+\contentsline {chapter}{\numberline {1}Organisation de l'écran}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Point}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}La zone d'écho}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Le mode ligne}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}La barre de menu}{5}{section.1.4}
+\contentsline {chapter}{\numberline {2}Caractères, touches et commandes}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Type de saisies}{7}{section.2.1}
+\contentsline {section}{\numberline {2.2}Touches (du clavier)}{8}{section.2.2}
+\contentsline {section}{\numberline {2.3}Touches et commandes}{8}{section.2.3}
+\contentsline {chapter}{\numberline {3}Entrer et sortir de Emacs}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Entrer dans Emacs}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}Sortir de Emacs}{12}{section.3.2}
+\contentsline {chapter}{\numberline {4}\'Edition de commandes de base}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}Insertion de texte}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}Changement d'emplacement du curseur}{16}{section.4.2}
+\contentsline {section}{\numberline {4.3}Effacement du texte}{19}{section.4.3}
+\contentsline {section}{\numberline {4.4}Retour en arrière des exécutions (undoing changes)}{19}{section.4.4}
+\contentsline {section}{\numberline {4.5}Fichiers}{20}{section.4.5}
+\contentsline {section}{\numberline {4.6}Aide}{20}{section.4.6}
+\contentsline {section}{\numberline {4.7}Lignes blanches}{20}{section.4.7}
+\contentsline {section}{\numberline {4.8}Continuité des lignes}{21}{section.4.8}
+\contentsline {section}{\numberline {4.9}Information sur la position du curseur}{22}{section.4.9}
+\contentsline {section}{\numberline {4.10}Arguments numériques}{23}{section.4.10}
+\contentsline {section}{\numberline {4.11}Répétition de commande}{24}{section.4.11}
+\contentsline {chapter}{\numberline {5}Le minibuffer ou mini-tampon}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}Utilisation du mini-tampon}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}Minibuffer pour les noms de fichiers}{26}{section.5.2}
+\contentsline {section}{\numberline {5.3}\'Edition dans le minibuffer}{26}{section.5.3}
+\contentsline {section}{\numberline {5.4}Complétion (ou complémentation)}{27}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Exemple de complétion}{28}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Commandes de complétion}{28}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Sortie de complétion}{29}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Comment sont choisies les alternatives de complétion}{30}{subsection.5.4.4}
+\contentsline {subsection}{\numberline {5.4.5}Options de complétion}{31}{subsection.5.4.5}
+\contentsline {section}{\numberline {5.5}Historique du minibuffer}{32}{section.5.5}
+\contentsline {section}{\numberline {5.6}Répétition des commandes du minibuffer}{33}{section.5.6}
+\contentsline {section}{\numberline {5.7}Création de mot de passe}{34}{section.5.7}
+\contentsline {section}{\numberline {5.8}Oui ou Non du prompt (invite de commande)}{34}{section.5.8}
+\contentsline {chapter}{\numberline {6}Lancer des commandes par leur nom}{37}{chapter.6}
+\contentsline {chapter}{\numberline {7}Aide}{39}{chapter.7}
+\contentsline {section}{\numberline {7.1}Documentation pour une clé (touche)}{42}{section.7.1}
+\contentsline {section}{\numberline {7.2}Aide par commande ou par nom de variable}{42}{section.7.2}
+\contentsline {section}{\numberline {7.3}Apropos}{43}{section.7.3}
+\select@language {english}
+\select@language {french}
+\contentsline {section}{\numberline {7.4}Commandes du mode aide}{44}{section.7.4}
+\contentsline {section}{\numberline {7.5}Mot-clé pour la recherche d'extension}{45}{section.7.5}
+\contentsline {section}{\numberline {7.6}Aide pour les langues internationales}{45}{section.7.6}
+\contentsline {section}{\numberline {7.7}Autres commandes d'aide}{45}{section.7.7}
+\contentsline {section}{\numberline {7.8}Fichiers d'aide}{45}{section.7.8}
+\contentsline {section}{\numberline {7.9}Aide dans du texte actif et infobulles}{45}{section.7.9}
+\contentsline {chapter}{\numberline {8}Sélection et région}{47}{chapter.8}
+\contentsline {section}{\numberline {8.1}Réglage des sélections}{47}{section.8.1}
+\contentsline {section}{\numberline {8.2}Commandes pour sélectionner des objets textuels}{47}{section.8.2}
+\contentsline {section}{\numberline {8.3}Opération sur les régions}{47}{section.8.3}
+\contentsline {section}{\numberline {8.4}L'anneau de marque}{47}{section.8.4}
+\contentsline {section}{\numberline {8.5}Sélection globale}{47}{section.8.5}
+\contentsline {section}{\numberline {8.6}Changement de sélection}{47}{section.8.6}
+\contentsline {section}{\numberline {8.7}Mise hors service de la coupure en mode sélection}{47}{section.8.7}
+\contentsline {chapter}{\numberline {9}Couper et déplacer du texte}{49}{chapter.9}
+\contentsline {section}{\numberline {9.1}Suppression et coupure}{49}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Suppression}{49}{subsection.9.1.1}
+\contentsline {subsection}{\numberline {9.1.2}Coupure par ligne}{49}{subsection.9.1.2}
+\contentsline {subsection}{\numberline {9.1.3}Autres commandes de coupure}{49}{subsection.9.1.3}
+\contentsline {subsection}{\numberline {9.1.4}Options de coupure}{49}{subsection.9.1.4}
+\contentsline {section}{\numberline {9.2}Collage}{49}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}L'anneau de coupure}{49}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Coller les coupures précédentes}{49}{subsection.9.2.2}
+\contentsline {subsection}{\numberline {9.2.3}Ajout de coupures}{49}{subsection.9.2.3}
+\contentsline {section}{\numberline {9.3}<<Couper et coller>> opération sur l'affichage graphique}{49}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}Usage du clippboard (menu avec boutons)}{49}{subsection.9.3.1}
+\contentsline {subsection}{\numberline {9.3.2}Couper et coller avec d'autres applications fenêtre}{49}{subsection.9.3.2}
+\contentsline {subsection}{\numberline {9.3.3}Sélection secondaire}{49}{subsection.9.3.3}
+\contentsline {section}{\numberline {9.4}Accumulation de texte}{49}{section.9.4}
+\contentsline {section}{\numberline {9.5}Rectangles}{49}{section.9.5}
+\contentsline {section}{\numberline {9.6}CUA raccourcis}{49}{section.9.6}
+\contentsline {chapter}{\numberline {10}Enregistrements}{51}{chapter.10}
+\contentsline {section}{\numberline {10.1}Sauvergarder les positions en enregistrant}{51}{section.10.1}
+\contentsline {section}{\numberline {10.2}Sauvegarder le texte en enregistrant}{51}{section.10.2}
+\contentsline {section}{\numberline {10.3}Sauvegarder des rectangles en enregistrant}{51}{section.10.3}
+\contentsline {section}{\numberline {10.4}Sauvegarder des configurations de fenêtres en enregistrant}{51}{section.10.4}
+\contentsline {section}{\numberline {10.5}Garder les nombres en enregistrant}{51}{section.10.5}
+\contentsline {section}{\numberline {10.6}Garder les noms de fichiers en enregistrant}{51}{section.10.6}
+\contentsline {section}{\numberline {10.7}Signets}{51}{section.10.7}
+\contentsline {chapter}{\numberline {11}Contrôle de l'affichage}{53}{chapter.11}
+\contentsline {section}{\numberline {11.1}Défilement (de l'écran)}{54}{section.11.1}
+\contentsline {section}{\numberline {11.2}Recentrage}{54}{section.11.2}
+\contentsline {section}{\numberline {11.3}Défilement automatique}{54}{section.11.3}
+\contentsline {section}{\numberline {11.4}Défilement horizontal}{54}{section.11.4}
+\contentsline {section}{\numberline {11.5}Rétrécissement}{54}{section.11.5}
+\contentsline {section}{\numberline {11.6}Mode de vue}{54}{section.11.6}
+\contentsline {section}{\numberline {11.7}Mode de suivie}{54}{section.11.7}
+\contentsline {section}{\numberline {11.8}Visages de texte}{54}{section.11.8}
+\contentsline {section}{\numberline {11.9}Couleurs des visages}{54}{section.11.9}
+\contentsline {section}{\numberline {11.10}Visage standard}{54}{section.11.10}
+\contentsline {section}{\numberline {11.11}\'Echelle du texte}{54}{section.11.11}
+\contentsline {section}{\numberline {11.12}Mode fonte verrouillée}{54}{section.11.12}
+\contentsline {section}{\numberline {11.13}Surlignage interactif}{54}{section.11.13}
+\contentsline {section}{\numberline {11.14}Bords de fenêtres}{54}{section.11.14}
+\contentsline {section}{\numberline {11.15}Affichage des bordures}{54}{section.11.15}
+\contentsline {section}{\numberline {11.16}Espaces blancs inutiles}{54}{section.11.16}
+\contentsline {section}{\numberline {11.17}Affichage sélectif}{54}{section.11.17}
+\contentsline {section}{\numberline {11.18}Caractéristiques des options du mode ligne}{54}{section.11.18}
+\contentsline {section}{\numberline {11.19}Comment le texte est affiché}{54}{section.11.19}
+\contentsline {section}{\numberline {11.20}Affichage du curseur}{54}{section.11.20}
+\contentsline {section}{\numberline {11.21}Troncature de ligne}{54}{section.11.21}
+\contentsline {section}{\numberline {11.22}Mode ligne visuelle}{54}{section.11.22}
+\contentsline {section}{\numberline {11.23}Personnalisation de l'affichage}{54}{section.11.23}
+\contentsline {chapter}{\numberline {12}Recherche et remplacement}{55}{chapter.12}
+\contentsline {section}{\numberline {12.1}Recherche incrémentale}{56}{section.12.1}
+\contentsline {subsection}{\numberline {12.1.1}Base de la recherche incrémentale}{56}{subsection.12.1.1}
+\contentsline {subsection}{\numberline {12.1.2}Répétition de recherche incrémentale}{56}{subsection.12.1.2}
+\contentsline {subsection}{\numberline {12.1.3}Erreurs en recherche incrémentale}{56}{subsection.12.1.3}
+\contentsline {subsection}{\numberline {12.1.4}Saisie spéciale pour la recherche incrémentale}{56}{subsection.12.1.4}
+\contentsline {subsection}{\numberline {12.1.5}Recherche avec collage}{56}{subsection.12.1.5}
+\contentsline {subsection}{\numberline {12.1.6}Défilement durant la recherche incrémentale}{56}{subsection.12.1.6}
+\contentsline {subsection}{\numberline {12.1.7}Recherche dans le minibuffer}{56}{subsection.12.1.7}
+\contentsline {section}{\numberline {12.2}Recherche non incrémentale}{56}{section.12.2}
+\contentsline {section}{\numberline {12.3}Recherche de mot}{56}{section.12.3}
+\contentsline {section}{\numberline {12.4}Recherche de symbole}{56}{section.12.4}
+\contentsline {section}{\numberline {12.5}Recherche avec une expression régulière}{56}{section.12.5}
+\contentsline {section}{\numberline {12.6}Syntaxe des expressions régulières}{56}{section.12.6}
+\contentsline {section}{\numberline {12.7}Anti-slash (ou contre-oblique) dans une expression régulière}{56}{section.12.7}
+\contentsline {section}{\numberline {12.8}Exemple d'expression régulière (Regexp)}{56}{section.12.8}
+\contentsline {section}{\numberline {12.9}Recherche et casse}{56}{section.12.9}
+\contentsline {section}{\numberline {12.10}Commandes de remplacement}{56}{section.12.10}
+\contentsline {subsection}{\numberline {12.10.1}Remplacement sans condition}{56}{subsection.12.10.1}
+\contentsline {subsection}{\numberline {12.10.2}Remplacement d'une regexp}{56}{subsection.12.10.2}
+\contentsline {subsection}{\numberline {12.10.3}Commandes de remplacement et casse}{56}{subsection.12.10.3}
+\contentsline {subsection}{\numberline {12.10.4}Requête de remplacement}{56}{subsection.12.10.4}
+\contentsline {section}{\numberline {12.11}Autres commandes de recherches et boucles}{56}{section.12.11}
+\contentsline {chapter}{\numberline {13}Commandes pour corriger les coquilles}{57}{chapter.13}
+\contentsline {section}{\numberline {13.1}Undo (annulation de la dernière action)}{57}{section.13.1}
+\contentsline {section}{\numberline {13.2}Transposition de texte}{57}{section.13.2}
+\contentsline {section}{\numberline {13.3}Conversion de casse}{57}{section.13.3}
+\contentsline {section}{\numberline {13.4}Détecter et corriger l'orthographe}{57}{section.13.4}
+\contentsline {chapter}{\numberline {14}Macros clavier ou raccourci}{59}{chapter.14}
+\contentsline {section}{\numberline {14.1}Utilisation basique}{59}{section.14.1}
+\contentsline {section}{\numberline {14.2}L'anneau des raccourcis clavier (macros)}{59}{section.14.2}
+\contentsline {section}{\numberline {14.3}Le compteur des raccourcis clavier (macros)}{59}{section.14.3}
+\contentsline {section}{\numberline {14.4}Exécution de macros avec variantes}{59}{section.14.4}
+\contentsline {section}{\numberline {14.5}Nommer et enregistrer des macros}{59}{section.14.5}
+\contentsline {section}{\numberline {14.6}\'Edition de macro}{59}{section.14.6}
+\contentsline {section}{\numberline {14.7}\'Edition point par point d'une macro}{59}{section.14.7}
+\contentsline {chapter}{\numberline {15}Traitement de fichier}{61}{chapter.15}
+\contentsline {section}{\numberline {15.1}Noms de fichier}{62}{section.15.1}
+\contentsline {section}{\numberline {15.2}Visionnage de fichiers}{62}{section.15.2}
+\contentsline {section}{\numberline {15.3}Sauvegarde de fichiers}{62}{section.15.3}
+\contentsline {subsection}{\numberline {15.3.1}Commandes de sauvergardes des fichiers}{62}{subsection.15.3.1}
+\contentsline {subsection}{\numberline {15.3.2}Fichiers de sauvegardes}{62}{subsection.15.3.2}
+\contentsline {subsubsection}{Sauvegardes uniques ou numérotées}{62}{section*.8}
+\contentsline {subsubsection}{Destruction automatique des sauvegardes}{62}{section*.9}
+\contentsline {subsubsection}{Copie vs. renommage}{62}{section*.10}
+\contentsline {subsection}{\numberline {15.3.3}Personnalisation de la sauvegarde de fichier}{62}{subsection.15.3.3}
+\contentsline {subsection}{\numberline {15.3.4}Protection contre l'édition simultanée}{62}{subsection.15.3.4}
+\contentsline {subsection}{\numberline {15.3.5}Fichiers cachés}{62}{subsection.15.3.5}
+\contentsline {subsection}{\numberline {15.3.6}Mise à jour automatique de l'heure}{62}{subsection.15.3.6}
+\contentsline {section}{\numberline {15.4}Retour vers un buffer}{62}{section.15.4}
+\contentsline {section}{\numberline {15.5}Sauvegarde automatique : protection contre les désastres}{62}{section.15.5}
+\contentsline {subsection}{\numberline {15.5.1}Sauvegarde automatique des fichiers}{62}{subsection.15.5.1}
+\contentsline {subsection}{\numberline {15.5.2}Contrôle de la sauvegarde automatique}{62}{subsection.15.5.2}
+\contentsline {subsection}{\numberline {15.5.3}Récupérer des données à partir des sauvegardes automatiques}{62}{subsection.15.5.3}
+\contentsline {section}{\numberline {15.6}Alias}{62}{section.15.6}
+\contentsline {section}{\numberline {15.7}Répertoires}{62}{section.15.7}
+\contentsline {section}{\numberline {15.8}Comparaison de fichiers}{62}{section.15.8}
+\contentsline {section}{\numberline {15.9}Mode diff}{62}{section.15.9}
+\contentsline {section}{\numberline {15.10}Opérations diverses sur les fichiers}{62}{section.15.10}
+\contentsline {section}{\numberline {15.11}Accéder à des fichiers compressés}{62}{section.15.11}
+\contentsline {section}{\numberline {15.12}Fichier archives}{62}{section.15.12}
+\contentsline {section}{\numberline {15.13}Fichiers distants (sur une autre machine)}{62}{section.15.13}
+\contentsline {section}{\numberline {15.14}Nom de fichier entre guillemet}{62}{section.15.14}
+\contentsline {section}{\numberline {15.15}Nom de fichier cache}{62}{section.15.15}
+\contentsline {section}{\numberline {15.16}Fonctions commodes pour trouver des fichiers}{62}{section.15.16}
+\contentsline {section}{\numberline {15.17}Ensemble de fichiers}{62}{section.15.17}
+\contentsline {chapter}{\numberline {16}Utilisation de multiple buffers (ou tampons)}{63}{chapter.16}
+\contentsline {section}{\numberline {16.1}Création et sélection de buffers}{63}{section.16.1}
+\contentsline {section}{\numberline {16.2}Listing des buffers existants}{63}{section.16.2}
+\contentsline {section}{\numberline {16.3}Diverses opérations sur les buffers}{63}{section.16.3}
+\contentsline {section}{\numberline {16.4}Fermeture de buffers}{63}{section.16.4}
+\contentsline {section}{\numberline {16.5}Opération sur plusieurs buffers}{63}{section.16.5}
+\contentsline {section}{\numberline {16.6}Buffers indirects}{63}{section.16.6}
+\contentsline {section}{\numberline {16.7}Fonctions commodes et personnalisation du traitement de buffer}{63}{section.16.7}
+\contentsline {subsection}{\numberline {16.7.1}Création de noms de buffer unique}{63}{subsection.16.7.1}
+\contentsline {subsection}{\numberline {16.7.2}Changer entre les buffers en utilisant des sous-chaînes}{63}{subsection.16.7.2}
+\contentsline {subsection}{\numberline {16.7.3}Personnalisation de menus de buffer}{63}{subsection.16.7.3}
+\contentsline {chapter}{\numberline {17}Fenêtrage multiple}{65}{chapter.17}
+\contentsline {section}{\numberline {17.1}Concept de la fenêtre Emacs}{65}{section.17.1}
+\contentsline {section}{\numberline {17.2}Partion de fenêtre}{65}{section.17.2}
+\contentsline {section}{\numberline {17.3}Utilisation d'autre fenêtre}{65}{section.17.3}
+\contentsline {section}{\numberline {17.4}Affichage dans une autre fenêtre}{65}{section.17.4}
+\contentsline {section}{\numberline {17.5}Suppression et ré-arrangement de fenêtre}{65}{section.17.5}
+\contentsline {section}{\numberline {17.6}Affichage de buffer dans une fenêtre}{65}{section.17.6}
+\contentsline {subsection}{\numberline {17.6.1}Comment \texttt {display-buffer} fonctionne}{65}{subsection.17.6.1}
+\contentsline {section}{\numberline {17.7}Fonctions commodes pour le traitement de fenêtre}{65}{section.17.7}
+\contentsline {chapter}{\numberline {18}Diapositives et affichages graphique}{67}{chapter.18}
+\contentsline {section}{\numberline {18.1}Commandes d'édition avec la souris}{68}{section.18.1}
+\contentsline {section}{\numberline {18.2}Commandes pour les mots et les lignes avec la souris}{68}{section.18.2}
+\contentsline {section}{\numberline {18.3}Références avec la souris}{68}{section.18.3}
+\contentsline {section}{\numberline {18.4}Clics de souris pour les menus}{68}{section.18.4}
+\contentsline {section}{\numberline {18.5}Commandes à la souris en mode ligne}{68}{section.18.5}
+\contentsline {section}{\numberline {18.6}Création de diapositives}{68}{section.18.6}
+\contentsline {section}{\numberline {18.7}Fontes}{68}{section.18.7}
+\contentsline {section}{\numberline {18.8}Barre de vitesse des diapositives}{68}{section.18.8}
+\contentsline {section}{\numberline {18.9}Affichage multiple}{68}{section.18.9}
+\contentsline {section}{\numberline {18.10}Paramètres de diapositive}{68}{section.18.10}
+\contentsline {section}{\numberline {18.11}Barres de défilement}{68}{section.18.11}
+\contentsline {section}{\numberline {18.12}Glisser et déposer}{68}{section.18.12}
+\contentsline {section}{\numberline {18.13}Barre des menus}{68}{section.18.13}
+\contentsline {section}{\numberline {18.14}Barre d'outils}{68}{section.18.14}
+\contentsline {section}{\numberline {18.15}Utilisation des boîtes de dialogue}{68}{section.18.15}
+\contentsline {section}{\numberline {18.16}Infobulles}{68}{section.18.16}
+\contentsline {section}{\numberline {18.17}\'Evitement de souris}{68}{section.18.17}
+\contentsline {section}{\numberline {18.18}Terminaux sans fenêtre}{68}{section.18.18}
+\contentsline {section}{\numberline {18.19}Utilisation de la souris dans les terminaux textuels}{68}{section.18.19}
+\contentsline {chapter}{\numberline {19}Caractères internationaux et paramétrages}{69}{chapter.19}
+\contentsline {section}{\numberline {19.1}Introduction des ensembles de caractères internationaux}{70}{section.19.1}
+\contentsline {section}{\numberline {19.2}Mise hors service des caractères multi-octets}{72}{section.19.2}
+\contentsline {section}{\numberline {19.3}Environnements de langues}{72}{section.19.3}
+\contentsline {section}{\numberline {19.4}Méthodes de saisie}{72}{section.19.4}
+\contentsline {section}{\numberline {19.5}Sélection d'une méthode de saisie}{72}{section.19.5}
+\contentsline {section}{\numberline {19.6}Systèmes de codage}{72}{section.19.6}
+\contentsline {section}{\numberline {19.7}Reconnaissance des systèmes de codage}{72}{section.19.7}
+\contentsline {section}{\numberline {19.8}Spécification du fichier du système de codage}{72}{section.19.8}
+\contentsline {section}{\numberline {19.9}Choix des systèmes de codage des sorties}{72}{section.19.9}
+\contentsline {section}{\numberline {19.10}Spécification du système de codage pour un fichier texte}{72}{section.19.10}
+\contentsline {section}{\numberline {19.11}Systèmes de codage pour la communication inter-processus}{72}{section.19.11}
+\contentsline {section}{\numberline {19.12}Systèmes de codage des noms de fichiers}{72}{section.19.12}
+\contentsline {section}{\numberline {19.13}Systèmes de codage pour les terminaux E/S}{72}{section.19.13}
+\contentsline {section}{\numberline {19.14}Ensembles de fontes}{72}{section.19.14}
+\contentsline {section}{\numberline {19.15}Définition d'ensemble de fontes}{72}{section.19.15}
+\contentsline {section}{\numberline {19.16}Modification d'ensemble de fontes}{72}{section.19.16}
+\contentsline {section}{\numberline {19.17}Caractères inaffichable}{72}{section.19.17}
+\contentsline {section}{\numberline {19.18}Ensemble de caractères}{72}{section.19.18}
+\contentsline {section}{\numberline {19.19}\'Edition bidirectionnelle}{72}{section.19.19}
+\contentsline {chapter}{\numberline {20}Modes majeur et mineur}{73}{chapter.20}
+\contentsline {section}{\numberline {20.1}Modes majeur}{73}{section.20.1}
+\contentsline {section}{\numberline {20.2}Modes mineur}{73}{section.20.2}
+\contentsline {section}{\numberline {20.3}Choix des modes de fichier}{73}{section.20.3}
+\contentsline {chapter}{\numberline {21}Indentation}{75}{chapter.21}
+\contentsline {section}{\numberline {21.1}Commandes d'indentation}{75}{section.21.1}
+\contentsline {section}{\numberline {21.2}Arrêts de tabulation}{75}{section.21.2}
+\contentsline {section}{\numberline {21.3}Tabulations vs. espaces}{75}{section.21.3}
+\contentsline {section}{\numberline {21.4}Fonctions commodes pour l'indentation}{75}{section.21.4}
+\contentsline {chapter}{\numberline {22}Commandes pour les langues humaines}{77}{chapter.22}
+\contentsline {section}{\numberline {22.1}Mots}{77}{section.22.1}
+\contentsline {section}{\numberline {22.2}Phrases}{79}{section.22.2}
+\contentsline {section}{\numberline {22.3}Paragraphes}{79}{section.22.3}
+\contentsline {section}{\numberline {22.4}Pages}{79}{section.22.4}
+\contentsline {section}{\numberline {22.5}Remplissement du texte}{79}{section.22.5}
+\contentsline {subsection}{\numberline {22.5.1}Mode auto-remplissage}{79}{subsection.22.5.1}
+\contentsline {subsection}{\numberline {22.5.2}Commandes explicites de remplissage}{79}{subsection.22.5.2}
+\contentsline {subsection}{\numberline {22.5.3}Préfixe de remplissage}{79}{subsection.22.5.3}
+\contentsline {subsection}{\numberline {22.5.4}Remplissage adaptable}{79}{subsection.22.5.4}
+\contentsline {section}{\numberline {22.6}Commandes de conversion de casse}{79}{section.22.6}
+\contentsline {section}{\numberline {22.7}Mode texte}{79}{section.22.7}
+\contentsline {section}{\numberline {22.8}Mode Contour}{79}{section.22.8}
+\contentsline {subsection}{\numberline {22.8.1}Format hors-ligne}{79}{subsection.22.8.1}
+\contentsline {subsection}{\numberline {22.8.2}Commandes de contour}{79}{subsection.22.8.2}
+\contentsline {subsection}{\numberline {22.8.3}Commandes de visibilité hors-ligne}{79}{subsection.22.8.3}
+\contentsline {subsection}{\numberline {22.8.4}Vue hors-ligne en fenêtre multiple}{79}{subsection.22.8.4}
+\contentsline {subsection}{\numberline {22.8.5}\'Edition de pilage}{79}{subsection.22.8.5}
+\contentsline {section}{\numberline {22.9}Mode org}{79}{section.22.9}
+\contentsline {subsection}{\numberline {22.9.1}Org comme organisateur}{79}{subsection.22.9.1}
+\contentsline {subsection}{\numberline {22.9.2}Org comme système d'autorisation}{79}{subsection.22.9.2}
+\contentsline {section}{\numberline {22.10}Mode \TeX {}}{79}{section.22.10}
+\contentsline {subsection}{\numberline {22.10.1}\'Edition de commandes \TeX {}}{80}{subsection.22.10.1}
+\contentsline {subsection}{\numberline {22.10.2}\'Edition de commandes \LaTeX {}}{81}{subsection.22.10.2}
+\contentsline {subsection}{\numberline {22.10.3}Impression de commandes \TeX {}}{81}{subsection.22.10.3}
+\contentsline {subsection}{\numberline {22.10.4}Mode divers \TeX {}}{83}{subsection.22.10.4}
+\contentsline {section}{\numberline {22.11}Modes SGML et HTML}{84}{section.22.11}
+\contentsline {section}{\numberline {22.12}Mode nroff}{84}{section.22.12}
+\contentsline {section}{\numberline {22.13}Texte enrichi}{84}{section.22.13}
+\contentsline {subsection}{\numberline {22.13.1}Mode enrichi}{84}{subsection.22.13.1}
+\contentsline {subsection}{\numberline {22.13.2}Nouvelles lignes hard et soft}{84}{subsection.22.13.2}
+\contentsline {subsection}{\numberline {22.13.3}Information du format d'édition}{84}{subsection.22.13.3}
+\contentsline {subsection}{\numberline {22.13.4}Faces en texte enrichi}{84}{subsection.22.13.4}
+\contentsline {subsection}{\numberline {22.13.5}Indentation en texte enrichi}{84}{subsection.22.13.5}
+\contentsline {subsection}{\numberline {22.13.6}Justification en texte enrichi}{84}{subsection.22.13.6}
+\contentsline {subsection}{\numberline {22.13.7}Réglages d'autres propriétés de textes}{84}{subsection.22.13.7}
+\contentsline {section}{\numberline {22.14}\'Edition de tables basées sur du texte}{84}{section.22.14}
+\contentsline {subsection}{\numberline {22.14.1}Qu'est-ce qu'une table basée sur du texte ?}{84}{subsection.22.14.1}
+\contentsline {subsection}{\numberline {22.14.2}Création de table}{84}{subsection.22.14.2}
+\contentsline {subsection}{\numberline {22.14.3}Table de reconnaissance}{84}{subsection.22.14.3}
+\contentsline {subsection}{\numberline {22.14.4}Commandes pour les tableaux de cellules}{84}{subsection.22.14.4}
+\contentsline {subsection}{\numberline {22.14.5}Justification des cellules}{84}{subsection.22.14.5}
+\contentsline {subsection}{\numberline {22.14.6}Table lignes et colonnes}{84}{subsection.22.14.6}
+\contentsline {subsection}{\numberline {22.14.7}Conversion entre texte plein et tables}{84}{subsection.22.14.7}
+\contentsline {subsection}{\numberline {22.14.8}Diverses tables}{84}{subsection.22.14.8}
+\contentsline {section}{\numberline {22.15}\'Edition deux colonnes}{84}{section.22.15}
+\contentsline {chapter}{\numberline {23}\'Edition de programmes}{85}{chapter.23}
+\contentsline {section}{\numberline {23.1}Modes majeur pour langages de programmation}{86}{section.23.1}
+\contentsline {section}{\numberline {23.2}Définitions en ligne ou defuns}{86}{section.23.2}
+\contentsline {subsection}{\numberline {23.2.1}Convention de marge à gauche}{86}{subsection.23.2.1}
+\contentsline {subsection}{\numberline {23.2.2}Déplacement par defuns}{86}{subsection.23.2.2}
+\contentsline {subsection}{\numberline {23.2.3}Menu}{86}{subsection.23.2.3}
+\contentsline {subsection}{\numberline {23.2.4}Quel mode de fonction}{86}{subsection.23.2.4}
+\contentsline {section}{\numberline {23.3}Indentation pour programmes}{86}{section.23.3}
+\contentsline {subsection}{\numberline {23.3.1}Commandes d'indentation de base}{86}{subsection.23.3.1}
+\contentsline {subsection}{\numberline {23.3.2}Indentation de plusieurs lignes}{86}{subsection.23.3.2}
+\contentsline {subsection}{\numberline {23.3.3}Personnalisation d'indentation Lisp}{86}{subsection.23.3.3}
+\contentsline {subsection}{\numberline {23.3.4}Commandes d'indentation pour C}{86}{subsection.23.3.4}
+\contentsline {subsection}{\numberline {23.3.5}Personnalisation d'indentation C}{86}{subsection.23.3.5}
+\contentsline {section}{\numberline {23.4}Commandes d'édition avec parenthèses}{86}{section.23.4}
+\contentsline {subsection}{\numberline {23.4.1}Expressions avec parenthèses équilibrées}{86}{subsection.23.4.1}
+\contentsline {subsection}{\numberline {23.4.2}Déplacement dans la structure de parenthèsage}{86}{subsection.23.4.2}
+\contentsline {subsection}{\numberline {23.4.3}Correspondance de parenthèses}{86}{subsection.23.4.3}
+\contentsline {section}{\numberline {23.5}Manipulation de commentaires}{86}{section.23.5}
+\contentsline {subsection}{\numberline {23.5.1}Commandes de commentaire}{86}{subsection.23.5.1}
+\contentsline {subsection}{\numberline {23.5.2}Commentaires sur plusieurs lignes}{86}{subsection.23.5.2}
+\contentsline {subsection}{\numberline {23.5.3}Contrôle des options de commentaires}{86}{subsection.23.5.3}
+\contentsline {section}{\numberline {23.6}Documentation}{86}{section.23.6}
+\contentsline {subsection}{\numberline {23.6.1}Info documentation}{86}{subsection.23.6.1}
+\contentsline {subsection}{\numberline {23.6.2}Man documentation}{86}{subsection.23.6.2}
+\contentsline {subsection}{\numberline {23.6.3}Emacs Lisp documentation}{86}{subsection.23.6.3}
+\contentsline {section}{\numberline {23.7}Hidoshow en mode mineur}{86}{section.23.7}
+\contentsline {section}{\numberline {23.8}Complétion des noms de symboles}{86}{section.23.8}
+\contentsline {section}{\numberline {23.9}Glasses en mode mineur}{86}{section.23.9}
+\contentsline {section}{\numberline {23.10}Sémantique}{86}{section.23.10}
+\contentsline {section}{\numberline {23.11}Autres fonctions utiles pour l'édition de programmes}{86}{section.23.11}
+\contentsline {section}{\numberline {23.12}C et modes relatifs}{86}{section.23.12}
+\contentsline {subsection}{\numberline {23.12.1}C et mode de commandes}{86}{subsection.23.12.1}
+\contentsline {subsection}{\numberline {23.12.2}Caractères C électronique}{86}{subsection.23.12.2}
+\contentsline {subsection}{\numberline {23.12.3}Suppression en C}{86}{subsection.23.12.3}
+\contentsline {subsection}{\numberline {23.12.4}Autre commande pour le mode C}{86}{subsection.23.12.4}
+\contentsline {section}{\numberline {23.13}Mode Asm}{86}{section.23.13}
+\contentsline {chapter}{\numberline {24}Compilation et test de programmes}{87}{chapter.24}
+\contentsline {section}{\numberline {24.1}Lancer des compilations sous Emacs}{88}{section.24.1}
+\contentsline {section}{\numberline {24.2}Mode compilation}{88}{section.24.2}
+\contentsline {section}{\numberline {24.3}Sous-shells pour compilation}{88}{section.24.3}
+\contentsline {section}{\numberline {24.4}Recherche avec Grep sous Emacs}{88}{section.24.4}
+\contentsline {section}{\numberline {24.5}Trouver des erreurs de syntaxes au vol}{88}{section.24.5}
+\contentsline {section}{\numberline {24.6}Lancement de debogueur sous Emacs}{88}{section.24.6}
+\contentsline {subsection}{\numberline {24.6.1}Démarrer GUD}{88}{subsection.24.6.1}
+\contentsline {subsection}{\numberline {24.6.2}Opération de débogage}{88}{subsection.24.6.2}
+\contentsline {subsection}{\numberline {24.6.3}Commandes de GUD}{88}{subsection.24.6.3}
+\contentsline {subsection}{\numberline {24.6.4}Personnalisation de GUD}{88}{subsection.24.6.4}
+\contentsline {subsection}{\numberline {24.6.5}GDB interface graphique}{88}{subsection.24.6.5}
+\contentsline {subsubsection}{GDB disposition d'interface utilisateur}{88}{section*.11}
+\contentsline {subsubsection}{Source buffer}{88}{section*.12}
+\contentsline {subsubsection}{Points de marque buffer}{88}{section*.13}
+\contentsline {subsubsection}{Threads buffer}{88}{section*.14}
+\contentsline {subsubsection}{Stack Buffer}{88}{section*.15}
+\contentsline {subsubsection}{Autre GDB buffers}{88}{section*.16}
+\contentsline {subsubsection}{Expressions de regards}{88}{section*.17}
+\contentsline {subsubsection}{Débogage multithread}{88}{section*.18}
+\contentsline {section}{\numberline {24.7}Exécution d'expressions Lisp}{88}{section.24.7}
+\contentsline {section}{\numberline {24.8}Bibliothèque de Lisp codées pour Emacs}{88}{section.24.8}
+\contentsline {section}{\numberline {24.9}\'Evaluation d'expressions Lisp pour Emacs}{88}{section.24.9}
+\contentsline {section}{\numberline {24.10}Intéraction Lisp dans les buffers}{88}{section.24.10}
+\contentsline {section}{\numberline {24.11}Lancement d'un Lisp extérieur}{88}{section.24.11}
+\contentsline {chapter}{\numberline {25}Maintenace de gros programmes}{89}{chapter.25}
+\contentsline {section}{\numberline {25.1}Contrôle de version}{90}{section.25.1}
+\contentsline {subsection}{\numberline {25.1.1}Introduction à la contrôle de version}{90}{subsection.25.1.1}
+\contentsline {subsubsection}{Compréhension du problème adressé}{90}{section*.19}
+\contentsline {subsubsection}{contrôle de version du système supportée}{90}{section*.20}
+\contentsline {subsubsection}{Concepts de contrôle de version}{90}{section*.21}
+\contentsline {subsubsection}{Merge-based vs lock-based contrôle de version}{90}{section*.22}
+\contentsline {subsubsection}{Changeset-based vs File-based contrôle de version}{90}{section*.23}
+\contentsline {subsubsection}{Décentralisé vs répertoires centralisés}{90}{section*.24}
+\contentsline {subsubsection}{Types de fichiers log}{90}{section*.25}
+\contentsline {subsection}{\numberline {25.1.2}Contrôle de version et mode ligne}{90}{subsection.25.1.2}
+\contentsline {subsection}{\numberline {25.1.3}\'Edition de base sous contrôle de version}{90}{subsection.25.1.3}
+\contentsline {subsubsection}{Contrôle de version de base avec fusion}{90}{section*.26}
+\contentsline {subsubsection}{Contrôle de version de base avec verrouillage}{90}{section*.27}
+\contentsline {subsubsection}{Contrôle avancé avec \texttt {C-x v v}}{90}{section*.28}
+\contentsline {subsection}{\numberline {25.1.4}Fonctions du log d'entrée de buffer}{90}{subsection.25.1.4}
+\contentsline {subsection}{\numberline {25.1.5}Enregistrement d'un fichier de contrôle de version}{90}{subsection.25.1.5}
+\contentsline {subsection}{\numberline {25.1.6}Examen et comparaison des anciennes versions}{90}{subsection.25.1.6}
+\contentsline {subsection}{\numberline {25.1.7}VC Chance Log}{90}{subsection.25.1.7}
+\contentsline {subsection}{\numberline {25.1.8}Refaire les actions de contrôle de version}{90}{subsection.25.1.8}
+\contentsline {subsection}{\numberline {25.1.9}VC mode répertoire}{90}{subsection.25.1.9}
+\contentsline {subsubsection}{Le buffer VC répertoire}{90}{section*.29}
+\contentsline {subsubsection}{VC commandes de répertoire}{90}{section*.30}
+\contentsline {subsection}{\numberline {25.1.10}Branches de contrôle de version}{90}{subsection.25.1.10}
+\contentsline {subsubsection}{Changement entre les branches}{90}{section*.31}
+\contentsline {subsubsection}{Changement dans une branche}{90}{section*.32}
+\contentsline {subsubsection}{Fusion de branches}{90}{section*.33}
+\contentsline {subsubsection}{Création de nouvelles branches}{90}{section*.34}
+\contentsline {section}{\numberline {25.2}Changement de logs}{90}{section.25.2}
+\contentsline {subsection}{\numberline {25.2.1}Commandes de changements de logs}{90}{subsection.25.2.1}
+\contentsline {subsection}{\numberline {25.2.2}Format de changement de log}{90}{subsection.25.2.2}
+\contentsline {section}{\numberline {25.3}Tables de tags}{90}{section.25.3}
+\contentsline {subsection}{\numberline {25.3.1}Fichier source de syntaxe de tag}{90}{subsection.25.3.1}
+\contentsline {subsection}{\numberline {25.3.2}Création de tables de tags}{90}{subsection.25.3.2}
+\contentsline {subsection}{\numberline {25.3.3}Etags expression régulière}{90}{subsection.25.3.3}
+\contentsline {subsection}{\numberline {25.3.4}Sélection d'une table de tags}{90}{subsection.25.3.4}
+\contentsline {subsection}{\numberline {25.3.5}Trouver un tag}{90}{subsection.25.3.5}
+\contentsline {subsection}{\numberline {25.3.6}Recherche et remplacement avec les tables de tags}{90}{subsection.25.3.6}
+\contentsline {subsection}{\numberline {25.3.7}Enquêtes de table tags}{90}{subsection.25.3.7}
+\contentsline {section}{\numberline {25.4}Environement de développement Emacs}{90}{section.25.4}
+\contentsline {chapter}{\numberline {26}Abbréviation}{91}{chapter.26}
+\contentsline {section}{\numberline {26.1}Concepts des abbréviations}{91}{section.26.1}
+\contentsline {section}{\numberline {26.2}Définition des abbréviations}{91}{section.26.2}
+\contentsline {section}{\numberline {26.3}Contrôle des expansions d'abbréviations}{91}{section.26.3}
+\contentsline {section}{\numberline {26.4}Examen et édition des abbréviations}{91}{section.26.4}
+\contentsline {section}{\numberline {26.5}Sauvegarde des abbréviations}{91}{section.26.5}
+\contentsline {section}{\numberline {26.6}Dynamique des expansions d'abbréviations}{91}{section.26.6}
+\contentsline {section}{\numberline {26.7}Personnalisation de l'abbréviation dynamique}{91}{section.26.7}
+\contentsline {chapter}{\numberline {27}Dired, the Directory Editor (l'éditeur de répertoire)}{93}{chapter.27}
+\contentsline {section}{\numberline {27.1}Entrée dans Dired}{94}{section.27.1}
+\contentsline {section}{\numberline {27.2}Navigation dans le buffer Dired}{94}{section.27.2}
+\contentsline {section}{\numberline {27.3}Marquage de beaucoup de fichiers immédiatement}{94}{section.27.3}
+\contentsline {section}{\numberline {27.4}Visionnage des fichiers dans Dired}{94}{section.27.4}
+\contentsline {section}{\numberline {27.5}Marquages Dired vs Drapeaux}{94}{section.27.5}
+\contentsline {section}{\numberline {27.6}Opération sur les fichiers}{94}{section.27.6}
+\contentsline {section}{\numberline {27.7}Commandes shell dans Dired}{94}{section.27.7}
+\contentsline {section}{\numberline {27.8}Transformation de noms de fichiers dans Dired}{94}{section.27.8}
+\contentsline {section}{\numberline {27.9}Comparaison de fichiers avec Dired}{94}{section.27.9}
+\contentsline {section}{\numberline {27.10}Sous-répertoires dans Dired}{94}{section.27.10}
+\contentsline {section}{\numberline {27.11}Déplacement dans les sous-répertoires}{94}{section.27.11}
+\contentsline {section}{\numberline {27.12}Sous-répertoires cachés}{94}{section.27.12}
+\contentsline {section}{\numberline {27.13}Mise à jour du buffer Dired}{94}{section.27.13}
+\contentsline {section}{\numberline {27.14}Dired et \texttt {find}}{94}{section.27.14}
+\contentsline {section}{\numberline {27.15}\'Edition du buffer Dired}{94}{section.27.15}
+\contentsline {section}{\numberline {27.16}Vision d'image dans Dired}{94}{section.27.16}
+\contentsline {section}{\numberline {27.17}Autres fonctions de Dired}{94}{section.27.17}
+\contentsline {chapter}{\numberline {28}Calendrier et agenda}{95}{chapter.28}
+\contentsline {section}{\numberline {28.1}Mouvement dans le calendrier}{96}{section.28.1}
+\contentsline {subsection}{\numberline {28.1.1}Motion by standard lengths of time}{96}{subsection.28.1.1}
+\contentsline {subsection}{\numberline {28.1.2}Début ou fin de semaine, mois ou année}{96}{subsection.28.1.2}
+\contentsline {subsection}{\numberline {28.1.3}Dates spécifiques}{96}{subsection.28.1.3}
+\contentsline {section}{\numberline {28.2}Défilement du calendrier}{96}{section.28.2}
+\contentsline {section}{\numberline {28.3}Comptage des jours}{96}{section.28.3}
+\contentsline {section}{\numberline {28.4}Diverses commandes du calendrier}{96}{section.28.4}
+\contentsline {section}{\numberline {28.5}\'Ecrire des fichiers du calendrier}{96}{section.28.5}
+\contentsline {section}{\numberline {28.6}Vacances}{96}{section.28.6}
+\contentsline {section}{\numberline {28.7}Horaires de lever et coucher de soleil}{96}{section.28.7}
+\contentsline {section}{\numberline {28.8}Phases de la lune}{96}{section.28.8}
+\contentsline {section}{\numberline {28.9}Conversion vers et depuis d'autres calendriers}{96}{section.28.9}
+\contentsline {subsection}{\numberline {28.9.1}Systèmes de calendrier supportés}{96}{subsection.28.9.1}
+\contentsline {subsection}{\numberline {28.9.2}Conversions vers d'autres calendriers}{96}{subsection.28.9.2}
+\contentsline {subsection}{\numberline {28.9.3}Conversions depuis d'autres calendriers}{96}{subsection.28.9.3}
+\contentsline {subsection}{\numberline {28.9.4}Conversion depuis le calendrier maya}{96}{subsection.28.9.4}
+\contentsline {section}{\numberline {28.10}Agenda}{96}{section.28.10}
+\contentsline {subsection}{\numberline {28.10.1}Affichage de l'agenda}{96}{subsection.28.10.1}
+\contentsline {subsection}{\numberline {28.10.2}Fichier de l'agenda}{96}{subsection.28.10.2}
+\contentsline {subsection}{\numberline {28.10.3}Format de dates}{96}{subsection.28.10.3}
+\contentsline {subsection}{\numberline {28.10.4}Commandes pour ajouter à l'agenda}{96}{subsection.28.10.4}
+\contentsline {subsection}{\numberline {28.10.5}Entrées spéciales dans l'agenda}{96}{subsection.28.10.5}
+\contentsline {section}{\numberline {28.11}Rendez-vous}{96}{section.28.11}
+\contentsline {section}{\numberline {28.12}Importations et exportations d'entrées de l'agenda}{96}{section.28.12}
+\contentsline {section}{\numberline {28.13}Heure d'été}{96}{section.28.13}
+\contentsline {section}{\numberline {28.14}Récapitulation d'intervalles de temps}{96}{section.28.14}
+\contentsline {chapter}{\numberline {29}Envoyer des mails (courriels)}{97}{chapter.29}
+\contentsline {section}{\numberline {29.1}Le format du buffer mail}{97}{section.29.1}
+\contentsline {section}{\numberline {29.2}Champs d'en-tête de mail}{97}{section.29.2}
+\contentsline {section}{\numberline {29.3}Alias de mail}{97}{section.29.3}
+\contentsline {section}{\numberline {29.4}Commandes de mail}{97}{section.29.4}
+\contentsline {subsection}{\numberline {29.4.1}Envoi de mail}{97}{subsection.29.4.1}
+\contentsline {subsection}{\numberline {29.4.2}\'Edition d'en-tête de mail}{97}{subsection.29.4.2}
+\contentsline {subsection}{\numberline {29.4.3}Citation de mail}{97}{subsection.29.4.3}
+\contentsline {subsection}{\numberline {29.4.4}Divers mail}{97}{subsection.29.4.4}
+\contentsline {section}{\numberline {29.5}Signature de mail}{97}{section.29.5}
+\contentsline {section}{\numberline {29.6}Amusements de mail}{97}{section.29.6}
+\contentsline {section}{\numberline {29.7}Méthode de composition de mail}{97}{section.29.7}
+\contentsline {chapter}{\numberline {30}Lecture de mail avec Rmail}{99}{chapter.30}
+\contentsline {section}{\numberline {30.1}Concepts de base de Rmail}{100}{section.30.1}
+\contentsline {section}{\numberline {30.2}Défilement dans un message}{100}{section.30.2}
+\contentsline {section}{\numberline {30.3}Déplacement à travers les messages}{100}{section.30.3}
+\contentsline {section}{\numberline {30.4}Suppression de messages}{100}{section.30.4}
+\contentsline {section}{\numberline {30.5}Fichiers Rmail et boîtes de réception}{100}{section.30.5}
+\contentsline {section}{\numberline {30.6}Fichiers Rmail multiple}{100}{section.30.6}
+\contentsline {section}{\numberline {30.7}Copier des messages en dehors des fichiers}{100}{section.30.7}
+\contentsline {section}{\numberline {30.8}\'Etiquettes}{100}{section.30.8}
+\contentsline {section}{\numberline {30.9}Attributs Rmail}{100}{section.30.9}
+\contentsline {section}{\numberline {30.10}Envoi de réponses}{100}{section.30.10}
+\contentsline {section}{\numberline {30.11}Résumés}{100}{section.30.11}
+\contentsline {subsection}{\numberline {30.11.1}Création de résumés}{100}{subsection.30.11.1}
+\contentsline {subsection}{\numberline {30.11.2}\'Edition de résumés}{100}{subsection.30.11.2}
+\contentsline {section}{\numberline {30.12}Tri des fichiers Rmail}{100}{section.30.12}
+\contentsline {section}{\numberline {30.13}Affichage des messages}{100}{section.30.13}
+\contentsline {section}{\numberline {30.14}Rmail et systèmes de codages}{100}{section.30.14}
+\contentsline {section}{\numberline {30.15}\'Edition dans un message}{100}{section.30.15}
+\contentsline {section}{\numberline {30.16}Messages digestes}{100}{section.30.16}
+\contentsline {section}{\numberline {30.17}Lecture des messages Rot13}{100}{section.30.17}
+\contentsline {section}{\numberline {30.18}Programme \texttt {movemail}}{100}{section.30.18}
+\contentsline {section}{\numberline {30.19}Recouvrement de mail de boîtes distantes}{100}{section.30.19}
+\contentsline {section}{\numberline {30.20}Recouvrement de mail de boîtes locales dans des formats variés}{100}{section.30.20}
+\contentsline {chapter}{\numberline {31}Commandes diverses}{101}{chapter.31}
+\contentsline {section}{\numberline {31.1}Gnus}{102}{section.31.1}
+\contentsline {subsection}{\numberline {31.1.1}Tampons Gnus}{102}{subsection.31.1.1}
+\contentsline {subsection}{\numberline {31.1.2}Démarrage de Gnus}{102}{subsection.31.1.2}
+\contentsline {subsection}{\numberline {31.1.3}Utilisation du tampon du groupe Gnus}{102}{subsection.31.1.3}
+\contentsline {subsection}{\numberline {31.1.4}Utilisation du tampon du résumé Gnus}{102}{subsection.31.1.4}
+\contentsline {section}{\numberline {31.2}Visonnage de document}{102}{section.31.2}
+\contentsline {subsection}{\numberline {31.2.1}Navigation dans DocView}{102}{subsection.31.2.1}
+\contentsline {subsection}{\numberline {31.2.2}Recherche dans DocView}{102}{subsection.31.2.2}
+\contentsline {subsection}{\numberline {31.2.3}Coupe dans DocView}{102}{subsection.31.2.3}
+\contentsline {subsection}{\numberline {31.2.4}Conversion dans DocView}{102}{subsection.31.2.4}
+\contentsline {section}{\numberline {31.3}Navigation web avec EWW}{102}{section.31.3}
+\contentsline {section}{\numberline {31.4}Lancement de commandes Shell depuis Emacs}{102}{section.31.4}
+\contentsline {subsection}{\numberline {31.4.1}Commandes Shell simples}{102}{subsection.31.4.1}
+\contentsline {subsection}{\numberline {31.4.2}Subshell intéractif}{102}{subsection.31.4.2}
+\contentsline {subsection}{\numberline {31.4.3}Mode Shell}{102}{subsection.31.4.3}
+\contentsline {subsection}{\numberline {31.4.4}Invite Shell}{102}{subsection.31.4.4}
+\contentsline {subsection}{\numberline {31.4.5}Historique des commandes Shell}{102}{subsection.31.4.5}
+\contentsline {subsubsection}{Anneau d'historique Shell}{102}{section*.35}
+\contentsline {subsubsection}{Copie d'historique Shell}{102}{section*.36}
+\contentsline {subsubsection}{Références d'historique Shell}{102}{section*.37}
+\contentsline {subsection}{\numberline {31.4.6}Suivi de répertoire}{102}{subsection.31.4.6}
+\contentsline {subsection}{\numberline {31.4.7}Options du mode Shell}{102}{subsection.31.4.7}
+\contentsline {subsection}{\numberline {31.4.8}\'Emulateur de terminal dans Emacs}{102}{subsection.31.4.8}
+\contentsline {subsection}{\numberline {31.4.9}Mode term}{102}{subsection.31.4.9}
+\contentsline {subsection}{\numberline {31.4.10}Shell hôte distant}{102}{subsection.31.4.10}
+\contentsline {subsection}{\numberline {31.4.11}Série de terminaux}{102}{subsection.31.4.11}
+\contentsline {section}{\numberline {31.5}Utilisation d'Emacs comme serveur}{102}{section.31.5}
+\contentsline {subsection}{\numberline {31.5.1}Invocation de \texttt {emacsclient}}{102}{subsection.31.5.1}
+\contentsline {subsection}{\numberline {31.5.2}Options \texttt {emacsclient}}{102}{subsection.31.5.2}
+\contentsline {section}{\numberline {31.6}Impression de copies}{102}{section.31.6}
+\contentsline {subsection}{\numberline {31.6.1}PostScript}{102}{subsection.31.6.1}
+\contentsline {subsection}{\numberline {31.6.2}Variables PostScript}{102}{subsection.31.6.2}
+\contentsline {subsection}{\numberline {31.6.3}Extension d'impression}{102}{subsection.31.6.3}
+\contentsline {section}{\numberline {31.7}Tri de texte}{102}{section.31.7}
+\contentsline {section}{\numberline {31.8}\'Edition de fichier binaires}{102}{section.31.8}
+\contentsline {section}{\numberline {31.9}Sauvegarde de sessions Emacs}{102}{section.31.9}
+\contentsline {section}{\numberline {31.10}Niveaux d'édition récursives}{102}{section.31.10}
+\contentsline {section}{\numberline {31.11}Fonctions de navigation et hyperliens}{102}{section.31.11}
+\contentsline {subsection}{\numberline {31.11.1}Suivi URLs}{102}{subsection.31.11.1}
+\contentsline {subsection}{\numberline {31.11.2}Activation URLs}{102}{subsection.31.11.2}
+\contentsline {subsection}{\numberline {31.11.3}Fichiers trouvés et URLs à point}{102}{subsection.31.11.3}
+\contentsline {section}{\numberline {31.12}D'autres amusements}{102}{section.31.12}
+\contentsline {chapter}{\numberline {32}Extensions Emacs Lisp}{103}{chapter.32}
+\contentsline {section}{\numberline {32.1}Buffer du menu des extensions}{103}{section.32.1}
+\contentsline {section}{\numberline {32.2}Installation d'extension}{103}{section.32.2}
+\contentsline {section}{\numberline {32.3}Fichiers d'extension et disposition des répertoires}{103}{section.32.3}
+\contentsline {chapter}{\numberline {33}Personnalisation}{105}{chapter.33}
+\contentsline {section}{\numberline {33.1}Interface de personnalisation simple}{106}{section.33.1}
+\contentsline {subsection}{\numberline {33.1.1}Groupes de personnalisation}{106}{subsection.33.1.1}
+\contentsline {subsection}{\numberline {33.1.2}Naviguer et chercher pour des réglages}{106}{subsection.33.1.2}
+\contentsline {subsection}{\numberline {33.1.3}Changer une variable}{106}{subsection.33.1.3}
+\contentsline {subsection}{\numberline {33.1.4}Sauvegarde des personnalisations}{106}{subsection.33.1.4}
+\contentsline {subsection}{\numberline {33.1.5}Faces de personnalisation}{106}{subsection.33.1.5}
+\contentsline {subsection}{\numberline {33.1.6}Personnalisation d'items spécifiques}{106}{subsection.33.1.6}
+\contentsline {subsection}{\numberline {33.1.7}Personnaliser des thèmes}{106}{subsection.33.1.7}
+\contentsline {subsection}{\numberline {33.1.8}Création de thèmes personnalisés}{106}{subsection.33.1.8}
+\contentsline {section}{\numberline {33.2}Variables}{106}{section.33.2}
+\contentsline {subsection}{\numberline {33.2.1}Exmanen et réglages de variables}{106}{subsection.33.2.1}
+\contentsline {subsection}{\numberline {33.2.2}Crochers}{106}{subsection.33.2.2}
+\contentsline {subsection}{\numberline {33.2.3}Variables locales}{106}{subsection.33.2.3}
+\contentsline {subsection}{\numberline {33.2.4}Variables locales dans des fichiers}{106}{subsection.33.2.4}
+\contentsline {subsubsection}{Spécification de fichiers de variables}{106}{section*.38}
+\contentsline {subsubsection}{Sécurité de fichiers de variables}{106}{section*.39}
+\contentsline {subsection}{\numberline {33.2.5}Variables locales par répertoire}{106}{subsection.33.2.5}
+\contentsline {section}{\numberline {33.3}Personnalisation des raccourcis clavier}{106}{section.33.3}
+\contentsline {subsection}{\numberline {33.3.1}Carte des clés}{106}{subsection.33.3.1}
+\contentsline {subsection}{\numberline {33.3.2}Préfixes de la carte des clés}{106}{subsection.33.3.2}
+\contentsline {subsection}{\numberline {33.3.3}Carte des clés locale}{106}{subsection.33.3.3}
+\contentsline {subsection}{\numberline {33.3.4}Minibuffer de la carte des clés}{106}{subsection.33.3.4}
+\contentsline {subsection}{\numberline {33.3.5}Changement de raccourci clavier intéractivement}{106}{subsection.33.3.5}
+\contentsline {subsection}{\numberline {33.3.6}Renommer un raccourci clavier dans son fichier d'initialisation}{106}{subsection.33.3.6}
+\contentsline {subsection}{\numberline {33.3.7}Touches modificatrices}{106}{subsection.33.3.7}
+\contentsline {subsection}{\numberline {33.3.8}Nom ASCII du contrôle des caractères}{106}{subsection.33.3.8}
+\contentsline {subsection}{\numberline {33.3.9}Renommer les boutons de la souris}{106}{subsection.33.3.9}
+\contentsline {subsection}{\numberline {33.3.10}Commandes désactivées}{106}{subsection.33.3.10}
+\contentsline {section}{\numberline {33.4}Le fichier d'initialisation Emacs}{106}{section.33.4}
+\contentsline {subsection}{\numberline {33.4.1}Syntaxe du fichier init}{106}{subsection.33.4.1}
+\contentsline {subsection}{\numberline {33.4.2}Exemples du fichier init}{106}{subsection.33.4.2}
+\contentsline {subsection}{\numberline {33.4.3}Initialisation spécifique du terminal}{106}{subsection.33.4.3}
+\contentsline {subsection}{\numberline {33.4.4}Comment Emacs trouve votre fichier d'initiliasation (init)}{106}{subsection.33.4.4}
+\contentsline {subsection}{\numberline {33.4.5}Caractères non ASCII dans le fichier init}{106}{subsection.33.4.5}
+\contentsline {chapter}{\numberline {34}S'arranger avec les problèmes communs}{107}{chapter.34}
+\contentsline {section}{\numberline {34.1}Quitter et abandonner}{108}{section.34.1}
+\contentsline {section}{\numberline {34.2}S'arranger avec les problèmes Emacs}{108}{section.34.2}
+\contentsline {subsection}{\numberline {34.2.1}Si \texttt {DEL} échoue pour effacer}{108}{subsection.34.2.1}
+\contentsline {subsection}{\numberline {34.2.2}Niveaux d'édition récursive}{108}{subsection.34.2.2}
+\contentsline {subsection}{\numberline {34.2.3}Corbeille sur l'écran}{108}{subsection.34.2.3}
+\contentsline {subsection}{\numberline {34.2.4}Corbeille dans le texte}{108}{subsection.34.2.4}
+\contentsline {subsection}{\numberline {34.2.5}Lancement hors mémoire}{108}{subsection.34.2.5}
+\contentsline {subsection}{\numberline {34.2.6}Quand Emacs se crash}{108}{subsection.34.2.6}
+\contentsline {subsection}{\numberline {34.2.7}Récupérer après un crash}{108}{subsection.34.2.7}
+\contentsline {subsection}{\numberline {34.2.8}Sortie d'urgence}{108}{subsection.34.2.8}
+\contentsline {section}{\numberline {34.3}Bogues répertoriés}{108}{section.34.3}
+\contentsline {subsection}{\numberline {34.3.1}Lecture des bogues existants rapportés et problèmes connus}{108}{subsection.34.3.1}
+\contentsline {subsection}{\numberline {34.3.2}Où y a-t-il un bogue ?}{108}{subsection.34.3.2}
+\contentsline {subsection}{\numberline {34.3.3}Compréhension des bogues rapportés}{108}{subsection.34.3.3}
+\contentsline {subsection}{\numberline {34.3.4}Checklist pour les bogues rapportés}{108}{subsection.34.3.4}
+\contentsline {subsection}{\numberline {34.3.5}Envoi de patch pour GNU Emacs}{108}{subsection.34.3.5}
+\contentsline {section}{\numberline {34.4}Contribution au développement Emacs}{108}{section.34.4}
+\contentsline {section}{\numberline {34.5}Comment obtenir de l'aide avec GNU Emacs}{108}{section.34.5}
+\contentsline {chapter}{\numberline {A}\textsc {gnu general public license}}{109}{appendix.A}
+\contentsline {chapter}{\numberline {B}GNU Free Documentation License}{111}{appendix.B}
+\contentsline {chapter}{\numberline {C}Arguments de ligne de commandes pour invocation par Emacs}{113}{appendix.C}
+\contentsline {section}{\numberline {C.1}Arguments d'une action}{114}{section.C.1}
+\contentsline {section}{\numberline {C.2}Options initiales}{114}{section.C.2}
+\contentsline {section}{\numberline {C.3}Exemple d'argument de commande}{114}{section.C.3}
+\contentsline {section}{\numberline {C.4}Variables d'environnement}{114}{section.C.4}
+\contentsline {subsection}{\numberline {C.4.1}Variables générales}{114}{subsection.C.4.1}
+\contentsline {subsection}{\numberline {C.4.2}Variables diverses}{114}{subsection.C.4.2}
+\contentsline {subsection}{\numberline {C.4.3}Système de registre MS-Windows}{114}{subsection.C.4.3}
+\contentsline {section}{\numberline {C.5}Spécification du nom d'affichage}{114}{section.C.5}
+\contentsline {section}{\numberline {C.6}Options de spécification de fonte}{114}{section.C.6}
+\contentsline {section}{\numberline {C.7}Options de couleur de fenêtre}{114}{section.C.7}
+\contentsline {section}{\numberline {C.8}Options pour la taille et la position de fenêtre}{114}{section.C.8}
+\contentsline {section}{\numberline {C.9}Bords internes et externes}{114}{section.C.9}
+\contentsline {section}{\numberline {C.10}Titres de diapositive}{114}{section.C.10}
+\contentsline {section}{\numberline {C.11}Icônes}{114}{section.C.11}
+\contentsline {section}{\numberline {C.12}Autres options d'affichage}{114}{section.C.12}
+\contentsline {chapter}{\numberline {D}X options et ressources}{115}{appendix.D}
+\contentsline {section}{\numberline {D.1}Ressources X}{115}{section.D.1}
+\contentsline {section}{\numberline {D.2}Table des ressources X pour Emacs}{115}{section.D.2}
+\contentsline {section}{\numberline {D.3}Ressources GTK}{115}{section.D.3}
+\contentsline {subsection}{\numberline {D.3.1}Ressources de bases pour GTK}{115}{subsection.D.3.1}
+\contentsline {subsection}{\numberline {D.3.2}Noms de widget pour GTK}{115}{subsection.D.3.2}
+\contentsline {subsection}{\numberline {D.3.3}Noms de widget pour GTK dans Emacs}{115}{subsection.D.3.3}
+\contentsline {subsection}{\numberline {D.3.4}Styles GTK}{115}{subsection.D.3.4}
+\contentsline {chapter}{\numberline {E}Emacs 23}{117}{appendix.E}
+\contentsline {chapter}{\numberline {F}Emacs et Mac OS/GNUstep}{119}{appendix.F}
+\contentsline {section}{\numberline {F.1}Utilisation de base Emacs sous Mac OS et GNUstep}{119}{section.F.1}
+\contentsline {subsection}{\numberline {F.1.1}Variables d'environnement grabbing}{120}{subsection.F.1.1}
+\contentsline {section}{\numberline {F.2}Personnalisation Mac / GNUstep}{120}{section.F.2}
+\contentsline {subsection}{\numberline {F.2.1}Panels de fontes et couleurs}{120}{subsection.F.2.1}
+\contentsline {subsection}{\numberline {F.2.2}Personnalisation spécifique pour Mac OS / GNUstep}{120}{subsection.F.2.2}
+\contentsline {section}{\numberline {F.3}Système de fenêtrage sous Mac OS / GNUstep}{120}{section.F.3}
+\contentsline {section}{\numberline {F.4}Support GNUstep}{121}{section.F.4}
+\contentsline {chapter}{\numberline {G}Emacs et Microsoft Windows/MS-DOS}{123}{appendix.G}
+\contentsline {section}{\numberline {G.1}Comment démarrer Emacs sur MS-Windows}{123}{section.G.1}
+\contentsline {section}{\numberline {G.2}Fichiers textes et fichiers binaires}{123}{section.G.2}
+\contentsline {section}{\numberline {G.3}Noms de fichiers sur MS-Windows}{123}{section.G.3}
+\contentsline {section}{\numberline {G.4}\'Emulation de \texttt {ls} sur MS-Windows}{123}{section.G.4}
+\contentsline {section}{\numberline {G.5}HOME et répertoires de démarrage sur MS-Windows}{123}{section.G.5}
+\contentsline {section}{\numberline {G.6}Utilisation du clavier sur MS-Windows}{123}{section.G.6}
+\contentsline {section}{\numberline {G.7}Utilisation de la souris sur MS-Windows}{123}{section.G.7}
+\contentsline {section}{\numberline {G.8}Sous-processeurs sur Windows 9X/ME et Windows NT/2K/XP}{123}{section.G.8}
+\contentsline {section}{\numberline {G.9}Impression et MS-Windows}{123}{section.G.9}
+\contentsline {section}{\numberline {G.10}Spécification des fontes sur MS-Windows}{123}{section.G.10}
+\contentsline {section}{\numberline {G.11}Diverses fonctions spécifiques à Windows}{123}{section.G.11}
+\contentsline {chapter}{The GNU Manifesto}{125}{appendix*.40}
+\contentsline {section}{\numberline {G.12}Qu'est-ce que GNU ? Gnu n'est pas Unix !}{125}{section.G.12}
+\contentsline {section}{\numberline {G.13}Pourquoi dois-je écrire GNU ?}{125}{section.G.13}
+\contentsline {section}{\numberline {G.14}Pourquoi GNU devra être compatible avec Unix ?}{125}{section.G.14}
+\contentsline {section}{\numberline {G.15}Comment GNU devra être disponible ?}{125}{section.G.15}
+\contentsline {section}{\numberline {G.16}Pourquoi beaucoup d'autres programmeurs veulent aider ?}{125}{section.G.16}
+\contentsline {section}{\numberline {G.17}Comment pouvez-vous contribuer ?}{125}{section.G.17}
+\contentsline {section}{\numberline {G.18}Pourquoi tous les utilisateurs d'ordinateur pourront en bénéficier ?}{125}{section.G.18}
+\contentsline {section}{\numberline {G.19}Certaines objections contre les buts de GNU facilement réfutées}{125}{section.G.19}
+\contentsline {chapter}{Glossaire}{127}{appendix*.41}
+\contentsline {chapter}{Index des clés (caractères)}{129}{appendix*.42}
+\contentsline {chapter}{Index des commandes et fonctions}{131}{appendix*.43}
+\contentsline {chapter}{Index des variables}{133}{appendix*.44}
+\contentsline {chapter}{Index des concepts}{135}{appendix*.45}

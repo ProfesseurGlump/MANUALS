@@ -1,0 +1,20 @@
+\chapter{S'arranger avec les problèmes communs}
+\section{Quitter et abandonner}
+\section{S'arranger avec les problèmes Emacs}
+\subsection{Si \texttt{DEL} échoue pour effacer}
+\subsection{Niveaux d'édition récursive}
+\subsection{Corbeille sur l'écran}
+\subsection{Corbeille dans le texte}
+\subsection{Lancement hors mémoire}
+\subsection{Quand Emacs se crash}
+\subsection{Récupérer après un crash}
+\subsection{Sortie d'urgence}
+\section{Bogues répertoriés}
+\subsection{Lecture des bogues existants rapportés et problèmes
+  connus}
+\subsection{Où y a-t-il un bogue ?}
+\subsection{Compréhension des bogues rapportés}
+\subsection{Checklist pour les bogues rapportés}
+\subsection{Envoi de patch pour GNU Emacs}
+\section{Contribution au développement Emacs}
+\section{Comment obtenir de l'aide avec GNU Emacs}

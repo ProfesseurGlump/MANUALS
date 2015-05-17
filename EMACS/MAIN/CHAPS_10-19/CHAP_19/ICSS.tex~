@@ -1,0 +1,177 @@
+\chapter{Caractères internationaux et paramétrages}\etch{19}
+Emacs supporte une grande variété de jeux de caractères
+internationaux, y compris les variantes européennes et vietnamiennes
+de l'alphabet latin, ainsi que le cyrillique, devanagari (pour l'hindi
+et le marathi), éthiopien, grec, Han (pour le chinois et le japonais),
+Hangul (pour le coréen, l'hébreu, l'IPA, le kannada, le Laos, le
+malayalam, tamoul, thaï, tibétain, et vietnamiens. Emacs prend
+également en charge divers encodages de ces caractères qui sont
+utilisés par un autre logiciel internationalisé, tels que traitement
+de texte et assistant de courriels.
+
+Emacs permet l'édition de texte avec des caractères internationaux en
+soutenant toutes les activités liées :
+\begin{itemize}
+\item Vous pouvez visiter les fichiers avec des caractères non-ASCII,
+  enregistrer du texte non-ASCII, et passer du texte non-ASCII entre
+  Emacs et des programmes qui l'invoquent (tels que des compilateurs,
+  des correcteurs orthographiques, et des assistants de courriels). La
+  configuration de votre environnement de langue (vois Section
+  \cfchs{19}{3} [Environnements de langue], page\cfchsg{19}{3}) prend
+  soin de mettre en place les systèmes d'encodage et d'autres options
+  pour une langue ou une culture. Alternativement, vous pouvez
+  spécifier comment Emacs devrait encoder ou décoder un texte pour
+  chaque commande; voir Section \cfchs{19}{10} [Encodage de texte],
+  page \cfchsg{19}{10}.
+\item Vous pouvez afficher les caractères non-ASCII encodés par les
+  différents scripts. Cela fonctionne en utilisant des polices
+  appropriées sur les écrans graphiques (voir Section \cfchs{19}{15}
+  [Définition des jeux de polices], page \cfchsg{19}{10}), et en
+  envoyant des codes spéciaux pour les écrans de texte (voir Section
+  \cfchs{19}{13} [Encodage des terminaux], page \cfchsg{19}{13}). Si
+  certains caractères ne s'affichent pas correctement, reportez-vous à
+  la Section \cfchs{19}{17} [Caractères non-affichables], page
+  \cfchsg{19}{17}, qui décrit les problèmes possibles et explique
+  comment les résoudre.
+\item Les caractères des scripts qui sont naturellement de droite à
+  gauche sont réorganisés pour l'affichage (voir Section
+  \cfchs{19}{20} [Edition bidirectionnelle], page
+  \cfchsg{19}{20}). Ces scripts comprennent l'arabe, l'hébreu, le
+  syriaque, le Thaana, et quelques autres.
+\item Vous pouvez insérer des caractères non-ASCII ou en
+  chercher. Pour ce faire, vous permettant de spécifier une méthode
+  d'entrée (voir Section \cfchs{19}{5} [Sélectionnez la méthode
+  d'entrée], page \cfchsg{19}{5}) adapté à votre langue, ou utilisez
+  la méthode d'entrée par défaut mise en place lorsque vous avez
+  choisi votre environnement de langue. Si votre clavier peut produire
+  des caractères non-ASCII, vous pouvez sélectionner un système
+  d'encodage du clavier approprié (voir Section \cfchs{19}{13}
+  [Encodage des terminaux], page \cfchsg{19}{13}), et Emacs acceptera
+  ces caractères. Les caractères Latin-1 peuvent également être entré
+  en utilisant le préfixe \rep{C}{x}, voir la Section \cfchs{19}{18}
+  [Mode uni-octet], page \cfchsg{19}{18}.
+
+Avec le système X Window, vos paramètres régionaux doivent être réglé
+sur une valeur appropriée pour s'assurer qu'Emacs interprète
+correctement les entrées au clavier ; voir Section \cfchs{19}{3}
+[Environnements de langue], page \cfchsg{19}{3}.
+\end{itemize}
+
+Le reste de ce chapitre décrit ces questions en détail.
+
+\section{Introduction des ensembles de caractères
+  internationaux}\etchs{19}{1} 
+
+Les utilisateurs des jeux de caractères internationaux ont établi
+beaucoup de standard de systèmes d'encodage pour stocker les
+fichiers. Ces systèmes d'encodage sont généralement multi-octets, ce
+qui signifie que les suites de deux ou plusieurs octets sont utilisées
+pour représenter les caractères individuels non-ASCII.
+
+En interne, Emacs utilise son propre encodage de caractères
+multi-octets, qui est un sur-ensemble de la norme
+\textit{Unicode}. Cet encodage interne permet des caractères de
+presque chaque script connu d'être mélangés dans un seul tampon ou
+dans une chaîne de caractères. Emacs traduit entre l'encodage
+multi-octets et divers autres de systèmes d'encodage lors de la
+lecture et de l'écriture de fichiers, et quand il échange des données
+avec les sous-processus.
+
+La commande \texttt{C-h h (view-hello-file)} affiche le fichier
+\texttt{etc/HELLO}, qui illustre divers scripts montrant comment dire
+<<bonjour>> dans de nombreuses langues. Si certains caractères ne
+peuvent être affihcés sur votre terminal, ils apparaissent comme '?'
+ou comme caissons creux (voir Section \cfchs{19}{17} [Caractères non
+affichables], page \cfchsg{19}{17}). 
+
+Les claviers, même dans les pays où ces jeux de caractères sont
+utilisés, n'ont généralement pas les touches pour tous les
+caractères. Vous pouvez insérer des caractères que votre clavier ne
+prend pas en charge, en utilisant \texttt{C-q (quoted-insert)} ou
+\texttt{C-x 8 RET (insert-char)}. Voir Section \cfchs{4}{1} [Insertion
+de texte], page \cfchsg{4}{1}. Emacs prend également en charge diverse
+méthodes de saisie, généralement une pour chaque script ou langue, ce
+qui rend plus facile de taper des caractères dans le script. Voir la
+Section \cfchs{19}{4} [Les méthodes de saisie], page \cfchsg{19}{4}. 
+
+La touche préfixée \rep{C}{x} \RET est utilisée pour les commandes qui
+se rapportent aux caractères multi-octets, systèmes d'encodage, et les
+méthodes d'entrée. 
+
+La commande \texttt{C-x = (what-cursor-position)} renseigne sur le
+caractère au point. En plus de la position du caractère, qui a été
+décrit dans la Section \cfchs{4}{9} [Infos sur la position], page
+\cfchsg{4}{9}, cette commande affiche comment le caractère est
+codé. Par exemple, il affiche la ligne suivante dans la zone d'écho
+pour le caractère <<c>> : 
+\begin{center}
+  \texttt{Char: c (99, \#o143, \#x63) point=28062 of 36168 (78\%) column=53}
+\end{center}
+Les quatre valeurs après <<\texttt{Char:}>> décrivent le caractère qui
+suit le point, d'abord en montrant, puis en donnant son code de
+caractère en décimal, octal et hexadécimal. Pour un caractère
+multi-octets non ASCII, ceux-ci sont suivis par <<\texttt{file}>> et
+la représentation du caractère, en hexadécimal, dans le système
+d'encodage du tampon, si ce système d'encodage code le caractère en
+toute sécurité avec un seul octet (voir Section \cfchs{19}{6} [Système
+d'encodage], à la page \cfchsg{19}{6}. Si l'encodage du caractère est
+plus d'un octet, Emacs montre <<\texttt{file \dots}>>
+
+Comme cas particulier, si le caractère se trouve dans la plage de 128
+(0200 en octal) à 159 (0237 en octal), cela signifie un octet <<brut>>
+qui ne correspond pas à n'importe quel caractère spécial
+affichable. Un tel <<caractère>> se trouve dans le jeu de caractère
+\texttt{eight-bit-control} et est affiché comme un code de caractère
+octal échappé. Dans ce cas, \texttt{C-x =} montre <<\texttt{part of
+  display \dots}>> au lieu de <<\texttt{file}>>.
+
+Avec un argument préfixé (\rec{C}{u}{C}{x =}), cette commande affiche
+une description détaillée du caractère dans une fenêtre : 
+\begin{itemize}
+\item Le nom du jeu de caractères et les codes qui identifient le
+  caractère dans ce jeu de caractères ; les caractères ASCII sont
+  identifiés comme appartenant à l'ensemble de caractères \texttt{ascii}.
+\item La syntaxe et les catégories du caractère.
+\item Les encodages du caractère, tant à l'interne dans le tampon,
+  qu'à l'extérieur si vous deviez enregistrer le fichier.
+\item Quelles touches taper pour entrer le caractère de la méthode
+  d'entrée naturelle (si elle prend en charge le caractère).
+\item Si vous utilisez Emacs avec un affichage graphique, le nom de
+  police et le code de glyphe pour le caractère. Si vous lancez Emacs
+  dans un terminal de texte, le(s) code(s) est(sont) envoyé(s) au
+  terminal.
+\item Les propriétés du caractère de texte (voir la Section <<Text
+  Properties>> in the Emacs Lisp Reference Manual), y compris les
+  faces non-défaut utiisées pour afficher le caractère, et les
+  incrustations en contenant (voir la section <<overlays>> dans le
+  même manuel). 
+\end{itemize}
+
+Voici un exemple montrant le caractère Latin-1 A avec accent grave,
+dans un tampon dont le système d'encodage est \texttt{utf-8-unix:}
+\begin{center}
+  \begin{tabular}[m]{>{\ttfamily}r >{\ttfamily}p{10cm}}
+    position: & 1 of 1 (0\%), column: 0 \\
+    character:& \`A (displayed as \`A) (codepoint 192, \#o300, \#xc0) 
+  \end{tabular}
+\end{center}
+\section{Mise hors service des caractères multi-octets}\etchs{19}{2}
+\section{Environnements de langues}\etchs{19}{3}
+\section{Méthodes de saisie}\etchs{19}{4}
+\section{Sélection d'une méthode de saisie}\etchs{19}{5}
+\section{Systèmes de codage}\etchs{19}{6}
+\section{Reconnaissance des systèmes de codage}\etchs{19}{7}
+\section{Spécification du fichier du système de codage}\etchs{19}{8}
+\section{Choix des systèmes de codage des sorties}\etchs{19}{9}
+\section{Spécification du système de codage pour un fichier
+  texte}\etchs{19}{10} 
+\section{Systèmes de codage pour la communication
+  inter-processus}\etchs{19}{11} 
+\section{Systèmes de codage des noms de fichiers}\etchs{19}{12}
+\section{Systèmes de codage pour les terminaux E/S}\etchs{19}{13}
+\section{Ensembles de fontes}\etchs{19}{14}
+\section{Définition d'ensemble de fontes}\etchs{19}{15}
+\section{Modification d'ensemble de fontes}\etchs{19}{16}
+\section{Caractères inaffichable}\etchs{19}{17}
+\section{Ensemble de caractères}\etchs{19}{18}
+\section{\'Edition bidirectionnelle}\etchs{19}{19}

@@ -1,0 +1,1073 @@
+\chapter{Traitement de liste}\etch{1}
+
+Pour un \oe{}il non exercé, Lisp est un langage de programmation
+étrange. Dans du code Lisp il y a des parenthèses partout. Certains
+prétendent même que le nom signifie <<Lots of Isolated Silly
+Parentheses\footnote{Beaucoup de parenthèses idiotes isolées}>>. Mais
+cette prétention est injustifiée. Lisp signifie LISt
+Processing\footnote{traitement de liste}, et le langage de
+programmation gère les listes (et listes de listes) en les mettant entre
+parenthèses. Les parenthèses marquent les limites de la
+liste. Parfois, une liste est précédée par une apostrophe ou
+guillemet, <<'>>\footnote{L'apostrophe ou guillemet simple est
+  l'abréviation de la fonction citation; les fonctions sont définies
+  dans la section \cfchs{1}{3} Générer un message d'erreur,
+  page\cfchsg{1}{3}} les listes sont la base de Lisp.
+
+\input{/Volumes/DATA/GEEK/MANUALS/ELISP/INTRO/MAIN/CHAP_1/SECTIONS/sec1}
+
+\section{Lancer un programme}\etchs{1}{2}
+
+Une liste en Lisp---toute---liste est un programme prêt à
+fonctionner. Si vous l'exécutez (en jardon Lisp on dit évaluer),
+l'ordinateur fera l'une des trois choses: ne rien faire, sauf renvoyer
+la liste elle-même; vous envoyer un message d'erreur; ou traiter le
+premier symbole dans la liste comme une commande pour faire quelque
+chose. (Habituellement, bien sûr, c'est le dernier cas que vous voulez
+vraiment!) 
+
+L'apostrophe simple, ', que j'ai mise en face de quelques-uns des
+exemples de listes dans les sections précédentes est appelé
+quote\footnote{en anglais dans le texte car la traduction <<devis>> ne
+  m'a pas paru pertinente}; quand il précède une liste, il dit à Lisp
+de ne rien faire avec la liste, autre que de la prendre comme elle est
+écrite. Mais s'il n'y a pas de quote précédent une liste, le premier
+élément de la liste est spécial: c'est une commande à laquelle
+l'ordinateur doit obéir. (En Lisp, ces commandes sont appelées
+fonctions.) La liste \tm{(+ 2 2)} ci-dessus n'a pas de quote la
+précédant, de sorte que Lisp comprend que le \tm{+} est une
+instruction pour faire quelque chose avec le reste de la liste:
+ajouter les chiffres qui suivent. 
+
+Si vous lisez ce manuel à depuis \gem dans Info, voici comment
+vous pouvez évaluer une telle liste : placez votre curseur
+immédiatement après la parenthèse de droite de la liste suivante et
+puis tapez \rec{C}{x}{C}{e}:
+\begin{center}
+  \tm{(+ 2 2)}
+\end{center}
+
+Vous verrez le nombre 4 appraît dans la zone écho. (Dans le jardon, ce
+que vous venez de faire est ``d'évaluer la liste.'' La zone d'écho est
+la ligne en bas de l'écran qui affiche ou ``échos'' le texte.)
+Maintenant, essayez la même chose avec une liste avec quote: placer le
+curseur après la liste suivante et tapez \rec{C}{x}{C}{e}:
+\begin{center}
+  \tm{'(this is a quoted list)}
+\end{center}
+
+Vous verrez \tm{(this is a quoted list)} apparaître dans la zone
+d'écho.
+
+Dans les deux cas, ce que vous faites est de donner un ordre à
+l'intérieur du programme \gem appelé l'interprète Lisp---donnant
+une commande pour évaluer l'expression Lisp. Le nom de l'interprète
+Lisp vient du mot pour la tâche accomplie par un être humain qui vient
+à la signification d'une expression qu'il interprète.
+
+Vous pouvez également évaluer un atome qui n'est pas partie d'une
+liste et un qui n'est pas entouré par des parenthèses; encore une
+fois, l'interprète Lisp traduit de l'expression lisible par l'homme à
+la langue de l'ordinateur. Mais avant de discuter de cela (voir
+section\cfchs{1}{7} ``Variables'', page\cfchsg{1}{7}), nous allons
+discuter de ce que l'interprète Lisp fait quand vous faites une
+erreur. 
+
+\section{Générer un message d'erreur}\etchs{1}{3}
+
+Partant de sorte que vous ne vous inquiétez pas si vous le faites
+accidentellement, nous allons maintenant donner un ordre à
+l'interprète Lisp qui génère un message d'erreur. C'est une activité
+inoffensive; et en effet, nous allons souvent essayer de générer des
+messages d'erreur intentionnellement. Une fois que vous comprenez le
+jargon, les messages d'erreur peuvent être informatif. Au lieu d'être
+appelé ``messages d'erreur'', ils devraient être appelés messages
+``d'aide''. Ils sont comme des panneaux pour un voyageur dans un pays
+étranger ; les déchiffrer peut être difficile, mais une fois compris,
+ils peuvent indiquer la voie. 
+
+Le message d'erreur est généré par un débogueur \gem intégré. Nous
+allons <<entrer dans le débogueur>>. Pour sortir du débogueur taper
+\tm{q}.
+
+Ce que nous allons faire c'est d'évaluer une liste qui n'a pas de
+quote la précédant et qui n'a pas de commande significative comme
+premier élément. Voici une liste presque exactement la même que celle
+que nous avons utilisé, mais sans la quote la précédant. Placez le
+curseur juste après et taper \rec{C}{x}{C}{e}:
+\begin{center}
+  \tm{(this is an unquoted list)}
+\end{center}
+
+(this is an unquoted list)
+Une fenêtre \tm{*Backtrace*} s'ouvrira et vous devriez voir ce qui suit:
+{\ttfamily
+\begin{flushleft}
+  Debugger entered--Lisp error: (void-function this)
+  
+  (this is an unquoted list)
+
+  eval((this is an unquoted list))
+
+  eval-last-sexp-1(nil)
+
+  eval-last-sexp(nil)
+
+  call-interactively(eval-last-sexp)
+\end{flushleft}}
+
+Votre curseur sera dans cette fenêtre (vous pouvez avoir à attendre
+quelques secondes avant qu'il ne devienne visible). Pour quitter le
+débogueur et faire la fenêtre du débogueur s'en aller, tapez: \tm{q}.
+
+S'il vous plaît tapez \tm{q} maintenant, alors vous devenez plus
+confiant et vous pouvez sortir du débogueur. Ensuite, tapez
+\rec{C}{x}{C}{e} de nouveau pour y rentrer.
+
+Sur la base de ce que nous savons déjà, nous pouvons presque lire ce
+message d'erreur.
+
+Vous avez lu le tampon \tm{*Backtrace*} de bas en haut; il vous dit ce
+que Emacs fait. Lorsque vous avez tapé \rec{C}{x}{C}{e}, vous avez
+fait un appel à la commande \tm{eval-last-sexp}. \tm{eval} est une
+abréviation pour <<évaluer>> et \tm{sexp} est une abréviation pour
+<<expression symbolique>>. La signification de cette commande est
+<<évaluer la dernière expression symbolique>>, qui est l'expression
+juste avant le curseur.
+
+Chaque ligne ci-dessus vous indique ce que l'interprète Lisp évalue
+après. L'action la plus récente est en haut. Le tampon est appelé
+\tm{*Backtrace*} car il vous permet de suivre Emacs en arrière.
+
+En haut du tampon \tm{*Backtrace*}, vous voyez la ligne :
+\begin{center}
+  \tm{Debugger entered--Lisp error: (void-function this)}
+\end{center}
+
+L'interprète Lisp a tenté d'évaluer le premier atome de la liste, le
+mot <<this>>. C'est cette action qui a généré le message d'erreur
+<<void-finction this>>. 
+
+Le message contient les mots <<void-function>> et <<this>>. Le mot
+<<function>> a été mentionné une seule fois auparavant. C'est un mot
+très important.
+
+Pour nos fins, nous pouvons la définir en disant qu'une fonction est
+un ensemble d'instructions données à l'ordinateur qui signale à
+l'oridnateur de faire quelque chose. 
+
+Maintenant, nous pouvons commencer à comprendre le message d'erreur:
+<<\tm{void-function this}>>. La fonction (ce mot est le mot
+<<\tm{this}>> n'a pas de définition d'un ensemble d'instructions que
+l'ordinateur peut mener à bien. 
+
+Le mot un peu bizarre, <<\tm{void-function}>>, est conçu pour couvrir
+la façon dont Emacs Lisp est mis en \oe{}uvre, qui est que lorsqu'un
+symbole n'a pas de définition de fonction attaché à lui, la place qui
+doit contenir les instructions est <<\tm{void}>>.
+
+D'autre part, puisque nous avons pu ajouter 2 plus 2 avec succès, en
+évaluant \tm{(+ 2 2)} nous pouvons en déduire que le symbole \tm{+}
+doit avoir un ensemble d'instructions pour l'ordinateur qui doit obéir
+et ces instructions doivent être ajouter les nombres qui suivent le
+\tm{+}.
+
+Il est possible de prévenir Emacs d'entrer dans le débogueur dans de
+tels cas. Nous n'expliquons pas comment faire ici, mais nous allons
+parler de ce à quoi le résultat ressemble, parce que vous pouvez
+rencontrer une situation similaire s'il y a un bogue dans un code
+Emacs que vous utilisez. Dans de tels cas, vous verrez seulement une
+ligne de message d'erreur ; il apparaîtra dans la zone écho et
+ressemblera à ceci:
+\begin{center}
+  \tm{Symbol's function definition is void: this}
+\end{center}
+
+Le message disparaît dès que vous tapez une touche, même juste pour
+déplacer le curseur. Nous savons que le sens du mot
+<<\tm{Symbol}>>. Il se réfère au premier atome de la liste, le mot
+<<\tm{this}>>. Le mot <<\tm{function}>> se réfère aux instructions qui
+indiquent à l'ordinateur ce qu'il faut faire. (Techniquement, le
+symbole indique à l'ordinateur où trouver les instructions, mais c'est
+une complication que nous pouvons ignorer pour le moment.) Le message
+d'erreur peut être compris: <<\tm{Symbol's function definition is
+  void: this}>>. Le symbole (c'est le mot <<\tm{this}>>) manque
+d'instructions pour que l'ordinateur les mènent à bien. 
+
+
+\section{Noms de symboles et noms de fonctions}\etchs{1}{4}
+
+Nous pouvons exprimer une caractéristique de Lisp basée sur ce que
+nous avons discuté jusqu'à présent---une caractéristique importante :
+un symbole, comme \tm{+}, n'est pas lui-même l'ensemble des
+instructions de l'ordinateur pour mener à bien. Au contraire, le
+symbole est utilisé, peut-être temporairement, comme un moyen de
+localisation de la définition ou un ensemble d'instructions. Ce que
+nous voyons est le nom par lequel les instructions peuvent être
+trouvées. Noms des personnes fonctionnent de la même manière. Je peux
+être <<\tm{Bob}>> ; cependant, je ne suis pas les lettres <<\tm{B}>>,
+<<\tm{o}>>, <<\tm{b}>>, mais je suis ou étais, la conscience toujours
+associée à une forme de vie particulière. Le nom n'est pas moi, mais
+il peut être utilisé pour se référer à moi. 
+
+En Lisp, un ensemble d'instructions peut être attaché à plusieurs
+noms. Par exemple, les instructions informatiques pour l'ajout de
+nombres peuvent être liées au symbole, plus ainsi que pour le symbole
+\tm{+} (et sont dans certains dialectes de Lisp). Chez les humains, je
+peux être appelé <<\tm{Robert}>> ainsi que <<\tm{Bob}>> et par
+d'autres mots ainsi. 
+
+D'autre part, un symbole peut avoir seulement une définition de la
+fonction attachée à elle à la fois. Sinon, l'ordinateur serait confus
+quant à la définition à utiliser. Si c'était le cas chez les
+personnes, une seule personne dans le monde pourrait être nommé
+<<\tm{Bob}>>. Cependant, la définition de la fonction à laquelle le
+nom se réfère peut être modifié facilement. (Voir la
+section\cfchs{3}{2} <<Installer une définition de fonction>>,
+page\cfchsg{3}{2}.) 
+
+Depuis Emacs Lisp est grand, il est d'usage de symboles nom d'une
+manière qui identifie la partie d'Emacs auquel la fonction
+appartient. Ainsi, tous les noms de fonctions qui traitent de Texinfo
+commencent par <<\tm{texinfo-}>> et ceux pour les fonctions qui
+traitent de la lecture du courrier de départ avec <<\tm{rmail-}>>.
+
+
+\section{Interpréteur Lisp}\etchs{1}{5}
+
+Sur la base de ce que nous avons vu, nous pouvons maintenant commencer
+à comprendre ce que l'interprète Lisp fait lorsque nous commandons à
+évaluer une liste. Tout d'abord, il semble pour voir s'il y a une
+citation avant que la liste ; s'il y a, l'interprète nous donne juste
+la liste. D'un autre côté, s'il n'y a pas de citation, l'interprète
+regarde le premier élément de la liste et voit si elle a une
+définition de fonction. Si c'est le cas, l'interpréteur exécute les
+instructions dans la définition de fonction. Sinon, l'interpréteur
+affiche un message d'erreur. 
+
+C'est ainsi que fonctionne Lisp simple. Il y a des complications
+supplémentaires que nous allons obtenir dans une minute, mais ce sont
+les fondamentaux. Bien sûr, pour écrire des programmes Lisp, vous
+devez savoir comment écrire les définitions de fonctions et leur
+donner des noms, et comment le faire sans confondre vous-même ou
+l'ordinateur. 
+
+Maintenant, pour la première complication, en plus de la liste,
+l'interpréteur Lisp peut évaluer un symbole qui n'a pas de quote et
+qui n'a pas de parenthèses autour de lui. L'interprète Lisp tentera de
+déterminer la valeur du symbole comme une variable. Cette situation
+est décrite dans la section sur les variables. (Voir la
+section\cfchs{1}{7} <<Variables>>, page\cfchsg{1}{7}.)
+
+La deuxième complication se produit parce que certaines fonctions sont
+inhabituelles et ne fonctionnent pas de manière habituelle. Celles qui
+ne le font pas sont appelées formes spéciales. Elles sont utilisées
+pour des tâches spéciales, comme la définition d'une fonction, et il
+n'y en a pas beaucoup. Dans les prochains chapitres, vous serez initié
+à plusieurs de ces formes spéciales les plus importantes. 
+
+La troisième et dernière complication est la suivante: si la fonction
+que l'interprète Lisp regarde n'est pas une forme particulière, et si
+elle fait partie d'une liste, l'interprète Lisp regarde pour voir si
+la liste a une liste à l'intérieur de celui-ci. S'il y a une liste
+interne, l'interprète Lisp décide ce qu'il doit faire avec la
+liste intérieur en premier, puis il travaille sur la liste
+extérieure. S'il y a encore une autre liste incorporée à l'intérieur
+de la liste intérieure, cela fonctionne sur celui-là en premier, et
+ainsi de suite. Il travaille toujours sur la liste la plus profonde en
+premier. L'interprète travaille sur la liste la plus interne d'abord,
+pour évaluer le résultat de cette liste. Le résultat peut être utilisé
+par l'expression l'encapsulant.
+
+Sinon, l'interprète travaille de gauche à droite, d'une expression à
+l'autre.
+
+\subsection{Compilation d'octet}\etchss{1}{5}{1}
+
+Un autre aspect de l'interprétation : l'interprète Lisp est capable
+d'interpréter deux types d'entités : du code lisible par des humains,
+sur lequel nous nous concentrerons exclusivement, et du code
+spécialement traité, appelé byte code compilé, qui n'est pas lisible
+par les humains. Le byte code compilé s'exécute plus rapidement que le
+code lisible par les humains. 
+
+Vous pouvez transformer un code lisible pour les humains en un byte
+code compilé en exécutant l'une des commandes de compilation telles
+que \tm{byte-compile-file}. Le byte code compilé est généralement
+stocké dans un fichier qui se termine par une extension \tm{.elc}
+plutôt qu'une extension \tm{.el}. Vous verrez deux types de fichier
+dans le répertoire \tm{emacs/lisp} ; les fichiers à lire sont ceux qui
+portent l'extension \tm{.el}.
+
+En pratique, pour la plupart des choses que vous pourriez faire pour
+personnaliser ou étendre Emacs, vous n'avez pas besoin d'une
+compilation de byte code ; et je ne vais pas en parler ici. Voir la
+section <<Byte compilation>> dans le manuel Emacs Lisp reference, pour
+une description complète la byte compilation.
+ 
+
+\section{\'Evaluation}\etchs{1}{6}
+
+Lorsque l'interpréteur Lisp fonctionne sur une expression, le terme de
+l'activité est appelée évaluation. Nous disons que l'interprète
+<<évalue l'expression>>. J'ai utilisé ce terme plusieurs fois
+avant. Le mot vient de son utilisation dans le langage courant, <<pour
+déterminer la valeur ou la quantité de ; d'évaluer>>, selon le Webster New
+Collegiate Dictionnary.
+
+Après avoir évalué une expression, l'interprète Lisp va probablement
+renvoyer la valeur que l'ordinateur produit en effectuant les
+instructions trouvées dans la définition de fonction, ou peut-être
+qu'il donnera pour cette fonction un message d'erreur. (L'interprète
+peut également se trouver jeté, pour ainsi dire, à une fonction
+différente ou il peut tenter de répéter sans cesse ce qu'il fait à
+tout jamais dans ce qu'on appelle une <<boucle infinie>>. Ces actions
+sont moins fréquentes ; et nous pouvons les ignorer.) Le plus souvent,
+l'interprète renvoie une valeur. 
+
+Dans le même temps l'interprète renvoie une valeur, il peut faire
+autre chose ainsi, comme déplacer un curseur ou copeir un fichier ;
+cet autre type d'action est appelé un effet secondaire. Les actions que
+nous les humains pensont être importantes, telles que les résultats
+d'impression, sont souvent des <<effets secondaires>> à l'interprète
+Lisp. Le jargon peut paraître étrange, mais il s'avère qu'il est assez
+facile d'apprendre à utiliser des effets secondaires.
+
+En résumé, l'évaluation d'une expression symbolique le plus souvent
+l'interprète Lisp pour renvoyer une valeur et peut être procéder à un
+effet secondaire ; ou bien produire une erreur.
+
+\subsection{\'Evaluation des listes internes}\etchss{1}{6}{1}
+
+Si l'évaluation s'applique à une liste qui est à l'intérieur d'une
+autre liste, la liste extérieure peut utiliser la valeur renvoyée par
+la première évaluation comme information lorsque la liste extérieure
+sera évaluée. Cela explique pourquoi les expressions intérieures sont
+évaluées en premier : les valeurs qu'elles renvoient sont utilisées
+par les expressions extérieures.
+
+Nous pouvons enquêter sur ce processus en évaluant un autre exemple de
+plus. Placez votre curseur après l'expression suivante et tapez
+\rec{C}{x}{C}{e} :
+\begin{center}
+  \tm{(+ 2 (+ 3 3))}
+\end{center}
+
+Le nombre 8 apparaîtra dans la zone d'écho.
+
+Ce qui se passe c'est que l'interprète Lisp évalue d'abord
+l'expression intérieure, \tm{(+ 3 3)}, pour laquelle la valeur
+renvoyée est 6; il évalue l'expression externe comme s'il était écrit
+\tm{(+ 2 6)}, qui renvoie la valeur 8. Comme il n'y a pas
+d'expressions plus englobantes pour évaluer, l'interprète affiche
+cette valeur dans la zone d'écho.
+
+Maintenant, il est facile de comprendre le nom de la commande invoquée
+par le raccourci \rec{C}{x}{C}{e} : le nom est
+\tm{eval-last-sexp}. Les lettres \tm{sexp} sont une abréviation pour
+<<expression symbolique>>, et \tm{eval} pour <<évaluer>>. La commande
+signifie <<évaluer la dernière expression symbolique>>.
+
+\`A titre expérimental, on peut essayer d'évaluer l'expression en
+plaçant le curseur au début de la ligne suivante immédiatement après
+l'expression, ou l'expression à l'intérieur. 
+
+Voici une autre copie de l'expression : 
+\begin{center}
+  \tm{(+ 2 (+ 3 3))}
+\end{center}
+
+Si vous placez le cursuer au début de la ligne blanche et tapez
+\rec{C}{x}{C}{e}, vous obtiendrez toujours la valeur 8 imprimée dans
+la zone d'écho. Maintenant, essayez de mettre le curseur dans
+l'expression. Si vous le mettez juste après l'avant-dernière
+parenthèse (il apparaît donc de s'asseoir sur le dessus de la dernière
+parenthèse), vous obtiendrez un 6 imprimé dans la zone écho! C'est
+parce que la commande évalue l'expression \tm{(+ 3 3)}.
+
+Maintenant, mettez le curseur immédiatement après un certain
+nombre. Type \rec{C}{x}{C}{e} et vous obtiendrez le nombre
+lui-même. En Lisp, si vous évaluez un certain nombre, vous obtenez le
+nombre lui-même, c'est en cela que les nombres diffèrent des
+symboles. Si vous évaluez une liste à partir d'un symbole comme
+\tm{+}, vous aurez une valeur renvoyée c'est le résultat de
+l'ordinateur après exécution des instructions de la définition de la
+fonction associée à ce nom. Si un symbole en lui-même est évalué,
+quelque chose de différent se produit, comme nous le verrons dans la
+prochaine section.
+
+\section{Variables}\etchs{1}{7}
+
+Dans Emacs Lisp, un symbole peut avoir une valeur associée à lui tout
+comme il peut avoir une définition de fonction associée. Les deux sont
+différents. La définition de la fonction est un ensemble
+d'instructions auquelles un ordinateur obéira. Une valeur, d'autre
+part, est quelque chose, comme un nombre ou un nom, qui peut varier
+(c'est pourquoi un tel symbole est appelé variable). La valeur d'un
+symbole peut être n'importe quelle expression Lisp, comme un symbole,
+un nombre, une liste, ou une chaîne. Un symbole qui a une valeur est
+souvent appelé une variable. 
+
+Un symbole peut avoir à la fois une définition de fonction et une
+valeur fixée à lui en même temps. Ou il peut avoir l'un ou
+l'autre. Les deux sont séparés. C'est un peu similaire à la façon dont
+le nom Cambridge peut référer à la ville du Massachussets et avoir
+quelques informations attachées au nom ainsi, comme <<grand centre de
+programmation>>. 
+
+Une autre façon de penser à ce sujet est d'imaginer un symbole comme
+étant une commode. La définition de la fonction est mise dans un
+tiroir, la valeur dans un autre et ainsi de suite. Ce qui est mis dans
+le tiroir contenant la valeur peut être modifié sans affecter le
+contenu du tiroir maintenant la définition de la fonciton, et
+vice-versa. 
+
+La variable \tm{fill-column} illustre un symbole avec une valeur
+attachée à elle : dans chaque tampon \gem , ce symbole est réglé à une
+valeur, généralement 72 ou 70, mais parfois à une autre valeur. Pour
+trouver la valeur de ce symbole, d'évaluer par lui-même. Si vous lisez
+ceci dans Info à l'intérieur de \gem , vous pouvez le faire en le
+curseur après le symbole et en tapant \rec{C}{x}{C}{e} :
+\begin{center}
+  \tm{fill-column}
+\end{center}
+
+Après que j'ai tapé \rec{C}{x}{C}{e}, Emacs a imprimé le nombre 70
+dans ma zone d'écho. c'est la valeur pour laquelle \tm{fill-column}
+est réglée pour moi qui écris ceci. Il peut être différent pour vous
+dans votre tampon Info. Notez que la valeur renvoyée comme une
+variable est imprimée exactement de la même manière que la valeur
+renvoyée par la fonction d'exécution des instructions. Du point de vue
+de l'interprète Lisp, une valeur renvoyée est une valeur
+renvoyée. Peu importe le genre d'expression une fois que la valeur est
+connue.
+
+Un symbole peut avoir n'importe quelle valeur attachée à lui ou, pour
+utiliser le jargon, on peut lier la variable à une valeur : à un
+certain nombre, comme \tm{72} ; à une chaîne, <<\tm{telle que ça}>>, à une
+liste, comme \tm{(spruce pine oak)}; nous pouvons même lier une
+variable à une définition de fonction. 
+
+Un symbole peut être lié à une valeur de plusieurs façons. Voir la
+section\cfchs{1}{9} <<Réglage de la valeur d'une variable>>,
+page\cfchsg{1}{9}, pour des informations sur une façon de le faire.  
+
+\subsection{Message d'erreur pour un symbole sans
+  fonction}\etchss{1}{7}{1}
+
+Lorsque nous avons évalué \tm{fill-column} pour trouver sa valeur en
+tant que variable, nous n'avons pas placé des parenthèses autour du
+mot. C'est parce que nous n'avons pas l'intention de l'utiliser comme
+un nom de fonction.
+
+Si \tm{fill-column} était le premier ou le seul élément d'une liste,
+l'interprète Lisp tenterait de trouver la définition de fonction
+attachée à elle. Mais \tm{fill-column} n'a pas de définition de
+fonction. Essayez d'évaluer ceci :
+\begin{center}
+  \tm{(fill-column)}
+\end{center}
+
+Vous allez créé un tampon \tm{*Backtrace*} disant ceci:
+{\ttfamily
+\begin{flushleft}
+  Debugger entered--Lisp error: (void-function fill-column)
+
+  (fill-column)
+
+  eval((fill-column))
+
+  eval-last-sexp-1(nil)
+
+  eval-last-sexp(nil)
+
+  call-interactively(eval-last-sexp)
+\end{flushleft}
+}
+
+(Rappelez-vous, pour quitter le débogueur et faire la fenêtre du
+débogueur s'en aller, tapez \tm{q} dans le tampon \tm{*Backtrace*}.)
+
+
+\subsection{Message d'erreur pour un symbole sans
+  valeur}\etchss{1}{7}{2}
+
+Si vous essayez d'évaluer un symbole qui ne possède pas une valeur qui
+lui est liée, vous recevrez un message d'erreur. Vous pouvez voir cela
+en expérimentant avec notre addition 2 plus 2. Dans l'expression
+suivante, placez votre curseur à droite après le \tm{+}, avant le
+premier nombre 2, tapez \rec{C}{x}{C}{e} :
+\begin{center}
+  \tm{(+ 2 2)}
+\end{center}
+Vous allez créé un tampon \tm{*Backtrace*} disant ceci:
+{\ttfamily
+\begin{flushleft}
+  Debugger entered--Lisp error: (void-variable +)
+
+  eval(+)
+
+  eval-last-sexp-1(nil)
+
+  eval-last-sexp(nil)
+
+  call-interactively(eval-last-sexp)
+\end{flushleft}
+}
+
+(Encore une fois, vous pouvez quitter le débogueur en tapant \tm{q}
+dans le tampon \tm{*Backtrace*}.)
+
+Ce backtrace est différent du premier message d'erreur que nous avons
+vu, qui dit <<\tm{Debugger entered--Lisp error: (void-function
+  this)}>>. Dans ce cas, la fonction n'a pas de valeur en tant que
+variable; tandis que dans l'autre message d'erreur, la fonction (le
+mot <<\tm{this}>>) n'avait pas de définition.
+
+Dans cette expérience avec le \tm{+}, ce que nous faisions était
+provoquer l'interprète Lisp évaluer le \tm{+} et rechercher la valeur
+de la variable au lieu de la définition de la fonction. Nous l'avons
+fait en plaçant le curseur juste après le symbole plutôt qu'après la
+parenthèse de la liste englobante que nous avons fait avant. En
+conséquence, l'interprète Lisp a évalué la s-expression précédente,
+qui dans ce cas était \tm{+} lui-même.
+
+Depuis \tm{+} n'a pas de valeur liée à elle, juste la définition de
+fonction, le message d'erreur rapportait que la valeur du symbole
+comme variable était nulle. 
+
+\section{Arguments}\etchs{1}{8}
+
+Pour voir comment l'information est transmise à des fonctions,
+regardons de nouveau notre vieille veille, l'ajout de deux plus
+deux. En Lisp, ça s'écrit comme suit :
+\begin{center}
+  \tm{(+ 2 2)}
+\end{center}
+
+Si vous évaluez cette expression, le nombre 4 apparaîtra dans votre
+zone écho. Ce que fait l'interprète Lisp c'est d'ajouter les nombres
+qui suivent le \tm{+}.
+
+Les nombres ajoutés par \tm{+} sont appelés les arguments de la
+fonction \tm{+}. Ces nombres sont les informations que l'on donne à ou
+transmis à la fonction. 
+
+Le mot <<argument>> vient de la façon dont il est utilisé en
+mathématiques et ne se réfère pas à une dispute entre deux personnes;
+au contraire, il se réfère à l'information présentée à la fonction,
+dans ce cas, à la fonction \tm{+}. En Lisp, les arguments d'une
+fonction sont les atomes ou les listes qui suivent la fonction. Les
+valeurs renvoyées par l'évaluation de ces atomes ou des listes sont
+passées à la fonction. Différentes fonctions nécessitent différents
+nombres d'arguments; certaines fonctions n'en exigent pas du
+tout\footnote{Il est curieux de suivre le chemin par lequel le mot
+  <<argument>> est venu d'avoir deux significations différentes, l'une
+  en mathématiques et l'autre en anglais de tous les jours. Selon le
+  Oxford English Dictionary, le mot dérive du Latin <<\tm{faire
+    comprendre, prouver}>>; ainsi venu à signifier, par un fil de
+  dérivation, <<la preuve présentée comme preuve>>, c'est-à-dire,
+  <<l'information offerte>>, qui a conduit à sa signification en
+  Lisp. Mais dans l'autre fil de dérivation, il est venu à signifier
+  <<d'affirmer d'une manière contre laquelle d'autres peuvent faire
+  des contre affirmations>>, qui ont conduit à la signification du mot
+  comme une dispute. (Notons ici que le mot anglais a deux définitions
+  différentes qui s'y rattachent en même temps. En revanche, dans
+  Emacs Lisp, un symbole ne peut pas avoir deux définitions de
+  fonctions différentes en même temps.)}. 
+
+\subsection{Arguments des types de données}\etchss{1}{8}{1}
+
+Le type de données qui doivent être transmises à une fonction dépend
+de quel type d'information elle utilise. Les arguments d'une fonction
+telle que \tm{+} doivent avoir des valeurs qui sont des nombres,
+depuis \tm{+} ajoute des nombres. D'autres fonctions utilisent
+différents types de données pour leurs arguments.
+
+Par exemple, la fonction \tm{concat} relie ou réunit deux ou plusieurs
+chaînes de caractères pour produire une chaîne. Les arguments sont des
+chaînes. La concaténation des deux chaînes de caractères \tm{abc},
+\tm{def} produit la chaîne \tm{abcdef} seule. Ceci peut être vu par
+l'évaluation de ce qui suit : 
+\begin{center}
+  \tm{(concat 'abc' 'def')} % ne marche pas en TeX
+\end{center}
+
+La valeur produite en évaluant cette expression est <<\tm{abcdef}>>.
+
+Une fonction comme sous-chaîne utilise à la fois une chaîne et des
+nombres comme arguments. La fonction renvoie une partie de la chaîne,
+une chaîne du premier argument. Cette fonction prend trois
+arguments. Son premier argument est la chaîne de caractères, les
+deuxième et troisième arguments sont des nombres qui indiquent le
+début et la fin de la sous-chaîne. Les nombres sont un comptage du
+nombre de caractères (ponctuation et espaces compris) depuis le début
+de la chaîne.
+
+Par exemple, si vous évaluez la suivante :
+\begin{center}
+  \tm{(substring ''The quick brown fox jumped.'' 16 19)}
+\end{center}
+
+vous verrez ''\tm{fox}'' apparaître dans la zone d'écho. Les arguments
+sont la chaîne et les deux nombres. 
+
+Notez que la chaîne passée à \tm{substring} est un atome, même si elle
+est composée de plusieurs mots séparés par des espaces. Lisp compte
+tout entre les deux guillemets dans le cadre de la chaîne, y compris
+les espaces. Vous pouvez penser la fonction \tm{substring} comme une
+sorte <<d'écraseur d'atome>>, car il faut un atome contraire à
+l'indivisible et en extraire une partie. Cependant, \tm{substring} est
+seulement capable d'extraire une sous-chaîne à partir d'un argument
+qui est une chaîne, pas d'un autre type d'atome comme un nombre ou un
+symbole.
+
+
+
+\subsection{Un argument comme la valeur d'une variable ou d'une
+  liste}\etchss{1}{8}{2}
+
+Un argument peut être un symbole qui renvoie une valeur quand il est
+évalué. Par exemple, lorsque le symbole de remplissage par colonne
+lui-même est évalué, il renvoie un nombre. Ce nombre peut être utilisé
+pour une addition. Positionner le curseur après l'expression suivante
+et le type \rec{C}{x}{C}{e}:
+\begin{center}
+  \tm{(+ 2 fill-column)}
+\end{center}
+
+La valeur sera un nombre deux de plus que ce que vous obtenez en
+évaluant \tm{fill-column} seul. Pour moi, c'est 74, parce que ma
+valeur de \tm{fill-column} est 72.
+
+Comme nous venons de le voir, un argument peut être un symbole qui
+renvoie une valeur lors de l'évaluation. En outre, un argument peut
+être une liste qui renvoie une valeur quand il est évalué. Par
+exemple, dans l'expression suivante, les arguments de la fonction
+\tm{concat} sont les chaînes <<The>> et <<red foxes.>> et la liste
+\tm{(number-to-string (+ 2 fill-column))}.
+\begin{center}
+  \tm{(concat ''The '' (number-to-string (+ 2 fill-column)) '' red foxes.'')}
+\end{center}
+
+Si vous évaluez cette expression et si, comme avec mon Emacs,
+\tm{fill-column} évalue à 72---<<The 74 red foxes.>> apparaît dans la
+zone écho. (Notez que vous devez mettre des espaces après le mot
+<<The>> et avant le mot <<red>> de sorte qu'ils apparaissent dans la
+chaîne finale. La fonction \tm{number-to-string} convertit l'entier
+que la fonction d'addition renvoie à une chaîne. \tm{number-to-string}
+est également connu comme \tm{int-to-string}.)
+
+
+\subsection{Nombre variable d'arguments}\etchss{1}{8}{3}
+
+Certaines fonctions, comme \tm{concat}, \tm{+} ou \tm{*}, prendre
+n'importe quel nombre d'arguments. (Le \tm{*} est le symbole de
+multiplication.) Ceci peut être vu par l'évaluation de chacune des
+expressions suivantes de la manière habituelle. Ce que vous verrez
+dans la zone d'écho est imprimé dans ce texte après <<$\Rightarrow$>>,
+que vous pouvez lire comme <<évalué à >>.
+
+Dans la première série, les fonctions n'ont pas d'arguments:
+\begin{center}
+  \begin{tabular}[m]{lrl}
+    \tm{(+)} &$\Rightarrow$ & 0 \\
+    \tm{(*)} &$\Rightarrow$ & 1 
+  \end{tabular}
+\end{center}
+
+Dans cet ensemble, les fonctions ont un argument de chaque:
+\begin{center}
+  \begin{tabular}[m]{lrl}
+    \tm{(+ 3)} &$\Rightarrow$ & 3 \\
+    \tm{(* 3)} &$\Rightarrow$ & 3 
+  \end{tabular}
+\end{center}
+
+Dans cet ensemble, les fonctions ont trois arguments de chaque:
+\begin{center}
+  \begin{tabular}[m]{lrl}
+    \tm{(+ 3 4 5)} &$\Rightarrow$ & 12 \\
+    \tm{(* 3 4 5)} &$\Rightarrow$ & 60 
+  \end{tabular}
+\end{center}
+
+
+\subsection{Utiliser le mauvais type d'objet pour un argument}\etchss{1}{8}{4}
+
+Quand une fonction est passée un argument de type incorrect,
+l'interprète Lisp produit un message d'erreur. Par exemple, la
+fonction \tm{+} attend les valeurs de ses arguments pour être des
+nombres. Comme une expérience, nous pouvons passer le symbole cité
+bonjour au lieu d'un nombre. Positionner le curseur après l'expression
+suivante et le type \rec{C}{x}{C}{e} :
+\begin{center}
+  \tm{(+ 2 'hello)}
+\end{center}
+
+Lorsque vous faites cela, vous allez générer un message d'erreur. Ce
+qui est arrivé est que \tm{+} a essayé d'ajouter le 2 à la valeur
+renvoyée par \tm{'hello}, mais la valeur renvoyée par \tm{'hello} est
+le symbole \tm{hello}, pas un nombre. Seuls des chiffres peuvent être
+ajoutés. Donc \tm{+} ne pouvait pas mener à bien son addition. 
+
+Vous aller créer et entrer dans un tampon \tm{*Backtrace*} qui dit :
+
+{\ttfamily
+Debugger entered--Lisp error:
+\begin{center}
+  (wrong-type-argument number-or-marker-p hello)
+\end{center}
++(2 hello)
+
+eval((+ 2 (quote hello)))
+
+eval-last-sexp-1(nil)
+
+eval-last-sexp(nil)
+
+call-interactively(eval-last-sexp)
+}
+
+Comme d'habitude, le message d'erreur essaie d'être utile et logique
+après vous apprenez à lire\footnote{\tm{(quote hello)} est une
+  expansion de l'abréviation \tm{'hello}}. 
+
+La première partie du message d'erreur est simple; il est dit
+<<\tm{wrong type argument}>>. Vient ensuite le mot de jargon
+mystérieux <<\tm{number-or-marker-p}>>. Ce mot est d'essayer de vous
+dire ce genre d'argument du \tm{+} prévu. 
+
+Le symbole \tm{number-or-marker-p} dit que l'interprète Lisp essaie de
+déterminer si l'information a présenté (la valeur de l'argument) est
+un nombre ou un marqueur (un objet spécial représentant une position
+de tampon). Ce qu'il fait est le test pour voir si le \tm{+} est étant
+des nombres à ajouter. Il teste aussi de voir si l'argument est
+quelque chose appelé un marqueur, qui est une caractéristique
+spécifique de Emacs Lisp. (Dans Emacs, les emplacements dans une
+mémoire tampon sont enregistrés en tant que marqueurs. Lorsque la
+marque est réglée avec le \rep{C}{@} ou la commande \rep{C}{SPC}, sa
+position est maintenue en tant que marqueur. La marque peut être
+considérée comme un nombre---le nombre de caractères les emplacement
+est à partir du début de la mémoire tampon). En Lisp, \tm{+} peut être
+utilisé pour ajouter la valeur numérique de positions de marqueurs que
+des nombres.
+
+Le <<\tm{p}>> de <<\tm{number-or-marker-p}>> est l'incarnation d'une
+pratique a commencé dans les premiers jours de la programmation
+Lisp. Le <<\tm{p}>> signifie <<prédicat>>. Dans le jargon, utilisé par
+les chercheurs Lisp, un prédicat renvoie à une fonction pour
+déterminer si une propriété est vraie ou fausse. Ainsi, le <<\tm{p}>>
+nous dit que ce \tm{number-or-marker-p} est le nom d'une fonction qui
+détermine si c'est vrai ou faux que l'argument fourni est un nombre ou
+un marqueur. Autres symboles Lisp qui se terminent par <<\tm{p}>>
+comprennent \tm{zerop}, une fonction qui teste si son argument a la
+valeur de zéro, et \tm{listp}, une fonction qui teste si son argument
+est une liste. 
+
+Enfin, la dernière partie du message d'erreur est le symbole
+\tm{hello}. C'est la valeur de l'argument qui a été adopté pour
+\tm{+}. Si l'addition avait été adoptée le bon type d'objet, la valeur
+passée aurait été un certain nombre, comme 37, plutôt qu'un symbole
+comme \tm{hello}. Mais alors vous n'auriez pas reçu le message d'erreur.
+
+\subsection{La fonction \tm{message}}\etchss{1}{8}{5}
+
+Comme \texttt{+}, la fonction de \texttt{message} prend un nombre
+variable d'arguments. Elle est utilisée pour envoyer des messages à
+l'utilisateur et est si utile que nous allons la décrire ici.
+
+Un message est imprimé dans la zone écho. Par exemple, vous pouvez
+imprimer un message dans votre zone de répercussion en évaluant la
+liste suivante :   
+
+\tm{(message ``This message appears in the echo area'')}
+
+L'ensemble de la chaîne de caractères entre guillemets est un argument
+unique et est imprimé dans sa totalité. (Notez que dans cet exemple,
+le message lui-même apparaît dans la zone écho entre guillemets; cela
+parce que vous voyez la valeur retournée par la fonction
+\tm{message}. Dans la plupart des utilisations de \tm{message} dans
+les programmes que vous écrivez, le texte sera imprimé dans la zone
+d'écho comme un effet secondaire, sans les guillemets. Voir Section
+\cfchss{3}{3}{1} ``multiply-by-seven in detail'' page
+\cfchssg{3}{3}{1}, pour un exemple de cela).
+
+Cependant, s'il y a un '\tm{\%s}' dans la chaîne de caractères entre
+guillemets, la fonction \tm{message} n'imprimera pas le '\tm{\%s}' en
+tant que tel, mais l'assimile à un argument qui suit la chaîne. Elle
+évalue le second argument et imprime sa valeur à l'endroit où se situe
+'\tm{\%s}' dans la chaîne.
+
+Vous pouvez voir cela en positionnant le curseur après l'expression
+suivante et en tapant \tm{C-x C-e}:
+
+\tm{(message ``The name of this buffer is : \%s.'' (buffer-name))}
+
+Dans Info, \tm{``The name of this buffer is :*info*.''} apparaîtra
+dans la zone d'écho. La fonction \tm{buffer-name} renvoie  le nom du
+tampon comme une chaîne, où la fonction \tm{message} insère à la place
+de \tm{'\%s'}.
+
+Pour imprimer une valeur comme un entier, utiliser \tm{'\%d'} de la
+même manière que \tm{'\%s'}.  Par exemple, pour imprimer un message
+dans la zone écho qui indique la valeur de \tm{fill-column}, évaluer les
+points suivants:
+
+\tm{(message ``The value of fill-column is: \%d.'' fill-column)}
+
+Sur mon système, lorsque j'évalue cette list, \tm{``The value of
+  fill-column is 72.''} apparaît dans ma zone d'écho.\footnote{En fait
+    vous pouvez utiliser \tm{'\%s'} pour afficher un nombre. Ce n'est
+    pas spécifique. \tm{\%d} n'affiche que la partie à gauche de la
+    virgule d'un nombre décimal, et rien d'autre qui ne soit un
+    nombre.}
+
+S'il y a plus qu'un \tm{'\%s'} dans la chaîne entre les quotes, la
+valeur du premier argument est affichée à l'endroit du premier
+\tm{'\%s'}, la valeur du deuxième argument est affichée à l'endroit du
+deuxième \tm{'\%s'} et ansi de suite.
+
+Par exemple, si vous faites l'évaluation suivante : 
+
+\tm{(message ``There are \%d \%s in the office!''}
+
+\hspace{1.5cm}\tm{(- fill-column 14) ``pink elephants'')}
+
+un message plutôt lunatique apparaîtra dans votre zone de
+répercussion. Sur mon système, il dit, 
+
+\tm{``The are 58 pink elephants in the office!''}.
+
+L'expression \tm{(- fill-column 14)} est évaluée et le nombre
+résultant est inséré à la place de \tm{'\%d'}; et la chaîne de
+caractères \tm{``pink elephants''}, est traitée comme un argument
+simple et insérée à la place de \tm{'\%s'} :
+
+{\tt 
+  \begin{center}
+    \begin{tabular}[m]{*{3}l}
+      (message &''He saw \%d \%s''  & \\
+               & (- fill-column 32) & \\
+               & (concat ``red ``   & \\
+               &                    & (substring \\
+               &                    & ``The quick brown foxes
+                                      jumped.'' 16 21) \\
+               &                    & `` leaping.''))
+    \end{tabular}
+  \end{center}
+ }
+
+Dans cet exemple, la fonction \tm{message} a trois arguments : la
+chaîne \tm{``He saw \%d \%s''}, l'expression \tm{(- fill-column 32)}
+est insérée à la place de \tm{'\%d'}; et la valeur renvoyée par l'expression
+commençant par \tm{concat} est insérée à la place de \tm{'\%s'}. 
+
+Lorsque votre colonne de remplissage est de 70 et que vous évaluer
+l'expression, le message \tm{``He saw 38 red foxes leaping.''} aparaît
+dans votre zone d'écho.
+
+\section{Initialisation de variable}\etchs{1}{9}
+
+Il y a plusieurs façons d'affecter une variable. Une des façons est
+d'utiliser la fonction \tm{set} ou \tm{setq}. Une autre façon est
+d'utiliser la fonction \tm{let} (voir Section \cfchs{3}{6} ``let''
+page \cfchsg{3}{6}). (Le jargon pour ce processus est de \textit{lier}
+une variable à une valeur.)
+
+Les sections suivantes ne décrivent pas seulement le fonctionnement de
+\tm{set} et \tm{setq} mais illustrent aussi comment les arguments sont
+passés. 
+
+\subsection{Utilisation de \tm{set}}\etchss{1}{9}{1}
+
+Pour affecter la valeur du symbole \tm{flowers} à la liste \tm{'(rose
+  violet daisy buttercup)}, évaluer l'expression suivante en
+positionnnant le curseur après l'expression et en tappant le raccourci
+suivant : \tm{C-x  C-e}.
+
+\tm{(set 'flowers '(rose violet daisy buttercup))}
+
+Cette liste \tm{(rose violet daisy buttercup)} apparaîtra dans la zone
+d'écho. C'est ce qui est \textit{renvoyé} par la fonction
+\tm{set}. Comme un effet secondaire, le symbole \tm{flowers} est lié à
+la liste; qui est, le symbole \tm{flowers} qui peut être considéré
+comme une variable, est donné à la liste comme sa valeur. (Ce
+processus, par la manière, illustre comment un effet secondaire à
+l'interprète Lisp, réglage de la valeur, peut être l'effet principal
+qui nous intéresse nous les humains. C'est parce que chaque
+fonction Lisp doit renvoyer une valeur si elle ne reçoit pas une
+erreur, mais elle aura seulement un effet secondaire si elle est conçue
+pour avoir un.) 
+
+Après l'évaluation de l'expression \tm{set}, vous pouvez évaluer le
+symbole \tm{flowers} et cela vous renverra la valeur que vous venez de
+régler. Voici le symbole. Placez le curseur après lui et tapez la
+séquence de touche \tm{C-x C-e}.
+
+\tm{flowers}
+
+Quand vous évaluez \tm{flowers}, la liste \tm{(rose violet daisy
+  buttercup)} apparaît dans la zone d'écho. 
+
+Incidemment, si vous évaluez \tm{'flowers}, la variable avec une quote
+devant elle, ce que vous verrez dans la zone d'écho c'est le symbole
+lui-même. Voici le symbole quoté, donc vous pouvez essayer ça :
+
+\tm{'flowers}
+
+Notez aussi, que lorsque vous utilisez aussi \tm{set}, vous avez
+besoin de quotes pour chaque argument de \tm{set}, à moins que vous ne
+souhaitiez qu'ils soient évalués. Puisque nous ne voulons pas non plus
+évalué les arguments ni de la variable \tm{flowers} ni de la liste
+\tm{(rose violet daisy buttercup)}, les deux sont quotés. (Lorsque
+vous utilisez \tm{set} sans quote pour son premier argument, le
+premier argument est evalué avant que n'importe quoi d'autre soit
+fait. Si vous aviez fait ça et que \tm{flowers} n'avait pas encore de
+valeur, vous auriez reçu un message d'erreur disant que \tm{'Symbol's
+  value as variable is void'}; d'autre part, si \tm{flowers} avait
+renvoyé une valeur après qu'elle ait été évalué, le \tm{set} tenterait
+de régler la valeur qui a été renvoyé. Il y a des situations où c'est
+la bonne chose à faire pour la fonction; mais de telles situations
+sont rares.)
+
+\subsection{Utilisation de \tm{setq}}\etchss{1}{9}{2}
+
+En pratique, vous mettez une quote presque toujours devant le premier
+argument de \tm{set}. La combinaison de \tm{set} et d'une quote pour
+le premier argument et si fréquente qu'elle a son propre nom: la forme
+spéciale \tm{setq}. Cette forme spéciale est comme \tm{set} sauf que
+le premier argument a automatiquement une quote, donc vous n'avez pas
+besoin de tapez une quote vous-même. En outre, par commodité,
+\tm{setq} vous permez de régler plusieurs variables différentes avec
+différentes valeurs, toutes en une expression.
+
+Pour affecter la variable \tm{carnivores} de la liste \tm{'(lion tiger
+  leopard)} en utilisant \tm{setq}, l'expression suivante est utilisée
+:
+
+\tm{(setq carnivores '(lion tiger leopard))}
+
+Avec \tm{set}, l'expression ressemblerait à ça :
+
+\tm{(set 'carnivores '(lion tiger leopard))}
+
+En outre, \tm{setq} peut être utlisée pour assigner différentes
+valeurs à différentes variables. Le premier argument est lié à la
+valeur du second argument, le troisième est lié à la valeur du
+quatrième, et ainsi de suite. Par exemple, vous pouvez utiliser ce qui
+suit pour affecter une liste d'arbres au symbole \tm{trees} et une
+liste d'herbivores au symbole \tm{herbivores} : 
+
+\tm{(setq trees '(pine fir oak maple)}
+
+\tm{herbivores '(gazelle antelope zebra))}
+
+(L'expression aurait aussi bien pu être sur une seule ligne, mais ça
+n'aurait pas été bien mis en page; et les humains trouvent qu'il est
+plus simple de lire les listes qui sont bien mises en page.)
+
+Même si j'utilise le terme 'assigner', il y a une autre façon de
+penser le travail de \tm{set} et \tm{setq}; et c'est de dire que
+\tm{set} et \tm{setq} mettent le symbole \textit{point} dans la
+liste. Cette dernière façon de penser est très communes et dans les
+chapitres à venir nous verrons au moins un symbole qui a 'pointer'
+comme partie de son nom. Le nome est choisi parcee le symbole a une
+valeur, spécifiquement une liste, attachée à lui; ou, dit autrement,
+le symbole est réglé pour <<pointer>> sur la liste.
+
+\subsection{Compteurs}\etchss{1}{9}{3}
+
+Voici un exemple qui montre comment utiliser \tm{setq} dans un
+compteur. Vous devez utiliser cela pour compter combien de fois une
+partie de votre programme se répète. D'abord initialiser une variable
+à zéro; ensuite ajouter un au nombre chaque fois que le programme se
+répète. Pour faire cela, vous avez besoin d'une variable qui sert à
+compter, et de deux expressions: une expression \tm{setq} initiale qui
+affecte le compteur à zéro; et une seconde expression \tm{setq} qui
+incrémente le compteur chaque fois qu'elle est évaluée.
+
+\begin{center}
+  \begin{tabular}[m]{ll}
+    \tm{(setq counter 0)} & ; appelons-le l'initialisateur  \\
+    \tm{(setq counter (+ counter 1))} & ; c'est l'incrémenteur \\
+    \tm{counter}                     & ; c'est le compteur
+  \end{tabular}
+\end{center}
+
+(Le texte suivant le ';' sont des commentaires. Voir Section
+\cfchss{3}{2}{1} ``Change a Function Definition'', page
+\cfchssg{3}{2}{1}.)
+
+Si vous évaluez la première de ces expressions, l'initialisateur,
+\tm{(setq counter 0)}, et ensuite évaluez la troisième expression,
+\tm{counter}, le nombre 0 apparaît dans la zone d'écho. Si vous
+évaluez ensuite la seconde expression, l'incrémenteur, \tm{(setq
+  counter (+ counter 1))}, le compteur aura la valeur 1. Donc si vous
+évaluez \tm{counter}, le nombre 1 apparaîtra dans la zone
+d'écho. Chaque fois que évaluez la seconde expression, la valeur du
+compteur sera incrémentée.
+
+Quand vous évaluez l'incrémenteur, \tm{(setq counter (+ counter 1))},
+l'interprète Lisp évalue d'abord la liste la plus interne; c'est
+l'addition. Afin d'évaluer cette liste, il doit évaluer la variable
+\tm{counter} et le nombre 1. Quand il évalue la variable \tm{counter},
+il reçoit sa valeur courante. Il passe cette valeur et le nombre 1 à
+la fonction \tm{+} qui les ajoute ensemble. La somme est ensuite
+renvoyée à la valeur de la liste qui la contient et passée à la
+fonction \tm{setq} qui affecte la variable \tm{counter} de cette
+nouvelle valeur. Ainsi la valeur de la variable, \tm{counter}, est modifiée.
+
+\section{Résumé}\etchs{1}{10}
+
+L'apprentissage de Lisp est comme l'escalade d'une colline dans
+laquelle la première partie est la plus dure. Vous avez maintenant
+grimpé la partie la plus difficile; ce qui reste deviendra plus facile
+maintenant que vous avez progressé.
+
+En résumé,
+\begin{itemize}
+\item Les programmes Lisp sont constitués d'expressions, qui sont des
+  listes ou des atomes individuels.
+\item Les listes sont constituées de 0 ou plusieurs atomes ou de
+  listes internes, séparées par des espaces et entourées par des
+  parenthèses. Une liste peut être vide.
+\item Les atomes sont des symboles multi-caractères, comme
+  \tm{forward-paragraph}, symboles caractère simple comme \tm{+},
+  chaînes de caractères entre guillemets, ou des nombres.
+\item Un nombre s'évalue lui-même.
+\item Une chaîne entre guillemets s'évalue également elle-même.
+\item Lorsque vous évaluez un symbole par lui-même, sa valeur est
+  renvoyée.
+\item Lorsque vous évaluez une liste, l'interprète Lisp regarde
+  d'abord le premier symbole dans la liste et ensuite la fonction liée
+  à ce symbole. Ensuite les instructions dans la définition de
+  fonction sont effectuées.
+\item Un guillemet simple (quote), \tm{'}, dit à l'interprète Lisp
+  qu'il devrait renvoyer l'expression suivante comme écrite, et ne pas
+  l'évaluer comme si la quote n'était pas là.
+\item Les arguments sont des information passées à la fonction. Les
+  arguments d'une fonction sont calculés par évaluation du reste des
+  éléments de la liste dont la fonction est le premier élément.
+\item Une fonction renvoie toujours une valeur quand elle est évaluée
+  ( à moins d'obtenir une erreur); en outre, il peut aussi effectuer
+  une action appelée <<effet secondaire>>. Dans de nombreux cas, le
+  but principal d'une fonction est de créer un effet secondaire.
+\end{itemize}
+
+
+
+\section{Exercices}\etchs{1}{11}
+
+Quelques exercices simples :
+\begin{itemize}
+\item Générer un message d'erreur en évaluant un symbole approprié qui
+  n'est pas entre parenthèses.
+\item Générer un message d'erreur en évaluant un symbole approprié
+  entre parenthèses.
+\item Créer un compteur qui incrémente par deux au lieu de un.
+\item \'Ecrire une expression qui affiche un message dans la zone
+  d'écho quand il est évalué.
+\end{itemize}
+
+

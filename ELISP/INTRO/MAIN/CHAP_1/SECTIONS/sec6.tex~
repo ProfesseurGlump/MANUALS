@@ -1,0 +1,90 @@
+\section{\'Evaluation}\etchs{1}{6}
+
+Lorsque l'interpréteur Lisp fonctionne sur une expression, le terme de
+l'activité est appelée évaluation. Nous disons que l'interprète
+<<évalue l'expression>>. J'ai utilisé ce terme plusieurs fois
+avant. Le mot vient de son utilisation dans le langage courant, <<pour
+déterminer la valeur ou la quantité de ; d'évaluer>>, selon le Webster New
+Collegiate Dictionnary.
+
+Après avoir évalué une expression, l'interprète Lisp va probablement
+renvoyer la valeur que l'ordinateur produit en effectuant les
+instructions trouvées dans la définition de fonction, ou peut-être
+qu'il donnera pour cette fonction un message d'erreur. (L'interprète
+peut également se trouver jeté, pour ainsi dire, à une fonction
+différente ou il peut tenter de répéter sans cesse ce qu'il fait à
+tout jamais dans ce qu'on appelle une <<boucle infinie>>. Ces actions
+sont moins fréquentes ; et nous pouvons les ignorer.) Le plus souvent,
+l'interprète renvoie une valeur. 
+
+Dans le même temps l'interprète renvoie une valeur, il peut faire
+autre chose ainsi, comme déplacer un curseur ou copeir un fichier ;
+cet autre type d'action est appelé un effet secondaire. Les actions que
+nous les humains pensont être importantes, telles que les résultats
+d'impression, sont souvent des <<effets secondaires>> à l'interprète
+Lisp. Le jargon peut paraître étrange, mais il s'avère qu'il est assez
+facile d'apprendre à utiliser des effets secondaires.
+
+En résumé, l'évaluation d'une expression symbolique le plus souvent
+l'interprète Lisp pour renvoyer une valeur et peut être procéder à un
+effet secondaire ; ou bien produire une erreur.
+
+\subsection{\'Evaluation des listes internes}\etchss{1}{6}{1}
+
+Si l'évaluation s'applique à une liste qui est à l'intérieur d'une
+autre liste, la liste extérieure peut utiliser la valeur renvoyée par
+la première évaluation comme information lorsque la liste extérieure
+sera évaluée. Cela explique pourquoi les expressions intérieures sont
+évaluées en premier : les valeurs qu'elles renvoient sont utilisées
+par les expressions extérieures.
+
+Nous pouvons enquêter sur ce processus en évaluant un autre exemple de
+plus. Placez votre curseur après l'expression suivante et tapez
+\rec{C}{x}{C}{e} :
+\begin{center}
+  \tm{(+ 2 (+ 3 3))}
+\end{center}
+
+Le nombre 8 apparaîtra dans la zone d'écho.
+
+Ce qui se passe c'est que l'interprète Lisp évalue d'abord
+l'expression intérieure, \tm{(+ 3 3)}, pour laquelle la valeur
+renvoyée est 6; il évalue l'expression externe comme s'il était écrit
+\tm{(+ 2 6)}, qui renvoie la valeur 8. Comme il n'y a pas
+d'expressions plus englobantes pour évaluer, l'interprète affiche
+cette valeur dans la zone d'écho.
+
+Maintenant, il est facile de comprendre le nom de la commande invoquée
+par le raccourci \rec{C}{x}{C}{e} : le nom est
+\tm{eval-last-sexp}. Les lettres \tm{sexp} sont une abréviation pour
+<<expression symbolique>>, et \tm{eval} pour <<évaluer>>. La commande
+signifie <<évaluer la dernière expression symbolique>>.
+
+\`A titre expérimental, on peut essayer d'évaluer l'expression en
+plaçant le curseur au début de la ligne suivante immédiatement après
+l'expression, ou l'expression à l'intérieur. 
+
+Voici une autre copie de l'expression : 
+\begin{center}
+  \tm{(+ 2 (+ 3 3))}
+\end{center}
+
+Si vous placez le cursuer au début de la ligne blanche et tapez
+\rec{C}{x}{C}{e}, vous obtiendrez toujours la valeur 8 imprimée dans
+la zone d'écho. Maintenant, essayez de mettre le curseur dans
+l'expression. Si vous le mettez juste après l'avant-dernière
+parenthèse (il apparaît donc de s'asseoir sur le dessus de la dernière
+parenthèse), vous obtiendrez un 6 imprimé dans la zone écho! C'est
+parce que la commande évalue l'expression \tm{(+ 3 3)}.
+
+Maintenant, mettez le curseur immédiatement après un certain
+nombre. Type \rec{C}{x}{C}{e} et vous obtiendrez le nombre
+lui-même. En Lisp, si vous évaluez un certain nombre, vous obtenez le
+nombre lui-même, c'est en cela que les nombres diffèrent des
+symboles. Si vous évaluez une liste à partir d'un symbole comme
+\tm{+}, vous aurez une valeur renvoyée c'est le résultat de
+l'ordinateur après exécution des instructions de la définition de la
+fonction associée à ce nom. Si un symbole en lui-même est évalué,
+quelque chose de différent se produit, comme nous le verrons dans la
+prochaine section.
+

@@ -1,0 +1,10 @@
+Emacs : 
+http://www.pallier.org/ressources/intro_emacs/intro_emacs.pdf
+
+http://www.linux-france.org/article/appli/emacs/manuel/html/index.html
+
+http://www.framasoft.net/article1000.html
+
+http://www.linux-france.org/article/appli/emacs/manuel/html/index.html
+
+http://www.emacswiki.org/emacs?interface=fr

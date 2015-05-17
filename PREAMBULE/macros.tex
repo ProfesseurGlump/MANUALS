@@ -1,0 +1,134 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LABEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% raccourcis pour faire des étiquettes (label) %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ANNEXES
+\newcommand{\etap}[1]{\label{App#1}}                       % pour les annexes
+
+\newcommand{\etaps}[2]{\label{App#1sec#2}}                 % pour les
+                                                           % sections des 
+                                                           % annexes
+ 
+
+\newcommand{\etapss}[3]{\label{App#1sec#2subsec#3}}        % pour les
+                                                           % sous-sections des
+                                                           % annexes
+
+% CHAPITRES
+\newcommand{\etch}[1]{\label{chap#1}}                      % pour les chapitres
+
+\newcommand{\etchs}[2]{\label{chap#1sec#2}}                % pour les
+                                                           % sections des 
+                                                           % chapitres
+ 
+
+\newcommand{\etchss}[3]{\label{chap#1sec#2subsec#3}}       % pour les
+                                                           % sous-sections des
+                                                           % chapitres
+
+\newcommand{\etchsss}[4]{\label{chap#1sec#2subsec#3subsubsec#4}}% pour les
+                                                           % sous-sous-sections des
+                                                           % chapitres
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% REFERENCES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%    raccourcis pour faire des références      %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% ANNEXES
+\newcommand{\cfap}[1]{~\ref{App#1}}                       % pour les annexes
+\newcommand{\cfapg}[1]{~\pageref{App#1}}                  % pour les pages
+                                                          % des annexes
+
+\newcommand{\cfaps}[2]{~\ref{App#1sec#2}}                 % pour les
+                                                          % sections des 
+                                                          % annexes
+\newcommand{\cfapsg}[2]{~\pageref{App#1sec#2}}            % pour les pages des
+                                                          % sections des annexes
+ 
+
+\newcommand{\cfapss}[3]{~\ref{App#1sec#2subsec#3}}        % pour les
+                                                          % sous-sections des
+                                                          % annexes
+\newcommand{\cfapssg}[3]{~\pageref{App#1sec#2subsec#3}}   % pour les pages des
+                                                          % sous-sections
+                                                          % des annexes
+
+% CHAPITRES
+\newcommand{\cfch}[1]{~\ref{chap#1}}                      % pour les chapitres
+\newcommand{\cfchg}[1]{~\pageref{chap#1}}                 % pour les pages
+                                                          % des chapitres
+
+\newcommand{\cfchs}[2]{~\ref{chap#1sec#2}}                % pour les
+                                                          % sections des 
+                                                          % chapitres
+\newcommand{\cfchsg}[2]{~\pageref{chap#1sec#2}}           % pour les pages des
+                                                          % sections
+                                                          % des
+                                                          % chapitres 
+ 
+
+\newcommand{\cfchss}[3]{~\ref{chap#1sec#2subsec#3}}       % pour les
+                                                          % sous-sections des
+                                                          % chapitres
+\newcommand{\cfchssg}[3]{~\pageref{chap#1sec#2subsec#3}}  % pour les pages des
+                                                          % sous-sections
+                                                          % des chapitres
+
+\newcommand{\cfchsss}[4]{~\ref{chap#1sec#2subsec#3subsubsec#4}}       % pour les
+                                                          % sous-sous-sections des
+                                                          % chapitres
+\newcommand{\cfchsssg}[4]{~\pageref{chap#1sec#2subsec#3subsubsec#4}}  % pour les pages des
+                                                          % sous-sous-sections
+                                                          % des chapitres
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% RACCOURCIS EMACS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\gem}{GNU Emacs\xspace}
+\newcommand{\ESC}{\texttt{ESC}\xspace}
+\newcommand{\RET}{\texttt{RET}\xspace}
+\newcommand{\DEL}{\texttt{DEL}\xspace}
+\newcommand{\TAB}{\texttt{TAB}\xspace}
+\newcommand{\SPC}{\texttt{SPC}\xspace}
+\newcommand{\rep}[2]{\texttt{#1-#2}\xspace} % Par exemple M-x
+\newcommand{\rec}[4]{\texttt{#1-#2 #3-#4}\xspace} % Par exemple C-x C-f
+
+%% pour aller chercher les images
+% PICS est le lien symbolique de chemin :
+% /Users/macintoshhd/docApple/RoadMapiOS/IMG
+% avec docApple lien symbolique de chemin :
+% /Users/macintoshhd/Desktop/Xcode/DocApple/
+
+\newcommand{\pic}[1]{/Users/macintoshhd/Desktop/PICS/#1} % avec 1
+                                                         % nom de l'image
+\newcommand{\ig}[2]{\includegraphics[scale = #1]{\pic{#2}}} 
+% l'argument 1 sert au dimensionnement (uniquement par
+% proportionnalité)
+% l'argument 2 sert au nom de l'image
+
+\newcommand{\pcs}[3]{pic#1chap#2sec#3} % pour nommer plus rapidement
+% picIchapJsecK
+
+% pour écrire en type machine
+\newcommand{\tm}[1]{\texttt{#1}}
+
+% pour aligner du texte
+
+% à gauche 
+\newcommand{\ag}[1]{{\flushleft #1}}
+
+% à droite 
+\newcommand{\ad}[1]{{\flushright #1}}
+
